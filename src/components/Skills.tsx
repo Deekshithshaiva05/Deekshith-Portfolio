@@ -6,9 +6,9 @@ import { skills } from '../data/skills';
 type SkillCategory = 'all' | 'programming' | 'frameworks' | 'tools' | 'soft' | 'other';
 
 const Skills: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<SkillCategory>('programming');
+  const [activeCategory, setActiveCategory] = useState<SkillCategory>('all');
   
-  const filteredSkills = activeCategory === 'programming' 
+  const filteredSkills = activeCategory === 'all' 
     ? skills 
     : skills.filter(skill => skill.category === activeCategory);
   
