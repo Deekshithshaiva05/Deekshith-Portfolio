@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, FileDown } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface HeaderProps {
@@ -55,17 +55,6 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
     }
   };
 
-  const handleResumeDownload = () => {
-    // Replace with actual resume PDF URL
-    const resumeUrl = '/resume.pdf';
-    const link = document.createElement('a');
-    link.href = resumeUrl;
-    link.download = 'Deekshith_N_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -108,15 +97,6 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
                 {link.name}
               </motion.a>
             ))}
-            <motion.button
-              onClick={handleResumeDownload}
-              className="flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FileDown className="w-4 h-4 mr-2" />
-              Resume
-            </motion.button>
           </nav>
 
           <div className="flex items-center space-x-4">
@@ -168,13 +148,6 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
                 {link.name}
               </a>
             ))}
-            <button
-              onClick={handleResumeDownload}
-              className="w-full flex items-center justify-center py-2 px-4 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
-            >
-              <FileDown className="w-4 h-4 mr-2" />
-              Download Resume
-            </button>
           </div>
         </motion.div>
       )}
