@@ -8,7 +8,7 @@ type SkillCategory = 'all' | 'programming' | 'frameworks' | 'tools' | 'soft' | '
 const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<SkillCategory>('all');
   
-  const filteredSkills = activeCategory === 'all' 
+  const filteredSkills = activeCategory === 'programming' 
     ? skills 
     : skills.filter(skill => skill.category === activeCategory);
   
