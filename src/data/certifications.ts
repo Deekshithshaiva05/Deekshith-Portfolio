@@ -26,11 +26,19 @@ export const certifications: Certification[] = [
     type: 'image'
   },
   {
-    title: 'Machine Learning',
-    organization: 'Kaggle Learn',
-    description: 'Practical machine learning concepts, algorithms, and implementation using Python and scikit-learn.',
-    issueDate: 'Aug 2024',
-    url: 'https://example.com/cert3',
+    title: 'AI Essentials: Introduction to Artificial Intelligence',
+    organization: 'Udemy (MTF Institute of Management, Technology and Finance)',
+    description: ' Completion of a foundational course introducing key concepts in Artificial Intelligence.',
+    issueDate: 'November 20, 2024',
+    url: 'https://ude.my/UC-c1226a71-ca23-479f-9fa9-d0eaf1d75bc0',
     type: 'url'
   }
+  {
+    title: 'Data Analysis with Pandas and Python',
+    organization: 'Infosys springboard',
+    description: 'Completed a hands-on course focused on data analysis using Python and the Pandas library.Learned data cleaning, manipulation, and visualization techniques on real-world datasets.Developed analytical skills to derive insights and build efficient data workflows.',
+    issueDate: 'December 18, 2024',
+    image: '/images/Data_Analysis_Certificate_Page_1.jpg',
+    type: 'image'
+  },
 ];
