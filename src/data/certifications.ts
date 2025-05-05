@@ -32,7 +32,7 @@ export const certifications: Certification[] = [
     issueDate: 'November 20, 2024',
     url: 'https://ude.my/UC-c1226a71-ca23-479f-9fa9-d0eaf1d75bc0',
     type: 'url'
-  }
+  },
   {
     title: 'Data Analysis with Pandas and Python',
     organization: 'Infosys springboard',
@@ -40,5 +40,5 @@ export const certifications: Certification[] = [
     issueDate: 'December 18, 2024',
     image: '/images/Data_Analysis_Certificate_Page_1.jpg',
     type: 'image'
-  },
+  }
 ];
