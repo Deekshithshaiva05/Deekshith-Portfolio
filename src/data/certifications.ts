@@ -55,7 +55,7 @@ export const certifications: Certification[] = [
     organization: "Infosys Springboard",
     description: "This course provided in-depth knowledge and hands-on experience with machine learning concepts using TensorFlow. It covered key topics such as neural networks, model training, and real-world AI applications.",
     issueDate: "July 28, 2024",
-    url: "\images\Explore ML with TensorFlow.png",
+    url: "/images/Explore ML with TensorFlow.png",
     type: "image"
   }
 
