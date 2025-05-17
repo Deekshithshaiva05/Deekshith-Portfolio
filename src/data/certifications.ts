@@ -49,7 +49,7 @@ export const certifications: Certification[] = [
     issueDate: 'December 18, 2024',
     image: '/images/Data_Analysis_Certificate_Page_1.jpg',
     type: 'image'
-  }
+  },
   {
     title: "Explore Machine Learning with TensorFlow",
     organization: "Infosys Springboard",
@@ -57,6 +57,6 @@ export const certifications: Certification[] = [
     issueDate: "July 28, 2024",
     url: "\images\Explore ML with TensorFlow.png",
     type: "image"
-}
+  }
 
 ];
