@@ -34,6 +34,15 @@ export const certifications: Certification[] = [
     type: 'url'
   },
   {
+    title: "Python and Artificial Intelligence",
+    organization: "Google Developer Student Clubs & DevTown",
+    description: "Successfully completed a 7-day bootcamp with DevTown on Python and Artificial Intelligence.",
+    issueDate: "",
+    url: "https://cert.devtown.in/verify/ZVcWmd",
+    type: "url"
+  },
+
+  {
     title: 'Data Analysis with Pandas and Python',
     organization: 'Infosys springboard',
     description: 'Completed a hands-on course focused on data analysis using Python and the Pandas library.Learned data cleaning, manipulation, and visualization techniques on real-world datasets.Developed analytical skills to derive insights and build efficient data workflows.',
