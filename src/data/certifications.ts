@@ -75,7 +75,7 @@ export const certifications: Certification[] = [
     type: "image"
   },
   {
-    title: "Internship Certificate",
+    title: "Contributor Recognition",
     organization: "Social Summer of Code (SSOC)",
     description: "This certificate is awarded to Deekshith N in recognition of the successful completion of a one-month internship program in Python Programming conducted by Codsoft. During the internship period from 05/07/2024 to 05/08/2024, the intern demonstrated dedication to learning and applying core Python concepts.",
     issueDate: "August 8, 2024",
