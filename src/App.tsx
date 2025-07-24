@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import CertificationsPreview from './components/CertificationsPreview';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Certifications from './components/Certifications';
@@ -37,6 +38,7 @@ function App() {
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <Hero />
       <About />
+      <CertificationsPreview />
       <Skills />
       <Projects />
       <Certifications />

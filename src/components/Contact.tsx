@@ -5,7 +5,11 @@ import { Phone, Mail, MapPin, Send, CheckCircle, XCircle } from 'lucide-react';
 import { socialLinks } from '../data/social';
 import type { FormValues } from '../types';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  showViewAllCertificates?: boolean;
+}
+
+const Contact: React.FC<ContactProps> = ({ showViewAllCertificates = true }) => {
   const [formValues, setFormValues] = useState<FormValues>({
     name: '',
     email: '',
@@ -20,6 +24,13 @@ const Contact: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const scrollToCertifications = () => {
+    const certificationsSection = document.querySelector('#certifications');
+    if (certificationsSection) {
+      certificationsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const validateForm = () => {
     const errors: Partial<FormValues> = {};
@@ -91,6 +102,26 @@ const Contact: React.FC = () => {
   return (
     <section id="contact" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
+        {showViewAllCertificates && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-right mb-6"
+          >
+            <button
+              onClick={scrollToCertifications}
+              className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
+            >
+              View All Certificates
+              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </motion.div>
+        )}
+        
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
