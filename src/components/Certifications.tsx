@@ -11,24 +11,28 @@ interface Certification {
   description: string;
   image: string;
   link: string;
+  type: 'url' | 'image';
+  url?: string;
 }
 
 // Transform the original certifications to match the new format
 const certifications: Certification[] = originalCertifications.map(cert => ({
   title: cert.title,
-  issuer: cert.organization,
+  issuer: cert.organization, // issuer is used in this component
   date: cert.issueDate,
   description: cert.description || '',
   image: cert.image || '',
-  link: cert.url || cert.image || '#'
+  link: cert.url || cert.image || '#',
+  type: cert.type,
+  url: cert.url,
 }));
 
 const Certifications: React.FC = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<Certification | null>(null);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
+  // Animation for right-to-left slide-in
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -41,8 +45,8 @@ const Certifications: React.FC = () => {
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    hidden: { opacity: 0, x: 100 }, // Slide in from right
+    show: { opacity: 1, x: 0, transition: { duration: 0.6 } },
   };
 
   const handleCertificateClick = (cert: Certification) => {
@@ -54,15 +58,10 @@ const Certifications: React.FC = () => {
   };
 
   const handleDownload = (cert: Certification) => {
-    if (cert.url) {
+    if (cert.type === 'url' && cert.url) {
       window.open(cert.url, '_blank');
-    } else if (cert.image) {
-      const link = document.createElement('a');
-      link.href = cert.image;
-      link.download = `${cert.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_certificate`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    } else if (cert.type === 'image' && cert.image) {
+      setSelectedCertificate(cert);
     }
   };
 
@@ -88,117 +87,59 @@ const Certifications: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-white dark:bg-gray-900 p-1 rounded-lg shadow-sm">
-            <button
-              onClick={() => setViewMode('list')}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition ${
-                viewMode === 'list'
-                  ? 'bg-primary-500 text-white'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-            >
-              List View
-            </button>
-            <button
-              onClick={() => setViewMode('grid')}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition ${
-                viewMode === 'grid'
-                  ? 'bg-primary-500 text-white'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-            >
-              Grid View
-            </button>
-          </div>
-        </div>
+        {/* Removed grid/list view toggle */}
 
         <motion.div
           ref={ref}
           variants={container}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className={viewMode === 'list' ? 'space-y-6' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'}
+          className="flex overflow-x-auto gap-6 pb-4"
+          style={{ scrollbarWidth: 'thin', scrollbarColor: '#a0aec0 #edf2f7' }}
         >
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
               variants={item}
-              className={`bg-white dark:bg-gray-900 rounded-xl shadow-soft hover:shadow-soft-lg transition-all duration-300 cursor-pointer ${
-                viewMode === 'list' ? 'p-6' : 'p-4'
-              }`}
+              className="bg-white dark:bg-gray-900 rounded-xl shadow-soft hover:shadow-soft-lg transition-all duration-300 cursor-pointer p-6 min-w-[320px] max-w-xs flex-shrink-0"
               onClick={() => handleCertificateClick(cert)}
               whileHover={{ scale: 1.02 }}
             >
-              {viewMode === 'list' ? (
-                <div className="flex flex-col md:flex-row md:items-center gap-4">
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                      {cert.title}
-                    </h3>
-                    <div className="flex items-center text-primary-600 dark:text-primary-400 mb-2">
-                      <Building className="w-4 h-4 mr-2" />
-                      <span className="font-medium">{cert.organization}</span>
-                    </div>
-                    <div className="flex items-center text-gray-500 dark:text-gray-400 mb-3">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      <span>{cert.issueDate}</span>
-                    </div>
-                    {cert.description && (
-                      <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
-                        {cert.description}
-                      </p>
+              <div className="flex flex-col h-full justify-between">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {cert.title}
+                </h3>
+                <div className="text-primary-600 dark:text-primary-400 font-medium mb-2">
+                  {cert.issuer}
+                </div>
+                {cert.description && (
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                    {cert.description}
+                  </p>
+                )}
+                <div className="mt-auto flex items-center">
+                  <button
+                    onClick={e => {
+                      e.stopPropagation();
+                      handleDownload(cert);
+                    }}
+                    className="flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium"
+                    aria-label={cert.type === 'url' ? 'View Certificate' : 'View Image'}
+                  >
+                    {cert.type === 'url' ? (
+                      <>
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        View Certificate
+                      </>
+                    ) : (
+                      <>
+                        <Download className="w-4 h-4 mr-2" />
+                        View Image
+                      </>
                     )}
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs px-3 py-1 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300">
-                      {cert.type === 'url' ? 'Online' : 'Certificate'}
-                    </span>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleDownload(cert);
-                      }}
-                      className="p-2 text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
-                      aria-label="Download/View Certificate"
-                    >
-                      {cert.type === 'url' ? <ExternalLink className="w-5 h-5" /> : <Download className="w-5 h-5" />}
-                    </button>
-                  </div>
+                  </button>
                 </div>
-              ) : (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
-                    {cert.title}
-                  </h3>
-                  <p className="text-sm text-primary-600 dark:text-primary-400 font-medium mb-1">
-                    {cert.organization}
-                  </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
-                    {cert.issueDate}
-                  </p>
-                  {cert.description && (
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                      {cert.description}
-                    </p>
-                  )}
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs px-2 py-1 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300">
-                      {cert.type === 'url' ? 'Online' : 'Certificate'}
-                    </span>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleDownload(cert);
-                      }}
-                      className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
-                      aria-label="Download/View Certificate"
-                    >
-                      {cert.type === 'url' ? <ExternalLink className="w-4 h-4" /> : <Download className="w-4 h-4" />}
-                    </button>
-                  </div>
-                </div>
-              )}
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -229,22 +170,14 @@ const Certifications: React.FC = () => {
               >
                 <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               </button>
-              
+              {/* Modal content for both types */}
               <div className="pr-12">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                   {selectedCertificate.title}
                 </h3>
-                
-                <div className="flex items-center text-primary-600 dark:text-primary-400 mb-2">
-                  <Building className="w-5 h-5 mr-2" />
-                  <span className="font-medium">{selectedCertificate.organization}</span>
+                <div className="text-primary-600 dark:text-primary-400 font-medium mb-2">
+                  {selectedCertificate.issuer}
                 </div>
-                
-                <div className="flex items-center text-gray-500 dark:text-gray-400 mb-4">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  <span>{selectedCertificate.issueDate}</span>
-                </div>
-                
                 {selectedCertificate.description && (
                   <div className="mb-6">
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Description</h4>
@@ -253,10 +186,9 @@ const Certifications: React.FC = () => {
                     </p>
                   </div>
                 )}
-                
-                {selectedCertificate.image && (
+                {selectedCertificate.type === 'image' && selectedCertificate.image && (
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Certificate Preview</h4>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Certificate Image</h4>
                     <img
                       src={selectedCertificate.image}
                       alt={selectedCertificate.title}
@@ -264,25 +196,15 @@ const Certifications: React.FC = () => {
                     />
                   </div>
                 )}
-                
-                <div className="flex gap-4">
+                {selectedCertificate.type === 'url' && selectedCertificate.url && (
                   <button
-                    onClick={() => handleDownload(selectedCertificate)}
+                    onClick={() => window.open(selectedCertificate.url, '_blank')}
                     className="flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
                   >
-                    {selectedCertificate.type === 'url' ? (
-                      <>
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Certificate
-                      </>
-                    ) : (
-                      <>
-                        <Download className="w-4 h-4 mr-2" />
-                        Download
-                      </>
-                    )}
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    View Certificate
                   </button>
-                </div>
+                )}
               </div>
             </motion.div>
           </motion.div>

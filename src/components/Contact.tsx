@@ -98,21 +98,6 @@ const Contact: React.FC = () => {
   return (
     <section id="contact" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-right mb-6"
-        >
-          <button
-            onClick={scrollToCertifications}
-            className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
-          >
-            View All Certificates
-            <ArrowRight className="w-4 h-4 ml-1" />
-          </button>
-        </motion.div>
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -150,104 +135,7 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-8 shadow-soft mt-6 sm:mt-8"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Send Me a Message</h3>
-          {formStatus === 'success' ? (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center justify-center text-center py-8 sm:py-10"
-            >
-              <CheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-green-500 mb-4" />
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">Message Sent!</h4>
-              <p className="text-gray-600 dark:text-gray-300">
-                Thank you for reaching out. I'll get back to you as soon as possible.
-              </p>
-            </motion.div>
-          ) : formStatus === 'error' ? (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center justify-center text-center py-8 sm:py-10"
-            >
-              <XCircle className="w-12 h-12 sm:w-16 sm:h-16 text-red-500 mb-4" />
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">Something went wrong!</h4>
-              <p className="text-gray-600 dark:text-gray-300">
-                Please try again later or contact me directly via email.
-              </p>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formValues.name}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm focus:border-primary-500 focus:ring-primary-500 text-base sm:text-lg px-3 py-2 sm:px-4 sm:py-3"
-                  autoComplete="name"
-                  required
-                />
-                {formErrors.name && <p className="text-red-500 text-xs mt-1">{formErrors.name}</p>}
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formValues.email}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm focus:border-primary-500 focus:ring-primary-500 text-base sm:text-lg px-3 py-2 sm:px-4 sm:py-3"
-                  autoComplete="email"
-                  required
-                />
-                {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
-              </div>
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formValues.subject}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm focus:border-primary-500 focus:ring-primary-500 text-base sm:text-lg px-3 py-2 sm:px-4 sm:py-3"
-                  required
-                />
-                {formErrors.subject && <p className="text-red-500 text-xs mt-1">{formErrors.subject}</p>}
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formValues.message}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm focus:border-primary-500 focus:ring-primary-500 text-base sm:text-lg px-3 py-2 sm:px-4 sm:py-3"
-                  required
-                />
-                {formErrors.message && <p className="text-red-500 text-xs mt-1">{formErrors.message}</p>}
-              </div>
-              <button
-                type="submit"
-                className="w-full flex justify-center items-center gap-2 py-3 px-6 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors"
-                disabled={formStatus === 'submitting'}
-              >
-                {formStatus === 'submitting' ? (
-                  <>
-                    <Send className="w-5 h-5 animate-spin" /> Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" /> Send Message
-                  </>
-                )}
-              </button>
-            </form>
-          )}
+          {/* Message form removed as requested */}
         </motion.div>
       </div>
     </section>
