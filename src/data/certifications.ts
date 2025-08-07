@@ -105,6 +105,14 @@ export const certifications: Certification[] = [
     issueDate: "May 1, 2025",
     image: "/images/Foundations of Agents.png",
     type: "image"
+  },
+  {
+    title: "From Learner to Builder: Become an AI Agent Architect",
+    organization: "IBM SkillsBuild",
+    description: "This certificate recognizes the successful completion of IBM SkillsBuild’s From Learner to Builder: Become an AI Agent Architect program. The course equips participants with essential knowledge and practical skills to design and build intelligent AI agents, preparing them for advanced roles in artificial intelligence solutions development.",
+    issueDate: "JUNE 10, 2025",
+    image: "/images/AI AGENT - IBM.png",
+    type: "image"
   }
 
 ];
