@@ -75,30 +75,6 @@ const Contact: React.FC = () => {
         setFormValues({
           name: '',
           email: '',
-          subject: '',
-          message: '',
-        });
-        
-        // Reset form status after 3 seconds
-        setTimeout(() => {
-          setFormStatus('idle');
-        }, 3000);
-      }, 1500);
-    }
-  };
-  
-  // Import dynamic icons from lucide-react
-  const socialIcons: { [key: string]: React.ReactNode } = {
-    Github: <div className="w-5 h-5 text-gray-700 dark:text-gray-300" />,
-    Linkedin: <div className="w-5 h-5 text-gray-700 dark:text-gray-300" />,
-    Twitter: <div className="w-5 h-5 text-gray-700 dark:text-gray-300" />,
-    Mail: <Mail className="w-5 h-5 text-gray-700 dark:text-gray-300" />,
-  };
-
-  return (
-    <section id="contact" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
-        
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
