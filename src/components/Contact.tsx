@@ -75,6 +75,16 @@ const Contact: React.FC = () => {
         setFormValues({
           name: '',
           email: '',
+          subject: '',
+          message: '',
+        });
+      }, 2000);
+    }
+  };
+
+  return (
+    <section id="contact" className="py-12 sm:py-20 bg-gray-50 dark:bg-gray-800">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
