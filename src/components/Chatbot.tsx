@@ -297,3 +297,16 @@ const Chatbot: React.FC = () => {
 };
 
 export default Chatbot;
+
+const response = await fetch("/api/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ 
+    userMessage, 
+    personalContext // still build this dynamically from skills/projects
+  }),
+});
+
+if (!response.ok) throw new Error("API call failed");
+const data = await response.json();
+return data.reply;
