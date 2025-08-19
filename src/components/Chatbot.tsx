@@ -19,7 +19,7 @@ const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm Deekshith N, an AI/ML engineering student. Feel free to ask me about my skills, projects, education, or anything else you'd like to know!",
+      text: "Hi! I'm Deekshith N, an AI/ML engineering student. Feel free to ask me about my skills, projects, education, experience, or anything else you'd like to know!",
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -39,35 +39,45 @@ const Chatbot: React.FC = () => {
   const generatePersonalizedResponse = async (userMessage: string): Promise<string> => {
     const lowerMessage = userMessage.toLowerCase();
     
-    // Create context about Deekshith
+    // Create comprehensive context about Deekshith using actual website data
     const personalContext = `
     I am Deekshith N, a Computer Science engineering student specializing in AI/ML at ATME College of Engineering, Mysuru. 
-    Here's my information:
+    Here's my complete information:
+    
+    PERSONAL INFO:
+    - Name: Deekshith N
+    - Email: deekshithshaiva05@gmail.com
+    - Phone: +91 8867367538
+    - Location: Mysore, Karnataka
+    - GitHub: https://github.com/Deekshithshaiva05
+    - LinkedIn: https://www.linkedin.com/in/deekshith-n-036ab9263
     
     EDUCATION:
     - Currently in pre-final year of B.E. in Computer Science (AI/ML) at ATME College of Engineering, Mysuru
     - GPA: 9.0/10.0
     - Previously completed PUC in PCMB from NiSARGA INDEPENDENT PU COLLEGE with 84%
     
-    SKILLS:
+    SKILLS (with proficiency levels):
     ${skills.map(skill => `- ${skill.name}: ${skill.level}/10 (${skill.category})`).join('\n')}
     
     PROJECTS:
-    ${projects.map(project => `- ${project.title}: ${project.description}`).join('\n')}
+    ${projects.map(project => `- ${project.title}: ${project.description.substring(0, 200)}...`).join('\n')}
     
     EXPERIENCE:
-    ${experienceData.map(exp => `- ${exp.title} at ${exp.company} (${exp.startDate} - ${exp.current ? 'Present' : exp.endDate})`).join('\n')}
+    ${experienceData.map(exp => `- ${exp.title} at ${exp.company} (${exp.startDate} - ${exp.current ? 'Present' : exp.endDate}): ${exp.description.join('. ')}`).join('\n')}
     
-    CERTIFICATIONS: ${certifications.length} certifications including Python, AI, Machine Learning, and more.
+    CERTIFICATIONS: 
+    I have ${certifications.length} certifications including:
+    ${certifications.slice(0, 5).map(cert => `- ${cert.title} from ${cert.organization}`).join('\n')}
     
-    CONTACT:
-    - Email: deekshithshaiva05@gmail.com
-    - Phone: +91 8867367538
-    - Location: Mysore, Karnataka
-    - GitHub: https://github.com/Deekshithshaiva05
-    - LinkedIn: https://www.linkedin.com/in/deekshith-n-036ab9263
+    INTERESTS & GOALS:
+    - Passionate about AI/ML and solving real-world problems
+    - Active participant in hackathons and technical competitions
+    - Looking for opportunities in AI/ML development and data science
+    - Interested in research and innovation in artificial intelligence
     `;
 
+    // Try OpenAI API first
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
@@ -80,7 +90,7 @@ const Chatbot: React.FC = () => {
           messages: [
             {
               role: 'system',
-              content: `You are Deekshith N responding to questions about yourself. Always respond in first person (I, me, my). Be conversational, friendly, and professional. Use the provided context to answer questions accurately. Don't mention that you're an AI - you ARE Deekshith. Here's your information: ${personalContext}`
+              content: `You are Deekshith N responding to questions about yourself. ALWAYS respond in first person (I, me, my). Be conversational, friendly, and professional. Use the provided context to answer questions accurately. Don't mention that you're an AI - you ARE Deekshith responding personally. Keep responses concise but informative. Here's your information: ${personalContext}`
             },
             {
               role: 'user',
@@ -93,7 +103,7 @@ const Chatbot: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to get response from OpenAI');
+        throw new Error('OpenAI API failed');
       }
 
       const data = await response.json();
@@ -101,29 +111,44 @@ const Chatbot: React.FC = () => {
     } catch (error) {
       console.error('OpenAI API Error:', error);
       
-      // Fallback responses based on keywords
-      if (lowerMessage.includes('skill')) {
-        const topSkills = skills.filter(s => s.level >= 8).map(s => s.name).join(', ');
-        return `My top skills include ${topSkills}. I'm particularly strong in Python, Flask, Machine Learning, and Data Analysis. I have experience with various frameworks and tools for AI/ML development.`;
+      // Enhanced fallback responses using actual website data
+      if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('programming')) {
+        const topSkills = skills.filter(s => s.level >= 8).map(s => `${s.name} (${s.level}/10)`).join(', ');
+        const programmingSkills = skills.filter(s => s.category === 'programming').map(s => s.name).join(', ');
+        return `My top skills include ${topSkills}. I'm particularly strong in programming languages like ${programmingSkills}. I also have extensive experience with frameworks like Flask, Pandas, NumPy, and machine learning libraries. I'm always learning new technologies to stay current with industry trends!`;
       }
       
-      if (lowerMessage.includes('project')) {
-        return `I've worked on several interesting projects including a Car Price Prediction system using XGBoost and Random Forest, and a Medicine Recommendation System using machine learning. Both projects involved extensive data analysis and model optimization.`;
+      if (lowerMessage.includes('project') || lowerMessage.includes('work') || lowerMessage.includes('built')) {
+        const featuredProjects = projects.filter(p => p.featured).map(p => p.title).join(' and ');
+        return `I've worked on several exciting projects! My featured projects include ${featuredProjects}. The Car Price Prediction project uses XGBoost and Random Forest algorithms to accurately predict used car prices, while the Medicine Recommendation System leverages machine learning to suggest appropriate medications based on symptoms. Both projects involved extensive data analysis, model optimization, and web development using Flask.`;
       }
       
-      if (lowerMessage.includes('education') || lowerMessage.includes('study')) {
-        return `I'm currently in my pre-final year pursuing B.E. in Computer Science with specialization in AI/ML at ATME College of Engineering, Mysuru. I maintain a 9.0/10.0 GPA and am passionate about artificial intelligence and machine learning.`;
+      if (lowerMessage.includes('education') || lowerMessage.includes('study') || lowerMessage.includes('college') || lowerMessage.includes('gpa')) {
+        return `I'm currently in my pre-final year pursuing B.E. in Computer Science with specialization in AI/ML at ATME College of Engineering, Mysuru. I maintain a strong 9.0/10.0 GPA and am passionate about artificial intelligence and machine learning. Before this, I completed my PUC in PCMB from NiSARGA INDEPENDENT PU COLLEGE with 84%. My academic focus is on understanding both theoretical concepts and practical applications of AI/ML.`;
       }
       
-      if (lowerMessage.includes('experience') || lowerMessage.includes('work')) {
-        return `I've completed a software internship at CodSoft where I worked on Python-based applications and Django web development. I also actively participate in hackathons and technical competitions to enhance my skills.`;
+      if (lowerMessage.includes('experience') || lowerMessage.includes('internship') || lowerMessage.includes('job')) {
+        return `I completed a software internship at CodSoft where I worked on Python-based applications and Django web development. During this internship, I developed backend systems, optimized code for performance, and collaborated with senior developers. I also actively participate in hackathons like Tech Tonic 2024 and other technical competitions, which has helped me develop teamwork skills and innovative problem-solving approaches.`;
       }
       
-      if (lowerMessage.includes('contact') || lowerMessage.includes('reach')) {
-        return `You can reach me at deekshithshaiva05@gmail.com or call me at +91 8867367538. I'm based in Mysore, Karnataka. Feel free to connect with me on LinkedIn or check out my projects on GitHub!`;
+      if (lowerMessage.includes('contact') || lowerMessage.includes('reach') || lowerMessage.includes('email') || lowerMessage.includes('phone')) {
+        return `You can reach me at deekshithshaiva05@gmail.com or call me at +91 8867367538. I'm based in Mysore, Karnataka. Feel free to connect with me on LinkedIn (https://www.linkedin.com/in/deekshith-n-036ab9263) or check out my projects on GitHub (https://github.com/Deekshithshaiva05). I'm always open to discussing new opportunities and collaborations!`;
       }
       
-      return "Thanks for your question! I'm always happy to discuss my background, projects, or any opportunities for collaboration. Feel free to ask me anything specific about my skills or experience!";
+      if (lowerMessage.includes('certificate') || lowerMessage.includes('certification') || lowerMessage.includes('course')) {
+        return `I have ${certifications.length} certifications in various areas including Python programming, AI/ML, data analysis, and web development. Some notable ones include certifications from University of Michigan (Python), Microsoft (AI Workshop), Udemy (AI Essentials), and Google Developer Student Clubs. I believe in continuous learning and regularly update my skills through online courses and workshops.`;
+      }
+      
+      if (lowerMessage.includes('hire') || lowerMessage.includes('available') || lowerMessage.includes('opportunity') || lowerMessage.includes('job')) {
+        return `Yes, I'm actively looking for opportunities in AI/ML development, data science, and software engineering! I'm particularly interested in roles where I can apply my machine learning skills and work on innovative projects. With my strong academic background (9.0 GPA), practical experience through internships and projects, and passion for AI/ML, I'm ready to contribute to a dynamic team. Feel free to reach out to discuss potential opportunities!`;
+      }
+      
+      if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+        return `Hello! Great to meet you! I'm Deekshith N, an AI/ML engineering student passionate about creating innovative solutions. I love working on machine learning projects, participating in hackathons, and learning new technologies. What would you like to know about my background or experience?`;
+      }
+      
+      // Default response
+      return `Thanks for your question! I'm always happy to discuss my background, projects, skills, or any opportunities for collaboration. I'm passionate about AI/ML and love sharing my experiences. Feel free to ask me anything specific about my education, projects, or technical expertise. You can also reach out to me directly at deekshithshaiva05@gmail.com!`;
     }
   };
 
