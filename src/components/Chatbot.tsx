@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, User, Bot } from 'lucide-react';
+import { MessageCircle, X, Send } from 'lucide-react';
 import { skills } from '../data/skills';
 import { projects } from '../data/projects';
 import { educationData } from '../data/education';
@@ -36,14 +36,11 @@ const Chatbot: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  const generatePersonalizedResponse = async (userMessage: string): Promise<string> => {
-    const lowerMessage = userMessage.toLowerCase();
-    
-    // Create comprehensive context about Deekshith using actual website data
-    const personalContext = `
+  // Build full context string from your local data
+  const buildPersonalContext = () => {
+    return `
     I am Deekshith N, a Computer Science engineering student specializing in AI/ML at ATME College of Engineering, Mysuru. 
-    Here's my complete information:
-    
+
     PERSONAL INFO:
     - Name: Deekshith N
     - Email: deekshithshaiva05@gmail.com
@@ -51,104 +48,42 @@ const Chatbot: React.FC = () => {
     - Location: Mysore, Karnataka
     - GitHub: https://github.com/Deekshithshaiva05
     - LinkedIn: https://www.linkedin.com/in/deekshith-n-036ab9263
-    
+
     EDUCATION:
-    - Currently in pre-final year of B.E. in Computer Science (AI/ML) at ATME College of Engineering, Mysuru
-    - GPA: 9.0/10.0
-    - Previously completed PUC in PCMB from NiSARGA INDEPENDENT PU COLLEGE with 84%
-    
-    SKILLS (with proficiency levels):
+    ${educationData.map(edu => `- ${edu.degree} at ${edu.institution} (${edu.startDate} - ${edu.endDate})`).join('\n')}
+
+    SKILLS:
     ${skills.map(skill => `- ${skill.name}: ${skill.level}/10 (${skill.category})`).join('\n')}
-    
+
     PROJECTS:
     ${projects.map(project => `- ${project.title}: ${project.description.substring(0, 200)}...`).join('\n')}
-    
+
     EXPERIENCE:
     ${experienceData.map(exp => `- ${exp.title} at ${exp.company} (${exp.startDate} - ${exp.current ? 'Present' : exp.endDate}): ${exp.description.join('. ')}`).join('\n')}
-    
-    CERTIFICATIONS: 
-    I have ${certifications.length} certifications including:
-    ${certifications.slice(0, 5).map(cert => `- ${cert.title} from ${cert.organization}`).join('\n')}
-    
-    INTERESTS & GOALS:
-    - Passionate about AI/ML and solving real-world problems
-    - Active participant in hackathons and technical competitions
-    - Looking for opportunities in AI/ML development and data science
-    - Interested in research and innovation in artificial intelligence
-    `;
 
-    // Try OpenAI API first
+    CERTIFICATIONS:
+    ${certifications.slice(0, 5).map(cert => `- ${cert.title} from ${cert.organization}`).join('\n')}
+    `;
+  };
+
+  const generatePersonalizedResponse = async (userMessage: string): Promise<string> => {
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-        },
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
-          messages: [
-            {
-              role: 'system',
-              content: `You are Deekshith N responding to questions about yourself. ALWAYS respond in first person (I, me, my). Be conversational, friendly, and professional. Use the provided context to answer questions accurately. Don't mention that you're an AI - you ARE Deekshith responding personally. Keep responses concise but informative. Here's your information: ${personalContext}`
-            },
-            {
-              role: 'user',
-              content: userMessage
-            }
-          ],
-          max_tokens: 300,
-          temperature: 0.7,
+          userMessage,
+          personalContext: buildPersonalContext(),
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('OpenAI API failed');
-      }
+      if (!response.ok) throw new Error("API call failed");
 
       const data = await response.json();
-      return data.choices[0].message.content;
+      return data.reply;
     } catch (error) {
-      console.error('OpenAI API Error:', error);
-      
-      // Enhanced fallback responses using actual website data
-      if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('programming')) {
-        const topSkills = skills.filter(s => s.level >= 8).map(s => `${s.name} (${s.level}/10)`).join(', ');
-        const programmingSkills = skills.filter(s => s.category === 'programming').map(s => s.name).join(', ');
-        return `My top skills include ${topSkills}. I'm particularly strong in programming languages like ${programmingSkills}. I also have extensive experience with frameworks like Flask, Pandas, NumPy, and machine learning libraries. I'm always learning new technologies to stay current with industry trends!`;
-      }
-      
-      if (lowerMessage.includes('project') || lowerMessage.includes('work') || lowerMessage.includes('built')) {
-        const featuredProjects = projects.filter(p => p.featured).map(p => p.title).join(' and ');
-        return `I've worked on several exciting projects! My featured projects include ${featuredProjects}. The Car Price Prediction project uses XGBoost and Random Forest algorithms to accurately predict used car prices, while the Medicine Recommendation System leverages machine learning to suggest appropriate medications based on symptoms. Both projects involved extensive data analysis, model optimization, and web development using Flask.`;
-      }
-      
-      if (lowerMessage.includes('education') || lowerMessage.includes('study') || lowerMessage.includes('college') || lowerMessage.includes('gpa')) {
-        return `I'm currently in my pre-final year pursuing B.E. in Computer Science with specialization in AI/ML at ATME College of Engineering, Mysuru. I maintain a strong 9.0/10.0 GPA and am passionate about artificial intelligence and machine learning. Before this, I completed my PUC in PCMB from NiSARGA INDEPENDENT PU COLLEGE with 84%. My academic focus is on understanding both theoretical concepts and practical applications of AI/ML.`;
-      }
-      
-      if (lowerMessage.includes('experience') || lowerMessage.includes('internship') || lowerMessage.includes('job')) {
-        return `I completed a software internship at CodSoft where I worked on Python-based applications and Django web development. During this internship, I developed backend systems, optimized code for performance, and collaborated with senior developers. I also actively participate in hackathons like Tech Tonic 2024 and other technical competitions, which has helped me develop teamwork skills and innovative problem-solving approaches.`;
-      }
-      
-      if (lowerMessage.includes('contact') || lowerMessage.includes('reach') || lowerMessage.includes('email') || lowerMessage.includes('phone')) {
-        return `You can reach me at deekshithshaiva05@gmail.com or call me at +91 8867367538. I'm based in Mysore, Karnataka. Feel free to connect with me on LinkedIn (https://www.linkedin.com/in/deekshith-n-036ab9263) or check out my projects on GitHub (https://github.com/Deekshithshaiva05). I'm always open to discussing new opportunities and collaborations!`;
-      }
-      
-      if (lowerMessage.includes('certificate') || lowerMessage.includes('certification') || lowerMessage.includes('course')) {
-        return `I have ${certifications.length} certifications in various areas including Python programming, AI/ML, data analysis, and web development. Some notable ones include certifications from University of Michigan (Python), Microsoft (AI Workshop), Udemy (AI Essentials), and Google Developer Student Clubs. I believe in continuous learning and regularly update my skills through online courses and workshops.`;
-      }
-      
-      if (lowerMessage.includes('hire') || lowerMessage.includes('available') || lowerMessage.includes('opportunity') || lowerMessage.includes('job')) {
-        return `Yes, I'm actively looking for opportunities in AI/ML development, data science, and software engineering! I'm particularly interested in roles where I can apply my machine learning skills and work on innovative projects. With my strong academic background (9.0 GPA), practical experience through internships and projects, and passion for AI/ML, I'm ready to contribute to a dynamic team. Feel free to reach out to discuss potential opportunities!`;
-      }
-      
-      if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-        return `Hello! Great to meet you! I'm Deekshith N, an AI/ML engineering student passionate about creating innovative solutions. I love working on machine learning projects, participating in hackathons, and learning new technologies. What would you like to know about my background or experience?`;
-      }
-      
-      // Default response
-      return `Thanks for your question! I'm always happy to discuss my background, projects, skills, or any opportunities for collaboration. I'm passionate about AI/ML and love sharing my experiences. Feel free to ask me anything specific about my education, projects, or technical expertise. You can also reach out to me directly at deekshithshaiva05@gmail.com!`;
+      console.error("API Error:", error);
+      return "Sorry, something went wrong while generating my response. Please try again!";
     }
   };
 
@@ -168,7 +103,7 @@ const Chatbot: React.FC = () => {
 
     try {
       const response = await generatePersonalizedResponse(inputMessage);
-      
+
       setTimeout(() => {
         const botMessage: Message = {
           id: (Date.now() + 1).toString(),
@@ -180,7 +115,7 @@ const Chatbot: React.FC = () => {
         setIsTyping(false);
       }, 1000);
     } catch (error) {
-      console.error('Error generating response:', error);
+      console.error("Error generating response:", error);
       setIsTyping(false);
     }
   };
@@ -254,7 +189,7 @@ const Chatbot: React.FC = () => {
                   </div>
                 </div>
               ))}
-              
+
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg">
@@ -297,16 +232,3 @@ const Chatbot: React.FC = () => {
 };
 
 export default Chatbot;
-
-const response = await fetch("/api/chat", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ 
-    userMessage, 
-    personalContext // still build this dynamically from skills/projects
-  }),
-});
-
-if (!response.ok) throw new Error("API call failed");
-const data = await response.json();
-return data.reply;
