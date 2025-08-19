@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Phone, Mail, MapPin, Send, CheckCircle, XCircle, ArrowRight } from 'lucide-react';
-import { socialLinks } from '../data/social';
+import { Phone, Mail, MapPin, Send, CheckCircle, XCircle, Github, Linkedin, Facebook } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import type { FormValues } from '../types';
 
 const Contact: React.FC = () => {
@@ -20,13 +20,6 @@ const Contact: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  const scrollToCertifications = () => {
-    const certificationsSection = document.querySelector('#certifications');
-    if (certificationsSection) {
-      certificationsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const validateForm = () => {
     const errors: Partial<FormValues> = {};
@@ -57,20 +50,31 @@ const Contact: React.FC = () => {
     const { name, value } = e.target;
     setFormValues(prev => ({ ...prev, [name]: value }));
     
-    // Clear the error when user starts typing
     if (formErrors[name as keyof FormValues]) {
       setFormErrors(prev => ({ ...prev, [name]: undefined }));
     }
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
       setFormStatus('submitting');
       
-      // Simulate form submission
-      setTimeout(() => {
+      try {
+        await emailjs.send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          {
+            from_name: formValues.name,
+            from_email: formValues.email,
+            subject: formValues.subject,
+            message: formValues.message,
+            to_name: 'Deekshith N',
+          },
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        );
+        
         setFormStatus('success');
         setFormValues({
           name: '',
@@ -78,51 +82,221 @@ const Contact: React.FC = () => {
           subject: '',
           message: '',
         });
-      }, 2000);
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        setFormStatus('error');
+      }
     }
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+    <section id="contact" className="py-20 bg-gray-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-8 sm:mb-10"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Let's Connect!</h2>
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-md sm:max-w-xl mx-auto">
-            I'm open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!
+          <div className="w-20 h-1 bg-primary-500 mx-auto mb-8"></div>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Feel free to reach out for collaborations or just a friendly hello
           </p>
         </motion.div>
-        <div className="flex flex-col gap-4 sm:gap-6 items-center mb-8 sm:mb-10">
-          <a href="mailto:deekshithshaiva05@gmail.com" className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline text-base sm:text-lg font-medium break-all">
-            <Mail className="w-5 h-5" /> deekshithshaiva05@gmail.com
-          </a>
-          <div className="flex gap-3 sm:gap-4">
-            <a href="https://linkedin.com/in/deekshith-n-036ab9263" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="bg-gray-100 hover:bg-blue-100 dark:bg-gray-800 dark:hover:bg-blue-900 text-gray-700 dark:text-gray-300 p-2 sm:p-3 rounded-full transition-colors">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 11.28h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.89v1.36h.04c.4-.75 1.37-1.54 2.82-1.54 3.01 0 3.57 1.98 3.57 4.56v5.62z"/></svg>
-            </a>
-            <a href="https://github.com/Deekshithshaiva05" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 sm:p-3 rounded-full transition-colors">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5c-6.62 0-12 5.38-12 12 0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.236-3.22-.124-.304-.535-1.527.117-3.18 0 0 1.008-.322 3.3 1.23.96-.267 1.98-.399 3-.404 1.02.005 2.04.137 3 .404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.876.12 3.18.77.84 1.235 1.91 1.235 3.22 0 4.61-2.803 5.624-5.475 5.92.43.37.823 1.096.823 2.21 0 1.595-.015 2.88-.015 3.27 0 .32.218.694.825.576 4.765-1.587 8.2-6.086 8.2-11.385 0-6.62-5.38-12-12-12z"/></svg>
-            </a>
-          </div>
-          <div className="flex flex-col items-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2">
-            <span className="flex items-center gap-1"><Phone className="w-4 h-4" /> +91 8867367538</span>
-            <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Mysore, Karnataka</span>
-          </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+          {/* Contact Information */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-8"
+          >
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-8">Contact Information</h2>
+              <p className="text-gray-300 text-lg mb-12 leading-relaxed">
+                I'm open for new opportunities and collaborations. If you have a project that needs my help, please get in touch.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white">Email</h3>
+                  <p className="text-gray-300">deekshithshaiva05@gmail.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center">
+                  <Phone className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white">Phone</h3>
+                  <p className="text-gray-300">+91 8867367538</p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white">Location</h3>
+                  <p className="text-gray-300">Mysore, Karnataka</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="pt-8">
+              <div className="flex space-x-4">
+                <a
+                  href="https://github.com/Deekshithshaiva05"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-6 h-6 text-white" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/deekshith-n-036ab9263"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-6 h-6 text-white" />
+                </a>
+                <a
+                  href="https://facebook.com/deekshithshaiva05"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-6 h-6 text-white" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-gray-800 rounded-2xl p-8 shadow-2xl"
+          >
+            <h3 className="text-2xl font-bold text-white mb-8">Send Me a Message</h3>
+            
+            {formStatus === 'success' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-green-600 rounded-lg flex items-center"
+              >
+                <CheckCircle className="w-5 h-5 mr-2" />
+                <span>Message sent successfully! I'll get back to you soon.</span>
+              </motion.div>
+            )}
+
+            {formStatus === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-red-600 rounded-lg flex items-center"
+              >
+                <XCircle className="w-5 h-5 mr-2" />
+                <span>Failed to send message. Please try again.</span>
+              </motion.div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formValues.name}
+                    onChange={handleChange}
+                    placeholder="Your Name"
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  />
+                  {formErrors.name && (
+                    <p className="mt-1 text-sm text-red-400">{formErrors.name}</p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formValues.email}
+                    onChange={handleChange}
+                    placeholder="Your Email"
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  />
+                  {formErrors.email && (
+                    <p className="mt-1 text-sm text-red-400">{formErrors.email}</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formValues.subject}
+                  onChange={handleChange}
+                  placeholder="Subject"
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                />
+                {formErrors.subject && (
+                  <p className="mt-1 text-sm text-red-400">{formErrors.subject}</p>
+                )}
+              </div>
+
+              <div>
+                <textarea
+                  name="message"
+                  value={formValues.message}
+                  onChange={handleChange}
+                  placeholder="Your Message"
+                  rows={6}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+                />
+                {formErrors.message && (
+                  <p className="mt-1 text-sm text-red-400">{formErrors.message}</p>
+                )}
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={formStatus === 'submitting'}
+                className="w-full py-4 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-800 text-white font-semibold rounded-lg transition-colors flex items-center justify-center"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {formStatus === 'submitting' ? (
+                  <div className="flex items-center">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    Sending...
+                  </div>
+                ) : (
+                  <div className="flex items-center">
+                    <Send className="w-5 h-5 mr-2" />
+                    Send Message
+                  </div>
+                )}
+              </motion.button>
+            </form>
+          </motion.div>
         </div>
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-8 shadow-soft mt-6 sm:mt-8"
-        >
-          {/* Message form removed as requested */}
-        </motion.div>
       </div>
     </section>
   );
