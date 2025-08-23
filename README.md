@@ -39,7 +39,7 @@ The portfolio showcases my **skills, projects, certifications, and professional 
 1. **Clone the repository**
    ```bash
    git clone [your-repository-url]
-````
+
 
 2. **Install dependencies**
 
@@ -59,33 +59,30 @@ The portfolio showcases my **skills, projects, certifications, and professional 
    npm run build
    ```
 
----
+
 
 ## 📂 Project Structure
 
-```
+
 src/
 ├── components/     # React components
 ├── data/           # Static data files
 ├── types/          # TypeScript type definitions
 └── App.tsx         # Main application component
-```
 
----
+
+
 
 ## 📜 License
 
 MIT License - feel free to use this template for your own portfolio!
 
----
+
 
 ## 📬 Contact
 
 For any questions or suggestions, please reach out to:
 📧 **[deekshithshaiva05@gmail.com](mailto:deekshithshaiva05@gmail.com)**
 
-``` 
 
-Do you also want me to **add a “Screenshots” section with placeholders** (so you can upload images later)?
-```
 
