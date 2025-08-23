@@ -60,17 +60,13 @@ The portfolio showcases my **skills, projects, certifications, and professional 
    ```
 
 
-
 ## 📂 Project Structure
 
-
 src/
-├── components/     # React components
-├── data/           # Static data files
-├── types/          # TypeScript type definitions
-└── App.tsx         # Main application component
-
-
+├── components/ # React components
+├── data/ # Static data files
+├── types/ # TypeScript type definitions
+└── App.tsx # Main application component
 
 
 ## 📜 License
@@ -83,6 +79,7 @@ MIT License - feel free to use this template for your own portfolio!
 
 For any questions or suggestions, please reach out to:
 📧 **[deekshithshaiva05@gmail.com](mailto:deekshithshaiva05@gmail.com)**
+
 
 
 
