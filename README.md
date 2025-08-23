@@ -1,76 +1,41 @@
-🚀 Deekshith's Portfolio
+# 🚀 Deekshith's Portfolio
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
-The portfolio showcases my skills, projects, certifications, and professional experience.
+A modern, responsive portfolio website built with **React, TypeScript, and Tailwind CSS**.  
+The portfolio showcases my **skills, projects, certifications, and professional experience**.
 
-✨ Features
+---
 
-🎨 Modern and clean design
+## ✨ Features
 
-🌙 Dark mode support
+- 🎨 Modern and clean design  
+- 🌙 Dark mode support  
+- 📱 Fully responsive  
+- ⚡ Fast and optimized performance  
+- 🎭 Smooth animations and transitions  
+- 🎯 Interactive UI components  
 
-📱 Fully responsive
+---
 
-⚡ Fast and optimized performance
+## 🖥️ Demo
 
-🎭 Smooth animations and transitions
+🔗 **Live Demo**: [deekshithportfolio.netlify.app](https://deekshithportfolio.netlify.app/)  
 
-🎯 Interactive UI components
+---
 
-🖥️ Demo
+## 🛠 Tech Stack
 
-🔗 Live Demo: https://deekshithportfolio.netlify.app/
+- ⚛️ React  
+- 📘 TypeScript  
+- 🎨 Tailwind CSS  
+- 🎬 Framer Motion  
+- ⚡ Vite  
+- 🧹 ESLint  
+- 🎛 PostCSS  
 
-🛠 Tech Stack
+---
 
-⚛️ React
+## 🚀 Getting Started
 
-📘 TypeScript
-
-🎨 Tailwind CSS
-
-🎬 Framer Motion
-
-⚡ Vite
-
-🧹 ESLint
-
-🎛 PostCSS
-
-🚀 Getting Started
-
-Clone the repository
-
-git clone [your-repository-url]
-
-
-Install dependencies
-
-npm install
-
-
-Start the development server
-
-npm run dev
-
-
-Build for production
-
-npm run build
-
-📂 Project Structure
-src/
-├── components/     # React components
-├── data/          # Static data files
-├── types/         # TypeScript type definitions
-└── App.tsx        # Main application component
-
-
-📜 License
-
-MIT License - feel free to use this template for your own portfolio!
-
-📬 Contact
-
-For any questions or suggestions, please reach out to:
-📧 deekshithshaiva05@gmail.com
+1. **Clone the repository**
+   ```bash
+   git clone [your-repository-url]
