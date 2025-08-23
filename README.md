@@ -1,4 +1,3 @@
-````markdown
 # 🚀 Deekshith's Portfolio
 
 A modern, responsive portfolio website built with **React, TypeScript, and Tailwind CSS**.  
@@ -89,3 +88,4 @@ For any questions or suggestions, please reach out to:
 
 Do you also want me to **add a “Screenshots” section with placeholders** (so you can upload images later)?
 ```
+
