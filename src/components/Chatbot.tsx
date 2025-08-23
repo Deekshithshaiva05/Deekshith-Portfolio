@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
+import OpenAI from 'openai';
 import { skills } from '../data/skills';
 import { projects } from '../data/projects';
 import { educationData } from '../data/education';
@@ -27,6 +28,12 @@ const Chatbot: React.FC = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Initialize OpenAI client
+  const openai = new OpenAI({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true
+  });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -68,22 +75,55 @@ const Chatbot: React.FC = () => {
 
   const generatePersonalizedResponse = async (userMessage: string): Promise<string> => {
     try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userMessage,
-          personalContext: buildPersonalContext(),
-        }),
+      const completion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: `You are Deekshith N responding in first person. Always respond as "I" and never mention you are an AI. Here's your context: ${buildPersonalContext()}`
+          },
+          {
+            role: "user", 
+            content: userMessage
+          }
+        ],
+        max_tokens: 300,
+        temperature: 0.7,
       });
 
-      if (!response.ok) throw new Error("API call failed");
-
-      const data = await response.json();
-      return data.reply;
+      return completion.choices[0]?.message?.content || "Sorry, I couldn't process that request right now.";
     } catch (error) {
       console.error("API Error:", error);
-      return "Sorry, something went wrong while generating my response. Please try again!";
+      
+      // Fallback response using your actual data
+      const lowerMessage = userMessage.toLowerCase();
+      
+      if (lowerMessage.includes('skill') || lowerMessage.includes('technology')) {
+        const topSkills = skills.filter(s => s.level >= 8).map(s => s.name).join(', ');
+        return `I specialize in ${topSkills}. I'm particularly strong in Python, Flask, and machine learning with ${skills.length} different skills in my toolkit.`;
+      }
+      
+      if (lowerMessage.includes('project')) {
+        return `I've worked on ${projects.length} major projects including ${projects.map(p => p.title).join(' and ')}. My featured project is the Car Price Prediction system using XGBoost and Flask.`;
+      }
+      
+      if (lowerMessage.includes('education') || lowerMessage.includes('college') || lowerMessage.includes('study')) {
+        return `I'm currently pursuing my Bachelor of Engineering in Computer Science (AI/ML) at ATME College of Engineering, Mysuru. I'm in my pre-final year with a 9.0/10.0 GPA.`;
+      }
+      
+      if (lowerMessage.includes('experience') || lowerMessage.includes('work') || lowerMessage.includes('internship')) {
+        return `I've completed a Software Internship at CodSoft where I worked on Python-based applications and Django web development. I also actively participate in hackathons and technical competitions.`;
+      }
+      
+      if (lowerMessage.includes('contact') || lowerMessage.includes('reach') || lowerMessage.includes('email')) {
+        return `You can reach me at deekshithshaiva05@gmail.com or call me at +91 8867367538. I'm based in Mysore, Karnataka. Feel free to connect with me on LinkedIn or GitHub!`;
+      }
+      
+      if (lowerMessage.includes('hire') || lowerMessage.includes('available') || lowerMessage.includes('job')) {
+        return `Yes, I'm actively looking for opportunities in AI/ML, Python development, and data science. I'm particularly interested in roles that involve machine learning, web development, and innovative problem-solving.`;
+      }
+      
+      return `Hi! I'm Deekshith N, an AI/ML engineering student at ATME College. I'd be happy to tell you about my skills, projects, education, or experience. What would you like to know?`;
     }
   };
 
