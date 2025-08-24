@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
-import OpenAI from 'openai';
 import { skills } from '../data/skills';
 import { projects } from '../data/projects';
 import { educationData } from '../data/education';
@@ -29,11 +28,8 @@ const Chatbot: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Initialize OpenAI client
-  const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true
-  });
+  // Check if OpenAI API key is available
+  const hasOpenAIKey = import.meta.env.VITE_OPENAI_API_KEY && import.meta.env.VITE_OPENAI_API_KEY.trim() !== '';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -75,23 +71,35 @@ const Chatbot: React.FC = () => {
 
   const generatePersonalizedResponse = async (userMessage: string): Promise<string> => {
     try {
-      const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content: `You are Deekshith N responding in first person. Always respond as "I" and never mention you are an AI. Here's your context: ${buildPersonalContext()}`
-          },
-          {
-            role: "user", 
-            content: userMessage
-          }
-        ],
-        max_tokens: 300,
-        temperature: 0.7,
-      });
+      if (hasOpenAIKey) {
+        // Dynamic import to avoid initialization errors
+        const OpenAI = (await import('openai')).default;
+        const openai = new OpenAI({
+          apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+          dangerouslyAllowBrowser: true
+        });
 
-      return completion.choices[0]?.message?.content || "Sorry, I couldn't process that request right now.";
+        const completion = await openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: [
+            {
+              role: "system",
+              content: `You are Deekshith N responding in first person. Always respond as "I" and never mention you are an AI. Here's your context: ${buildPersonalContext()}`
+            },
+            {
+              role: "user", 
+              content: userMessage
+            }
+          ],
+          max_tokens: 300,
+          temperature: 0.7,
+        });
+
+        return completion.choices[0]?.message?.content || "Sorry, I couldn't process that request right now.";
+      } else {
+        // Use fallback response when no API key
+        throw new Error("OpenAI API key not configured");
+      }
     } catch (error) {
       console.error("API Error:", error);
       
@@ -123,7 +131,11 @@ const Chatbot: React.FC = () => {
         return `Yes, I'm actively looking for opportunities in AI/ML, Python development, and data science. I'm particularly interested in roles that involve machine learning, web development, and innovative problem-solving.`;
       }
       
-      return `Hi! I'm Deekshith N, an AI/ML engineering student at ATME College. I'd be happy to tell you about my skills, projects, education, or experience. What would you like to know?`;
+      if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+        return `Hello! I'm Deekshith N, an AI/ML engineering student at ATME College of Engineering, Mysuru. I'd be happy to tell you about my skills, projects, education, or experience. What would you like to know?`;
+      }
+      
+      return `Hi! I'm Deekshith N, an AI/ML engineering student at ATME College of Engineering, Mysuru. I specialize in Python development, machine learning, and data science. Feel free to ask me about my skills, projects, education, experience, or anything else you'd like to know!`;
     }
   };
 
