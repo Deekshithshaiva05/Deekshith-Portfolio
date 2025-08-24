@@ -38,7 +38,7 @@ The portfolio showcases my **skills, projects, certifications, and professional 
 
 1. **Clone the repository**
    ```bash
-   git clone [[your-repository-url]](https://github.com/Deekshithshaiva05/Deekshith-Portfolio.git)
+   git clone (https://github.com/Deekshithshaiva05/Deekshith-Portfolio.git)
 
 
 2. **Install dependencies**
@@ -79,6 +79,7 @@ MIT License - feel free to use this template for your own portfolio!
 
 For any questions or suggestions, please reach out to:
 📧 **[deekshithshaiva05@gmail.com](mailto:deekshithshaiva05@gmail.com)**
+
 
 
 
