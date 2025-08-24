@@ -29,7 +29,9 @@ const Chatbot: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Check if OpenAI API key is available
-  const hasOpenAIKey = import.meta.env.VITE_OPENAI_API_KEY && import.meta.env.VITE_OPENAI_API_KEY.trim() !== '';
+  const hasOpenAIKey = import.meta.env.VITE_OPENAI_API_KEY && 
+    import.meta.env.VITE_OPENAI_API_KEY.trim() !== '' && 
+    import.meta.env.VITE_OPENAI_API_KEY !== 'sk-your-openai-api-key-here';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -84,20 +86,20 @@ const Chatbot: React.FC = () => {
           messages: [
             {
               role: "system",
-              content: `You are Deekshith N responding in first person. Always respond as "I" and never mention you are an AI. Here's your context: ${buildPersonalContext()}`
+              content: `You are Deekshith N, an AI/ML engineering student at ATME College of Engineering, Mysuru. Always respond in first person as "I" and never mention you are an AI assistant. Be friendly, professional, and helpful. Here's your complete context: ${buildPersonalContext()}`
             },
             {
               role: "user", 
               content: userMessage
             }
           ],
-          max_tokens: 300,
+          max_tokens: 400,
           temperature: 0.7,
         });
 
         return completion.choices[0]?.message?.content || "Sorry, I couldn't process that request right now.";
       } else {
-        // Use fallback response when no API key
+        // Use fallback response when no valid API key
         throw new Error("OpenAI API key not configured");
       }
     } catch (error) {
@@ -108,34 +110,42 @@ const Chatbot: React.FC = () => {
       
       if (lowerMessage.includes('skill') || lowerMessage.includes('technology')) {
         const topSkills = skills.filter(s => s.level >= 8).map(s => s.name).join(', ');
-        return `I specialize in ${topSkills}. I'm particularly strong in Python, Flask, and machine learning with ${skills.length} different skills in my toolkit.`;
+        return `I specialize in ${topSkills}. I'm particularly strong in Python, Flask, and machine learning. I have expertise in ${skills.length} different technologies across programming, frameworks, tools, and soft skills.`;
       }
       
       if (lowerMessage.includes('project')) {
-        return `I've worked on ${projects.length} major projects including ${projects.map(p => p.title).join(' and ')}. My featured project is the Car Price Prediction system using XGBoost and Flask.`;
+        return `I've worked on ${projects.length} major projects including ${projects.map(p => p.title).join(' and ')}. My featured project is the Car Price Prediction Analysis using XGBoost, Random Forest, and Flask with 94.37% accuracy.`;
       }
       
       if (lowerMessage.includes('education') || lowerMessage.includes('college') || lowerMessage.includes('study')) {
-        return `I'm currently pursuing my Bachelor of Engineering in Computer Science (AI/ML) at ATME College of Engineering, Mysuru. I'm in my pre-final year with a 9.0/10.0 GPA.`;
+        return `I'm currently pursuing my Bachelor of Engineering in Computer Science (AI/ML) at ATME College of Engineering, Mysuru. I'm in my pre-final year with a 9.0/10.0 GPA, specializing in Artificial Intelligence and Machine Learning.`;
       }
       
       if (lowerMessage.includes('experience') || lowerMessage.includes('work') || lowerMessage.includes('internship')) {
-        return `I've completed a Software Internship at CodSoft where I worked on Python-based applications and Django web development. I also actively participate in hackathons and technical competitions.`;
+        return `I've completed a Software Internship at CodSoft (July-Sep 2024) where I worked on Python-based applications and Django web development. I also actively participate in hackathons like Tech Tonic 2024 and various technical competitions.`;
       }
       
       if (lowerMessage.includes('contact') || lowerMessage.includes('reach') || lowerMessage.includes('email')) {
-        return `You can reach me at deekshithshaiva05@gmail.com or call me at +91 8867367538. I'm based in Mysore, Karnataka. Feel free to connect with me on LinkedIn or GitHub!`;
+        return `You can reach me at deekshithshaiva05@gmail.com or call me at +91 8867367538. I'm based in Mysore, Karnataka. Feel free to connect with me on LinkedIn (linkedin.com/in/deekshith-n-036ab9263) or GitHub (github.com/Deekshithshaiva05)!`;
       }
       
       if (lowerMessage.includes('hire') || lowerMessage.includes('available') || lowerMessage.includes('job')) {
-        return `Yes, I'm actively looking for opportunities in AI/ML, Python development, and data science. I'm particularly interested in roles that involve machine learning, web development, and innovative problem-solving.`;
+        return `Yes, I'm actively looking for opportunities in AI/ML, Python development, and data science. I'm particularly interested in roles involving machine learning, web development, data analysis, and innovative problem-solving. I have strong skills in Python, Flask, XGBoost, and various ML frameworks.`;
+      }
+      
+      if (lowerMessage.includes('certification') || lowerMessage.includes('certificate')) {
+        return `I have ${certifications.length} certifications including Programming for Everybody (Python) from University of Michigan, AI Essentials from Udemy, Data Analysis with Pandas from Infosys Springboard, and several others in AI/ML and web development.`;
+      }
+      
+      if (lowerMessage.includes('gpa') || lowerMessage.includes('grade') || lowerMessage.includes('academic')) {
+        return `I maintain a strong academic record with a 9.0/10.0 GPA in my Computer Science (AI/ML) program at ATME College of Engineering, Mysuru. I completed my PUC with 84% from NiSARGA Independent PU College.`;
       }
       
       if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-        return `Hello! I'm Deekshith N, an AI/ML engineering student at ATME College of Engineering, Mysuru. I'd be happy to tell you about my skills, projects, education, or experience. What would you like to know?`;
+        return `Hello! I'm Deekshith N, an AI/ML engineering student at ATME College of Engineering, Mysuru. I'm passionate about creating innovative solutions using Python, machine learning, and web development. What would you like to know about my skills, projects, or experience?`;
       }
       
-      return `Hi! I'm Deekshith N, an AI/ML engineering student at ATME College of Engineering, Mysuru. I specialize in Python development, machine learning, and data science. Feel free to ask me about my skills, projects, education, experience, or anything else you'd like to know!`;
+      return `Hi! I'm Deekshith N, an AI/ML engineering student at ATME College of Engineering, Mysuru. I specialize in Python development, machine learning, and data science with a 9.0 GPA. Feel free to ask me about my skills, projects, education, experience, certifications, or anything else you'd like to know!`;
     }
   };
 
