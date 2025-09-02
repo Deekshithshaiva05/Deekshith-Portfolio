@@ -28,7 +28,6 @@ const Chatbot: React.FC = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [showSuggestions, setShowSuggestions] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Check if OpenAI API key is available
@@ -36,23 +35,64 @@ const Chatbot: React.FC = () => {
     import.meta.env.VITE_OPENAI_API_KEY.trim() !== '' && 
     import.meta.env.VITE_OPENAI_API_KEY !== 'sk-your-openai-api-key-here';
 
-  const topicSuggestions = [
-    { label: 'About Me', query: 'Tell me about yourself' },
-    { label: 'Skills', query: 'What are your technical skills?' },
-    { label: 'Projects', query: 'Show me your projects' },
-    { label: 'Education', query: 'Tell me about your education' },
-    { label: 'Experience', query: 'What work experience do you have?' },
-    { label: 'Certifications', query: 'What certifications do you have?' },
-    { label: 'Contact', query: 'How can I contact you?' },
+  const quickReplyButtons = [
+    { 
+      label: 'Skills', 
+      query: 'What are your technical skills?',
+      icon: '🛠️',
+      response: `My technical skills include:\n• Programming: Python (9/10), C (8/10), HTML/CSS (7/10), JavaScript (3/10), Java (4/10), R (5/10)\n• Frameworks: Flask (9/10), Pandas (9/10), NumPy (9/10), scikit-learn (8/10), XGBoost (7/10)\n• Tools: Git/GitHub (8/10), MongoDB (8/10), Jupyter Notebooks (9/10), MySQL (7/10), Tableau (7/10)\n• Soft Skills: Problem Solving (8/10), Teamwork (8/10), Communication (8/10), Time Management (9/10)\n• Other: Machine Learning (7/10), Data Engineering (8/10), NLP (8/10), Deep Learning (7/10), Generative AI (8/10)`
+    },
+    { 
+      label: 'Projects', 
+      query: 'Show me your projects',
+      icon: '💻',
+      response: `Here are my key projects:\n• Car Price Prediction Analysis - ML model achieving 94.37% accuracy using XGBoost, Random Forest, and CatBoost Regressor\n• Medicine Recommendation System - AI-powered healthcare solution using Flask, scikit-learn, and NLP for personalized medicine suggestions\n• Technologies used: Python, Flask, XGBoost, Random Forest, scikit-learn, Pandas, NumPy, Machine Learning\n• Focus areas: Real-world problem solving, predictive modeling, healthcare AI, web development\n• All projects include comprehensive data preprocessing, feature engineering, and model evaluation`
+    },
+    { 
+      label: 'Education', 
+      query: 'Tell me about your education',
+      icon: '🎓',
+      response: `My educational background:\n• Bachelor of Engineering in Computer Science (AI/ML) - ATME College of Engineering, Mysuru\n• Currently in pre-final year (2022-Present)\n• GPA: 9.0/10.0\n• Specialization: Artificial Intelligence and Machine Learning\n• Previous: Pre-University Course (PCMB) from NiSARGA Independent PU College\n• PUC Score: 84% (2020-2022)\n• Strong foundation in mathematics, computer science fundamentals, and AI/ML concepts`
+    },
+    { 
+      label: 'Experience', 
+      query: 'What work experience do you have?',
+      icon: '💼',
+      response: `My professional experience:\n• Software Intern at CodSoft (July-Sep 2024) - Developed Python applications, worked with Django, optimized code performance\n• Hackathon Participant (2023-Present) - Tech Tonic 2024, HackSprint 2024, and other competitions\n• Key achievements: Backend development, team collaboration, AI/ML solution development\n• Technologies: Python, Django, Backend Development, Web Applications, Agile Methodology\n• Focus: Real-world problem solving, innovative software solutions, team leadership`
+    },
+    { 
+      label: 'Certifications', 
+      query: 'What certifications do you have?',
+      icon: '🏆',
+      response: `My certifications (${certifications.length} total):\n• Programming for Everybody (Python) - University of Michigan via Coursera\n• AI Essentials: Introduction to Artificial Intelligence - Udemy\n• Data Analysis with Pandas and Python - Infosys Springboard\n• Explore Machine Learning with TensorFlow - Infosys Springboard\n• 5-Day Basics of AI Workshop - Tech Vritti & Microsoft\n• Flask Python Course - Great Learning Academy\n• Python and AI Bootcamp - DevTown & GDSC\n• Plus internship certificates and hackathon participation awards`
+    },
+    { 
+      label: 'Contact', 
+      query: 'How can I contact you?',
+      icon: '📞',
+      response: `Contact information:\n• Email: deekshithshaiva05@gmail.com\n• Phone: +91 8867367538\n• Location: Mysore, Karnataka, India\n• LinkedIn: linkedin.com/in/deekshith-n-036ab9263\n• GitHub: github.com/Deekshithshaiva05\n• Portfolio: Available for collaborations, internships, and full-time opportunities\n• Best time to reach: Weekdays 9 AM - 6 PM IST`
+    }
   ];
 
-  const handleTopicClick = (query: string) => {
-    setInputMessage(query);
-    setShowSuggestions(false);
-    // Auto-send the message
-    setTimeout(() => {
-      handleSendMessage(query);
-    }, 100);
+  const handleQuickReply = (button: typeof quickReplyButtons[0]) => {
+    // Add user message
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      text: button.query,
+      sender: 'user',
+      timestamp: new Date(),
+    };
+
+    // Add bot response immediately
+    const botMessage: Message = {
+      id: (Date.now() + 1).toString(),
+      text: button.response,
+      sender: 'bot',
+      timestamp: new Date(),
+      isFormatted: true,
+    };
+
+    setMessages(prev => [...prev, userMessage, botMessage]);
   };
 
   const scrollToBottom = () => {
@@ -294,30 +334,6 @@ const Chatbot: React.FC = () => {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {/* Topic Suggestions */}
-              {showSuggestions && messages.length === 1 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-4"
-                >
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mb-2 text-center">
-                    Quick topics to explore:
-                  </div>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {topicSuggestions.map((topic, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleTopicClick(topic.query)}
-                        className="px-3 py-1 text-xs bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors"
-                      >
-                        {topic.label}
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
               {messages.map((message) => (
                 <div
                   key={message.id}
@@ -354,6 +370,27 @@ const Chatbot: React.FC = () => {
               <div ref={messagesEndRef} />
             </div>
 
+            {/* Quick Reply Buttons - Always Visible */}
+            <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+              <div className="text-xs text-gray-500 dark:text-gray-400 mb-2 text-center">
+                Quick Topics:
+              </div>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {quickReplyButtons.map((button, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => handleQuickReply(button)}
+                    className="flex items-center px-3 py-2 text-xs bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-200"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span className="mr-1">{button.icon}</span>
+                    {button.label}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
             {/* Input */}
             <div className="p-4 border-t border-gray-200 dark:border-gray-700">
               <div className="flex space-x-2">
@@ -362,7 +399,7 @@ const Chatbot: React.FC = () => {
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask me anything..."
+                  placeholder="Type your question or use quick topics above..."
                   className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"
                 />
                 <button
