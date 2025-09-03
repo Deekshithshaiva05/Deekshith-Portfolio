@@ -13,6 +13,7 @@ interface Message {
   sender: 'user' | 'bot';
   timestamp: Date;
   isFormatted?: boolean;
+  isTyping?: boolean;
 }
 
 const Chatbot: React.FC = () => {
@@ -28,6 +29,7 @@ const Chatbot: React.FC = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [typingMessageId, setTypingMessageId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Check if OpenAI API key is available
@@ -83,16 +85,57 @@ const Chatbot: React.FC = () => {
       timestamp: new Date(),
     };
 
-    // Add bot response immediately
+    setMessages(prev => [...prev, userMessage]);
+    
+    // Start typing animation for bot response
+    setTimeout(() => {
+      typeMessage(button.response, true);
+    }, 500);
+  };
+
+  const typeMessage = (fullText: string, isFormatted: boolean = false) => {
+    const messageId = (Date.now() + 1).toString();
+    setTypingMessageId(messageId);
+    
+    // Add empty message that will be filled character by character
     const botMessage: Message = {
-      id: (Date.now() + 1).toString(),
-      text: button.response,
+      id: messageId,
+      text: '',
       sender: 'bot',
       timestamp: new Date(),
-      isFormatted: true,
+      isFormatted,
+      isTyping: true,
     };
-
-    setMessages(prev => [...prev, userMessage, botMessage]);
+    
+    setMessages(prev => [...prev, botMessage]);
+    
+    let currentText = '';
+    let index = 0;
+    
+    const typeInterval = setInterval(() => {
+      if (index < fullText.length) {
+        currentText += fullText[index];
+        setMessages(prev => 
+          prev.map(msg => 
+            msg.id === messageId 
+              ? { ...msg, text: currentText }
+              : msg
+          )
+        );
+        index++;
+      } else {
+        // Typing complete
+        setMessages(prev => 
+          prev.map(msg => 
+            msg.id === messageId 
+              ? { ...msg, isTyping: false }
+              : msg
+          )
+        );
+        setTypingMessageId(null);
+        clearInterval(typeInterval);
+      }
+    }, 30); // Adjust speed here (lower = faster)
   };
 
   const scrollToBottom = () => {
@@ -250,14 +293,7 @@ const Chatbot: React.FC = () => {
       const response = await generatePersonalizedResponse(messageToSend);
 
       setTimeout(() => {
-        const botMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          text: response.text,
-          sender: 'bot',
-          timestamp: new Date(),
-          isFormatted: response.isFormatted,
-        };
-        setMessages(prev => [...prev, botMessage]);
+        typeMessage(response.text, response.isFormatted);
         setIsTyping(false);
       }, 1000);
     } catch (error) {
@@ -286,6 +322,19 @@ const Chatbot: React.FC = () => {
       return line.trim() ? <div key={index} className="mb-1">{line}</div> : <div key={index} className="mb-2"></div>;
     });
   };
+
+  const TypingIndicator = () => (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex space-x-1 ml-2"
+    >
+      <div className="w-1 h-1 bg-gray-400 rounded-full animate-bounce"></div>
+      <div className="w-1 h-1 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+      <div className="w-1 h-1 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+    </motion.div>
+  );
+
   return (
     <>
       {/* Chat Button */}
@@ -345,10 +394,17 @@ const Chatbot: React.FC = () => {
                     }`}
                   >
                     <div className="text-sm">
-                      {message.isFormatted ? 
-                        formatMessageText(message.text) : 
+                      {message.sender === 'bot' ? (
+                        <div>
+                          {message.isFormatted ? 
+                            formatMessageText(message.text) : 
+                            <p>{message.text}</p>
+                          }
+                          {message.isTyping && <TypingIndicator />}
+                        </div>
+                      ) : (
                         <p>{message.text}</p>
-                      }
+                      )}
                     </div>
                   </div>
                 </div>
@@ -361,29 +417,31 @@ const Chatbot: React.FC = () => {
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      }
                     </div>
                   </div>
                 </div>
-              )}
+              ))}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Reply Buttons - Always Visible */}
+            {/* Persistent Quick Reply Buttons - Always Visible */}
             <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
               <div className="text-xs text-gray-500 dark:text-gray-400 mb-2 text-center">
-                Quick Topics:
+                Explore My Resume:
               </div>
-              <div className="flex flex-wrap gap-2 justify-center">
+              <div className="grid grid-cols-3 gap-2 mb-3">
                 {quickReplyButtons.map((button, index) => (
                   <motion.button
                     key={index}
                     onClick={() => handleQuickReply(button)}
-                    className="flex items-center px-3 py-2 text-xs bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-200"
+                    disabled={typingMessageId !== null}
+                    className="flex flex-col items-center px-2 py-3 text-xs bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <span className="mr-1">{button.icon}</span>
-                    {button.label}
+                    <span className="text-base mb-1">{button.icon}</span>
+                    <span className="text-center leading-tight">{button.label}</span>
                   </motion.button>
                 ))}
               </div>
@@ -397,12 +455,13 @@ const Chatbot: React.FC = () => {
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Type your question or use quick topics above..."
+                  placeholder="Type your question or click topics above..."
+                  disabled={typingMessageId !== null}
                   className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"
                 />
                 <button
                   onClick={handleSendMessage}
-                  disabled={!inputMessage.trim() || isTyping}
+                  disabled={!inputMessage.trim() || isTyping || typingMessageId !== null}
                   className="px-4 py-2 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 text-white rounded-lg transition-colors"
                 >
                   <Send className="w-4 h-4" />
