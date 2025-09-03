@@ -233,8 +233,6 @@ const Chatbot: React.FC = () => {
     const messageToSend = messageText || inputMessage;
     if (!messageToSend.trim()) return;
 
-    setShowSuggestions(false);
-
     if (!inputMessage.trim()) return;
 
     const userMessage: Message = {
