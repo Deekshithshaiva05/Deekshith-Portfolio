@@ -80,6 +80,13 @@ const Chatbot: React.FC = () => {
     // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
+      text: button.query,
+      sender: 'user',
+      timestamp: new Date(),
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+
     // Start typing animation for bot response
     setTimeout(() => {
       typeMessage(button.response, true);
