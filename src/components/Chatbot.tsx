@@ -138,51 +138,6 @@ const Chatbot: React.FC = () => {
     }, 30); // Adjust speed here (lower = faster)
   };
 
-  const typeMessage = (fullText: string, isFormatted: boolean = false) => {
-    const messageId = (Date.now() + 1).toString();
-    setTypingMessageId(messageId);
-    
-    // Add empty message that will be filled character by character
-    const botMessage: Message = {
-      id: messageId,
-      text: '',
-      sender: 'bot',
-      timestamp: new Date(),
-      isFormatted,
-      isTyping: true,
-    };
-    
-    setMessages(prev => [...prev, botMessage]);
-    
-    let currentText = '';
-    let index = 0;
-    
-    const typeInterval = setInterval(() => {
-      if (index < fullText.length) {
-        currentText += fullText[index];
-        setMessages(prev => 
-          prev.map(msg => 
-            msg.id === messageId 
-              ? { ...msg, text: currentText }
-              : msg
-          )
-        );
-        index++;
-      } else {
-        // Typing complete
-        setMessages(prev => 
-          prev.map(msg => 
-            msg.id === messageId 
-              ? { ...msg, isTyping: false }
-              : msg
-          )
-        );
-        setTypingMessageId(null);
-        clearInterval(typeInterval);
-      }
-    }, 30); // Adjust speed here (lower = faster)
-  };
-
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -336,8 +291,15 @@ const Chatbot: React.FC = () => {
       const response = await generatePersonalizedResponse(messageToSend);
 
       setTimeout(() => {
-        const response = await generatePersonalizedResponse(messageToSend);
         typeMessage(response.text, response.isFormatted);
+        setIsTyping(false);
+      }, 500);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setIsTyping(false);
+    }
+  };
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -437,7 +399,6 @@ const Chatbot: React.FC = () => {
                             <p>{message.text}</p>
                           }
                           {message.isTyping && <TypingIndicator />}
-                          {message.isTyping && <TypingIndicator />}
                         </div>
                       ) : (
                         <p>{message.text}</p>
@@ -471,7 +432,6 @@ const Chatbot: React.FC = () => {
                   <motion.button
                     key={index}
                     onClick={() => handleQuickReply(button)}
-                    disabled={typingMessageId !== null}
                     disabled={typingMessageId !== null}
                     className="flex flex-col items-center px-2 py-3 text-xs bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     whileHover={{ scale: 1.02 }}
