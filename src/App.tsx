@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
-import CertificationsPreview from './components/CertificationsPreview';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
+import BlogPage from './components/Blog/BlogPage';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -35,17 +36,26 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Certifications />
-      <Contact />
-      <Footer />
-      <Chatbot />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+        <Routes>
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/" element={
+            <>
+              <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Certifications />
+              <Contact />
+              <Footer />
+              <Chatbot />
+            </>
+          } />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
