@@ -10,7 +10,7 @@ import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
-import BlogPage from './components/Blog/BlogPage';
+import SimpleBlog from './components/SimpleBlog';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -40,7 +40,7 @@ function App() {
     <Router>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
         <Routes>
-          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog" element={<SimpleBlog />} />
           <Route path="/" element={
             <>
               <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
