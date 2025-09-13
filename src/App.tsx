@@ -9,6 +9,7 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
+import Blog from './components/Blog';
 import BlogPage from './components/Blog/BlogPage';
 
 function App() {
