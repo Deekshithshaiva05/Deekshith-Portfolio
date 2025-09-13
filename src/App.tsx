@@ -48,6 +48,7 @@ function App() {
               <Skills />
               <Projects />
               <Certifications />
+              <Blog />
               <Contact />
               <Footer />
               <Chatbot />
