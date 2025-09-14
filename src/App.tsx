@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,7 +9,6 @@ import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
-import SimpleBlog from './components/SimpleBlog';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -37,27 +35,27 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-        <Routes>
-          <Route path="/blog" element={<SimpleBlog />} />
-          <Route path="/" element={
-            <>
-              <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Certifications />
-              <Blog />
-              <Contact />
-              <Footer />
-              <Chatbot />
-            </>
-          } />
-        </Routes>
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      {/* Header Image */}
+      <div className="w-full">
+        <img 
+          src="/images/image.png" 
+          alt="Header" 
+          className="w-full h-auto object-cover"
+        />
       </div>
-    </Router>
+      
+      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Certifications />
+      <Blog />
+      <Contact />
+      <Footer />
+      <Chatbot />
+    </div>
   );
 }
 
