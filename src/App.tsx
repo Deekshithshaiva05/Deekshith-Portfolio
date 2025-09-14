@@ -45,7 +45,6 @@ function App() {
         />
       </div>
       
-      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <Hero />
       <About />
       <Skills />
