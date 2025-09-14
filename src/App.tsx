@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
+import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
@@ -36,6 +37,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       {/* Header Image */}
       <div className="w-full">
         <img 
