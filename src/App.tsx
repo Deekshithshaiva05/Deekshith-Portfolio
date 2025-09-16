@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Loader from './components/Loader';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -14,6 +15,7 @@ import SimpleBlog from './components/SimpleBlog';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -35,6 +37,15 @@ function App() {
       localStorage.setItem('theme', 'dark');
     }
   };
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  // Show loader while loading
+  if (isLoading) {
+    return <Loader onLoadingComplete={handleLoadingComplete} />;
+  }
 
   return (
     <Router>
