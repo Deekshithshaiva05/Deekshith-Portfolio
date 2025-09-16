@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, BookOpen, Calendar, User, Search, Tag } from 'lucide-react';
-import { simpleBlogPosts, SimpleBlogPost } from '../data/simpleBlogPosts';
+import { simpleBlogPosts, SimpleBlogPost, categories } from '../data/simpleBlogPosts';
 
 const SimpleBlog: React.FC = () => {
   const navigate = useNavigate();
@@ -9,10 +9,8 @@ const SimpleBlog: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const categories = ['All', ...Array.from(new Set(simpleBlogPosts.map(post => post.category)))];
-
   const handleBackToPortfolio = () => {
-    navigate('/');
+    window.location.href = '/';
   };
 
   const filteredPosts = simpleBlogPosts.filter(post => {
