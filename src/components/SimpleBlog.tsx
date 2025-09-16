@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, BookOpen, Calendar, User, Search, Tag } from 'lucide-react';
 import { simpleBlogPosts, SimpleBlogPost } from '../data/simpleBlogPosts';
 
-interface SimpleBlogProps {
-  onBackToPortfolio: () => void;
-}
-
-const SimpleBlog: React.FC<SimpleBlogProps> = ({ onBackToPortfolio }) => {
+const SimpleBlog: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedPost, setSelectedPost] = useState<SimpleBlogPost | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   const categories = ['All', ...Array.from(new Set(simpleBlogPosts.map(post => post.category)))];
+
+  const handleBackToPortfolio = () => {
+    navigate('/');
+  };
 
   const filteredPosts = simpleBlogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -33,7 +35,7 @@ const SimpleBlog: React.FC<SimpleBlogProps> = ({ onBackToPortfolio }) => {
                 <span className="text-primary-200">by Deekshith N</span>
               </div>
               <button
-                onClick={onBackToPortfolio}
+                onClick={handleBackToPortfolio}
                 className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />
@@ -112,7 +114,7 @@ const SimpleBlog: React.FC<SimpleBlogProps> = ({ onBackToPortfolio }) => {
               </div>
             </div>
             <button
-              onClick={onBackToPortfolio}
+              onClick={handleBackToPortfolio}
               className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-6 py-3 rounded-lg transition-colors"
             >
               <ArrowLeft className="h-5 w-5" />
