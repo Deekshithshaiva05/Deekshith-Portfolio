@@ -12,28 +12,39 @@ export interface SimpleBlogPost {
 export const simpleBlogPosts: SimpleBlogPost[] = [
   {
     id: '1',
-    title: 'Getting Started with Machine Learning',
-    excerpt: 'Learn the basics of machine learning and how to get started with your first ML project.',
+    title: 'RaagBot: AI-Powered Help Bot for MOSDAC Portal – Bharatiya Antariksh Hackathon 2025',
+    slug: 'raagbot-ai-help-bot-mosdac-bharatiya-antariksh-hackathon-2025',
+    excerpt: 'Our team, Team Sigmoid, participated in the Bharatiya Antariksh Hackathon 2025 with RaagBot – an AI-powered help bot designed to simplify access to space research data on the MOSDAC portal using Knowledge Graphs, LLMs, RAG, and Spatial Intelligence.',
     content: `
-      <h2>Introduction to Machine Learning</h2>
-      <p>Machine Learning is a powerful tool that allows computers to learn from data without being explicitly programmed.</p>
+      <h2>Introduction</h2>
+      <p>We are proud to share that our team, <strong>Team Sigmoid</strong> (members: <em>Deekshith N, Vinay S, and Syed Farhaan</em>), successfully participated in the <strong>Bharatiya Antariksh Hackathon 2025</strong>. Organized in collaboration with ISRO, the hackathon challenged participants to address real-world problems in space research, data accessibility, and technological innovation.</p>
       
-      <h3>What You'll Learn</h3>
+      <h2>Our Project: RaagBot</h2>
+      <p>Our proposed solution, <strong>RaagBot</strong>, is an AI-powered help bot that intelligently understands user queries and retrieves precise, contextual information from the <strong>MOSDAC portal</strong>. MOSDAC (Meteorological and Oceanographic Satellite Data Archival Centre) hosts vast and complex datasets, often layered and difficult to navigate. RaagBot was designed to make this data easily accessible for researchers, students, and decision-makers.</p>
+      
+      <h3>Key Features of RaagBot</h3>
       <ul>
-        <li>Basic ML concepts</li>
-        <li>Popular algorithms</li>
-        <li>Practical applications</li>
+        <li><strong>Knowledge Graphs:</strong> For mapping entities and relationships across datasets, enabling structured understanding of space-related data.</li>
+        <li><strong>Large Language Models (LLMs):</strong> For semantic query understanding, ensuring that user intent is accurately captured.</li>
+        <li><strong>Retrieval Augmented Generation (RAG):</strong> For document-level question answering, combining retrieval with generative AI for precise responses.</li>
+        <li><strong>Spatial Intelligence:</strong> To handle location and time-based queries, crucial for satellite data and environmental insights.</li>
       </ul>
       
-      <h3>Getting Started</h3>
-      <p>Start with Python and libraries like scikit-learn, pandas, and numpy. Practice with simple datasets first.</p>
+      <h2>Why RaagBot?</h2>
+      <p>The MOSDAC portal is rich with information but navigating it can be a challenge for many users. RaagBot bridges this gap by providing an intuitive conversational interface that leverages modern AI advancements. By integrating knowledge graphs with LLMs and RAG, RaagBot ensures that queries are answered not just with data, but with <strong>context-aware insights</strong>.</p>
       
-      <p>Machine learning is an exciting field with endless possibilities. Take it step by step and practice regularly.</p>
+      <h2>Hackathon Experience</h2>
+      <p>Participating in the <strong>Bharatiya Antariksh Hackathon 2025</strong> was an incredible experience for our team. It gave us the opportunity to apply AI/ML techniques to real-world space and environmental challenges while learning from the innovation-driven ecosystem fostered by ISRO. Receiving the <strong>Certificate of Acknowledgement</strong> was a proud moment for all of us.</p>
+      
+      <h2>Conclusion</h2>
+      <p>RaagBot is a step toward democratizing access to space data by simplifying user interaction with complex datasets. Our team is motivated to continue improving this project and explore how it can contribute to research, education, and policy-making in India’s space innovation journey.</p>
     `,
-    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
-    date: '2024-01-15',
-    author: 'Deekshith N',
-    category: 'AI/ML'
+    featuredImage: '/mnt/data/baratiya anthariksha hackathon.png',
+    publishDate: '2025-09-18',
+    category: 'ai-ml',
+    author: 'Team Sigmoid (Deekshith N, Vinay S, Syed Farhaan)',
+    readTime: 10,
+    featured: true
   },
   {
     id: '2',
