@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Loader from './components/Loader';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -12,9 +12,10 @@ import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
 import { BlogSection, BlogPage } from './components/Blog';
 
-function App() {
+function AppContent() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -41,32 +42,38 @@ function App() {
     setIsLoading(false);
   };
 
-  // Show loader while loading
-  if (isLoading) {
+  // Show loader only on home page initial load
+  if (isLoading && location.pathname === '/') {
     return <Loader onLoadingComplete={handleLoadingComplete} />;
   }
 
   return (
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      <Routes>
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/" element={
+          <>
+            <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <Certifications />
+            <BlogSection />
+            <Contact />
+            <Footer />
+            <Chatbot />
+          </>
+        } />
+      </Routes>
+    </div>
+  );
+}
+
+function App() {
+  return (
     <Router>
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-        <Routes>
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/" element={
-            <>
-              <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Certifications />
-              <BlogSection />
-              <Contact />
-              <Footer />
-              <Chatbot />
-            </>
-          } />
-        </Routes>
-      </div>
+      <AppContent />
     </Router>
   );
 }
