@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, User, ArrowRight, BookOpen } from 'lucide-react';
-import { blogPosts } from '../../data/blogPosts';
+import { simpleBlogPosts } from '../../data/simpleBlogPosts';
 
 const BlogSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -10,7 +10,10 @@ const BlogSection: React.FC = () => {
     threshold: 0.1
   });
 
-  const featuredPosts = blogPosts.slice(0, 3); // Show first 3 posts
+  // Sort posts by date (newest first) and take the first 3
+  const featuredPosts = simpleBlogPosts
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   const container = {
     hidden: { opacity: 0 },
@@ -65,13 +68,13 @@ const BlogSection: React.FC = () => {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={post.featuredImage}
+                  src={post.image}
                   alt={post.title}
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute top-4 left-4">
                   <span className="inline-block px-3 py-1 bg-primary-600 text-white text-xs font-semibold rounded-full">
-                    {post.category.replace('-', ' ').toUpperCase()}
+                    {post.category.toUpperCase()}
                   </span>
                 </div>
               </div>
@@ -92,11 +95,7 @@ const BlogSection: React.FC = () => {
                   </div>
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-1" />
-                    <span>{new Date(post.publishDate).toLocaleDateString()}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="w-4 h-4 mr-1" />
-                    <span>{post.readTime} min</span>
+                    <span>{new Date(post.date).toLocaleDateString()}</span>
                   </div>
                 </div>
 
