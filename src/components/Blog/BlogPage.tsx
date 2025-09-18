@@ -83,13 +83,10 @@ const BlogPage: React.FC = () => {
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
                   {selectedPost.excerpt}
                 </p>
-                <div className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {selectedPost.content.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
+                <div 
+                  className="text-gray-700 dark:text-gray-300 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: selectedPost.content }}
+                />
               </div>
             </div>
           </article>
