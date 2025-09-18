@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, User, ArrowRight, BookOpen } from 'lucide-react';
-import { blogPosts } from '../data/blogPosts';
+import { blogPosts } from '../../data/blogPosts';
 
-const Blog: React.FC = () => {
+const BlogSection: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -136,4 +136,4 @@ const Blog: React.FC = () => {
   );
 };
 
-export default Blog;
+export default BlogSection;

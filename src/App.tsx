@@ -10,8 +10,7 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
-import Blog from './components/Blog';
-import SimpleBlog from './components/SimpleBlog';
+import { BlogSection, BlogPage } from './components/Blog';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -51,7 +50,7 @@ function App() {
     <Router>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
         <Routes>
-          <Route path="/blog" element={<SimpleBlog />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/" element={
             <>
               <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
@@ -60,7 +59,7 @@ function App() {
               <Skills />
               <Projects />
               <Certifications />
-              <Blog />
+              <BlogSection />
               <Contact />
               <Footer />
               <Chatbot />
