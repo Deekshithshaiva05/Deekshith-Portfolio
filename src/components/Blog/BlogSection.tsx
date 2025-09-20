@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, Clock, User, ArrowRight, BookOpen } from 'lucide-react';
+import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
 import { simpleBlogPosts } from '../../data/simpleBlogPosts';
 
 const BlogSection: React.FC = () => {
@@ -9,10 +9,46 @@ const BlogSection: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1
   });
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Sort posts by date (newest first) - show all posts
   const allPosts = simpleBlogPosts
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  // Auto-scroll effect
+  useEffect(() => {
+    if (!inView || !scrollContainerRef.current) return;
+
+    const container = scrollContainerRef.current;
+    let scrollAmount = 0;
+    const scrollSpeed = 0.5; // pixels per frame
+    const maxScroll = container.scrollWidth - container.clientWidth;
+
+    const autoScroll = () => {
+      if (scrollAmount < maxScroll) {
+        scrollAmount += scrollSpeed;
+        container.scrollLeft = scrollAmount;
+        requestAnimationFrame(autoScroll);
+      } else {
+        // Reset to beginning for continuous loop
+        setTimeout(() => {
+          scrollAmount = 0;
+          container.scrollLeft = 0;
+          requestAnimationFrame(autoScroll);
+        }, 2000);
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      if (inView) {
+        requestAnimationFrame(autoScroll);
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [inView]);
 
   const container = {
     hidden: { opacity: 0 },
@@ -56,14 +92,23 @@ const BlogSection: React.FC = () => {
           variants={container}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+          className="relative"
         >
+          <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto gap-6 pb-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
+            style={{ 
+              scrollbarWidth: 'thin', 
+              scrollbarColor: '#a0aec0 #edf2f7',
+              scrollBehavior: 'smooth'
+            }}
+          >
           {allPosts.map((post, index) => (
             <motion.article
               key={post.id}
               variants={item}
-              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300 group"
-              whileHover={{ y: -5 }}
+              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300 group min-w-[350px] max-w-sm flex-shrink-0"
+              whileHover={{ scale: 1.02 }}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -112,6 +157,11 @@ const BlogSection: React.FC = () => {
               </div>
             </motion.article>
           ))}
+          </div>
+          
+          {/* Fade effects on edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-gray-900 to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent pointer-events-none"></div>
         </motion.div>
 
       </div>

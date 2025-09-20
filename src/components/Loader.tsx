@@ -54,30 +54,34 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
         transition={{ duration: 0.8, ease: "easeInOut" }}
         className="fixed inset-0 z-[9999] flex items-center justify-center"
         style={{
-          background: 'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)',
+          background: 'linear-gradient(135deg, #000000 0%, #111111 50%, #000000 100%)',
           backdropFilter: 'blur(10px)'
         }}
       >
-        {/* Animated background particles */}
+        {/* 3D Animated background particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 20 }).map((_, i) => (
+          {Array.from({ length: 30 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute bg-green-400/10 rounded-full"
+              className="absolute bg-green-400/20 rounded-full"
               style={{
-                width: Math.random() * 100 + 20,
-                height: Math.random() * 100 + 20,
+                width: Math.random() * 80 + 20,
+                height: Math.random() * 80 + 20,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+                transform: 'translateZ(0)',
               }}
               animate={{
-                y: [0, Math.random() * 100 - 50],
-                x: [0, Math.random() * 100 - 50],
-                opacity: [0.1, 0.3, 0.1],
-                scale: [1, 1.2, 1],
+                y: [0, Math.random() * 200 - 100],
+                x: [0, Math.random() * 200 - 100],
+                z: [0, Math.random() * 100 - 50],
+                opacity: [0.1, 0.4, 0.1],
+                scale: [1, 1.5, 1],
+                rotateX: [0, 360],
+                rotateY: [0, 360],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: Math.random() * 15 + 10,
                 repeat: Infinity,
                 repeatType: "reverse",
                 ease: "easeInOut",
@@ -86,66 +90,184 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
           ))}
         </div>
 
-        {/* Logo Animation Container */}
+        {/* 3D Grid pattern */}
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(34, 197, 94, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(34, 197, 94, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+            transform: 'perspective(1000px) rotateX(60deg)',
+          }}
+        />
+
+        {/* 3D Logo Animation Container */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          initial={{ scale: 0.8, opacity: 0, rotateY: -180 }}
+          animate={{ 
+            scale: 1, 
+            opacity: 1, 
+            rotateY: 0,
+            rotateX: [0, 5, -5, 0],
+            rotateZ: [0, 2, -2, 0]
+          }}
+          transition={{ 
+            duration: 1.2, 
+            ease: "easeOut",
+            rotateX: {
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            rotateZ: {
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
+          }}
           className="relative z-10 flex flex-col items-center"
+          style={{
+            transformStyle: 'preserve-3d',
+            perspective: '1000px'
+          }}
         >
-          {/* Logo Animation */}
-          <div className="relative mb-8">
-            <img
+          {/* 3D Logo Animation */}
+          <div className="relative mb-8" style={{ transformStyle: 'preserve-3d' }}>
+            <motion.img
               src="/images/Pi7_GIF_CMP.gif"
               alt="Deekshith Logo Animation"
               className="w-80 h-80 object-contain"
               style={{
-                filter: 'drop-shadow(0 0 30px rgba(34, 197, 94, 0.5))',
+                filter: 'drop-shadow(0 0 40px rgba(34, 197, 94, 0.8)) drop-shadow(0 0 80px rgba(34, 197, 94, 0.4))',
+                transform: 'translateZ(50px)',
+              }}
+              animate={{
+                rotateY: [0, 360],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                rotateY: {
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                },
+                scale: {
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
               }}
             />
             
-            {/* Glowing ring effect around logo */}
-            <motion.div
-              className="absolute inset-0 rounded-full border-2 border-green-400/30"
+            {/* Multiple 3D glowing rings */}
+            {[1, 2, 3].map((ring, index) => (
+              <motion.div
+                key={ring}
+                className="absolute inset-0 rounded-full border-2 border-green-400/20"
+                style={{
+                  transform: `translateZ(${index * 20}px)`,
+                  width: `${100 + index * 20}%`,
+                  height: `${100 + index * 20}%`,
+                  left: `${-index * 10}%`,
+                  top: `${-index * 10}%`,
+                }}
+                animate={{
+                  scale: [1, 1.2 + index * 0.1, 1],
+                  opacity: [0.2, 0.6 - index * 0.1, 0.2],
+                  rotateY: [0, 360],
+                }}
+                transition={{
+                  duration: 3 + index,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  rotateY: {
+                    duration: 10 + index * 2,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }
+                }}
+              />
+            ))}
+          </div>
+
+          {/* 3D Loading Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20, rotateX: -90 }}
+            animate={{ 
+              opacity: 1, 
+              y: 0, 
+              rotateX: 0,
+              rotateY: [0, 5, -5, 0]
+            }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.3,
+              rotateY: {
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            }}
+            className="text-center"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            <motion.h2 
+              className="text-2xl font-bold text-white mb-4"
+              style={{
+                textShadow: '0 0 20px rgba(34, 197, 94, 0.8), 0 0 40px rgba(34, 197, 94, 0.4)',
+                transform: 'translateZ(30px)'
+              }}
               animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.6, 0.3],
+                scale: [1, 1.02, 1],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut"
               }}
-            />
-          </div>
-
-          {/* Loading Text */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-center"
-          >
-            <h2 className="text-2xl font-bold text-white mb-4">
+            >
               Welcome to Deekshith's Portfolio
-            </h2>
+            </motion.h2>
             
-            {/* Loading dots animation */}
+            {/* 3D Loading dots animation */}
             <div className="flex items-center justify-center space-x-2">
-              <span className="text-green-400 text-lg">Loading</span>
+              <motion.span 
+                className="text-green-400 text-lg"
+                style={{
+                  textShadow: '0 0 10px rgba(34, 197, 94, 0.8)',
+                  transform: 'translateZ(20px)'
+                }}
+                animate={{
+                  opacity: [0.8, 1, 0.8],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                Loading
+              </motion.span>
               <div className="flex space-x-1">
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
                     className="w-2 h-2 bg-green-400 rounded-full"
+                    style={{
+                      boxShadow: '0 0 10px rgba(34, 197, 94, 0.8)',
+                      transform: 'translateZ(20px)'
+                    }}
                     animate={{
-                      scale: [1, 1.5, 1],
+                      scale: [1, 1.8, 1],
                       opacity: [0.5, 1, 0.5],
+                      rotateY: [0, 180, 360],
                     }}
                     transition={{
-                      duration: 1,
+                      duration: 1.2,
                       repeat: Infinity,
-                      delay: i * 0.2,
+                      delay: i * 0.3,
                       ease: "easeInOut",
                     }}
                   />
@@ -154,21 +276,58 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
             </div>
           </motion.div>
 
-          {/* Progress bar */}
+          {/* 3D Progress bar */}
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 2, ease: "easeInOut" }}
-            className="mt-8 h-1 bg-green-400 rounded-full"
-            style={{ width: "200px" }}
+            initial={{ width: 0, rotateX: -45 }}
+            animate={{ 
+              width: "100%", 
+              rotateX: 0,
+              rotateY: [0, 2, -2, 0]
+            }}
+            transition={{ 
+              duration: 2, 
+              ease: "easeInOut",
+              rotateY: {
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            }}
+            className="mt-8 h-2 bg-gray-800 rounded-full relative overflow-hidden"
+            style={{ 
+              width: "200px",
+              transformStyle: 'preserve-3d',
+              boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)'
+            }}
           >
             <motion.div
-              className="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+              className="h-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-full relative"
               animate={{
                 opacity: [0.7, 1, 0.7],
+                boxShadow: [
+                  '0 0 10px rgba(34, 197, 94, 0.8)',
+                  '0 0 20px rgba(34, 197, 94, 1)',
+                  '0 0 10px rgba(34, 197, 94, 0.8)'
+                ],
               }}
               transition={{
                 duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                transform: 'translateZ(10px)',
+                background: 'linear-gradient(45deg, #22c55e, #16a34a, #15803d)',
+              }}
+            />
+            {/* 3D shine effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+              animate={{
+                x: ['-100%', '100%'],
+              }}
+              transition={{
+                duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -176,17 +335,6 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
           </motion.div>
         </motion.div>
 
-        {/* Subtle grid pattern overlay */}
-        <div 
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }}
-        />
       </motion.div>
     </AnimatePresence>
   );
