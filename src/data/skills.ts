@@ -11,17 +11,10 @@ export const skills: Skill[] = [
   },
   { 
     name: 'JavaScript', 
-    level: 8, 
+    level: 6, 
     category: 'programming',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
     color: '#f7df1e'
-  },
-  { 
-    name: 'TypeScript', 
-    level: 7, 
-    category: 'programming',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg',
-    color: '#3178c6'
   },
   { 
     name: 'Java', 
@@ -31,35 +24,29 @@ export const skills: Skill[] = [
     color: '#007396'
   },
   { 
-    name: 'C++', 
-    level: 7, 
-    category: 'programming',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg',
-    color: '#00599c'
-  },
-  { 
     name: 'HTML/CSS', 
     level: 8, 
     category: 'programming',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
     color: '#e34f26'
   },
+  {
+    name: 'SQL',
+    level: 7,
+    category: 'tools',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg',
+    color: '#336791'
+  },
+  {
+    name: 'R',
+    level: 8,
+    category: 'tools',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg',
+    color: '#276DC2'
+  }, 
   
   // Frameworks & Libraries
-  { 
-    name: 'React', 
-    level: 8, 
-    category: 'frameworks',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
-    color: '#61dafb'
-  },
-  { 
-    name: 'Node.js', 
-    level: 7, 
-    category: 'frameworks',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg',
-    color: '#339933'
-  },
+
   { 
     name: 'Flask', 
     level: 9, 
@@ -69,7 +56,7 @@ export const skills: Skill[] = [
   },
   { 
     name: 'Django', 
-    level: 6, 
+    level: 4, 
     category: 'frameworks',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg',
     color: '#092e20'
@@ -91,18 +78,110 @@ export const skills: Skill[] = [
   { 
     name: 'TensorFlow', 
     level: 7, 
-    category: 'frameworks',
+    category: 'other',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg',
     color: '#ff6f00'
   },
   { 
     name: 'PyTorch', 
     level: 6, 
-    category: 'frameworks',
+    category: 'other',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg',
     color: '#ee4c2c'
   },
-  
+    
+  {
+    "name": "Keras",
+    "level": 8,
+    "category": "other",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/keras/keras-original.svg",
+    "color": "#D00000"
+  },
+  {
+    "name": "scikit-learn",
+    "level": 8,
+    "category": "other",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg",
+    "color": "#F7931E"
+  },
+  {
+    "name": "XGBoost",
+    "level": 7,
+    "category": "other",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/xgboost/xgboost-original.svg",
+    "color": "#82b446"
+  },
+  {
+    "name": "CatBoost",
+    "level": 6,
+    "category": "other",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/catboost/catboost-original.svg",
+    "color": "#206497"
+  },
+  {
+    "name": "OpenCV",
+    "level": 7,
+    "category": "other",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg",
+    "color": "#5C3EE8"
+  },
+  {
+    "name": "Hugging Face",
+    "level": 8,
+    "category": "frameworks",
+    "logo": "https://huggingface.co/front/assets/huggingface_logo.svg",
+    "color": "#FFC024"
+  },
+  {
+    "name": "SciPy",
+    "level": 8,
+    "category": "frameworks",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scipy/scipy-original.svg",
+    "color": "#80B3E8"
+  },
+  {
+    "name": "Matplotlib",
+    "level": 9,
+    "category": "frameworks",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg",
+    "color": "#11557c"
+  },
+  {
+    "name": "Seaborn",
+    "level": 8,
+    "category": "frameworks",
+    "logo": "https://seaborn.pydata.org/_images/logo-mark-lightbg.svg",
+    "color": "#4C72B0"
+  },
+  {
+    "name": "Kaggle",
+    "level": 9,
+    "category": "tools",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kaggle/kaggle-original.svg",
+    "color": "#20BEFF"
+  },
+  {
+    "name": "LangChain",
+    "level": 7,
+    "category": "other",
+    "logo": "https://avatars.githubusercontent.com/u/147368532?s=200&v=4",
+    "color": "#34C65A"
+  },
+  {
+    "name": "LlamaIndex",
+    "level": 7,
+    "category": "other",
+    "logo": "https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/assets/logo.png",
+    "color": "#0090ff"
+  },
+  {
+    "name": "LangChain",
+    "level": 7,
+    "category": "other",
+    "logo": "https://avatars.githubusercontent.com/u/147368532?s=200&v=4",
+    "color": "#34C65A"
+  },
+
   // Tools & Technologies
   { 
     name: 'Git', 
@@ -110,20 +189,6 @@ export const skills: Skill[] = [
     category: 'tools',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
     color: '#f05032'
-  },
-  { 
-    name: 'Docker', 
-    level: 6, 
-    category: 'tools',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg',
-    color: '#2496ed'
-  },
-  { 
-    name: 'AWS', 
-    level: 5, 
-    category: 'tools',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg',
-    color: '#ff9900'
   },
   { 
     name: 'MongoDB', 
@@ -153,11 +218,26 @@ export const skills: Skill[] = [
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg',
     color: '#f37626'
   },
-  { 
-    name: 'Linux', 
-    level: 6, 
-    category: 'tools',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg',
-    color: '#fcc624'
+  {
+    "name": "MongoDB",
+    "level": 8,
+    "category": "tools",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+    "color": "#47A248"
   },
+  {
+    "name": "Google Cloud",
+    "level": 7,
+    "category": "tools",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg",
+    "color": "#4285F4"
+  },
+  {
+    "name": "Netlify",
+    "level": 8,
+    "category": "tools",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/netlify/netlify-original.svg",
+    "color": "#00C7B7"
+  },
+  
 ];
