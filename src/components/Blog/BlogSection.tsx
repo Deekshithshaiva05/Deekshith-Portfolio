@@ -10,10 +10,9 @@ const BlogSection: React.FC = () => {
     threshold: 0.1
   });
 
-  // Sort posts by date (newest first) and take the first 3
-  const featuredPosts = simpleBlogPosts
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+  // Sort posts by date (newest first) - show all posts
+  const allPosts = simpleBlogPosts
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const container = {
     hidden: { opacity: 0 },
@@ -59,7 +58,7 @@ const BlogSection: React.FC = () => {
           animate={inView ? "show" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
         >
-          {featuredPosts.map((post, index) => (
+          {allPosts.map((post, index) => (
             <motion.article
               key={post.id}
               variants={item}
@@ -99,37 +98,22 @@ const BlogSection: React.FC = () => {
                   </div>
                 </div>
 
-                <motion.a
-                  href="/blog"
+                <motion.button
+                  onClick={() => {
+                    // Scroll to blog section to highlight this post
+                    document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="inline-flex items-center text-primary-600 dark:text-primary-400 font-semibold hover:text-primary-700 dark:hover:text-primary-300 transition-colors group"
                   whileHover={{ x: 5 }}
                 >
                   Read More
                   <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                </motion.a>
+                </motion.button>
               </div>
             </motion.article>
           ))}
         </motion.div>
 
-        {/* View All Posts Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <motion.a
-            href="/blog"
-            className="inline-flex items-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <BookOpen className="w-5 h-5 mr-2" />
-            View All Posts
-          </motion.a>
-        </motion.div>
       </div>
     </section>
   );
