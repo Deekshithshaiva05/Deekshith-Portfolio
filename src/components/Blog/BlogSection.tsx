@@ -21,7 +21,7 @@ const BlogSection: React.FC = () => {
 
     const container = scrollContainerRef.current;
     let scrollAmount = 0;
-    const scrollSpeed = 0.5; // pixels per frame
+    const scrollSpeed = 0.4; // pixels per frame - slightly slower for better reading
     const maxScroll = container.scrollWidth - container.clientWidth;
 
     const autoScroll = () => {
@@ -35,7 +35,7 @@ const BlogSection: React.FC = () => {
           scrollAmount = 0;
           container.scrollLeft = 0;
           requestAnimationFrame(autoScroll);
-        }, 2000);
+        }, 2500); // Slightly longer pause for better user experience
       }
     };
 

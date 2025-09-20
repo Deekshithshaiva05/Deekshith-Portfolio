@@ -31,6 +31,7 @@ const Certifications: React.FC = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<Certification | null>(null);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Animation for right-to-left slide-in
   const container = {
@@ -65,6 +66,41 @@ const Certifications: React.FC = () => {
     }
   };
 
+  // Auto-scroll effect for certifications
+  useEffect(() => {
+    if (!inView || !scrollContainerRef.current) return;
+
+    const container = scrollContainerRef.current;
+    let scrollAmount = 0;
+    const scrollSpeed = 0.3; // Slightly slower than blog for better viewing
+    const maxScroll = container.scrollWidth - container.clientWidth;
+
+    const autoScroll = () => {
+      if (scrollAmount < maxScroll) {
+        scrollAmount += scrollSpeed;
+        container.scrollLeft = scrollAmount;
+        requestAnimationFrame(autoScroll);
+      } else {
+        // Reset to beginning for continuous loop
+        setTimeout(() => {
+          scrollAmount = 0;
+          container.scrollLeft = 0;
+          requestAnimationFrame(autoScroll);
+        }, 3000); // Longer pause for certifications
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      if (inView) {
+        requestAnimationFrame(autoScroll);
+      }
+    }, 1500); // Longer delay for certifications
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [inView]);
+
   return (
     <section id="certifications" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,9 +130,17 @@ const Certifications: React.FC = () => {
           variants={container}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className="flex overflow-x-auto gap-6 pb-4"
-          style={{ scrollbarWidth: 'thin', scrollbarColor: '#a0aec0 #edf2f7' }}
+          className="relative"
         >
+          <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto gap-6 pb-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
+            style={{ 
+              scrollbarWidth: 'thin', 
+              scrollbarColor: '#a0aec0 #edf2f7',
+              scrollBehavior: 'smooth'
+            }}
+          >
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
@@ -142,6 +186,11 @@ const Certifications: React.FC = () => {
               </div>
             </motion.div>
           ))}
+          </div>
+          
+          {/* Fade effects on edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 dark:from-gray-800 to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 dark:from-gray-800 to-transparent pointer-events-none"></div>
         </motion.div>
       </div>
 
