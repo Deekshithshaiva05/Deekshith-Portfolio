@@ -15,6 +15,8 @@ export interface Skill {
   level: number; // 1-10
   category: 'programming' | 'frameworks' | 'tools' | 'soft' | 'other';
   icon?: string;
+  logo?: string;
+  color?: string;
 }
 
 export interface SocialLink {
