@@ -13,7 +13,6 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
   {
     id: '1',
     title: 'RaagBot: AI-Powered Help Bot for MOSDAC Portal – Bharatiya Antariksh Hackathon 2025',
-    slug: 'raagbot-ai-help-bot-mosdac-bharatiya-antariksh-hackathon-2025',
     excerpt: 'Our team, Team Sigmoid, participated in the Bharatiya Antariksh Hackathon 2025 with RaagBot – an AI-powered help bot designed to simplify access to space research data on the MOSDAC portal using Knowledge Graphs, LLMs, RAG, and Spatial Intelligence.',
     content: `
       <h2>Introduction</h2>
@@ -37,14 +36,12 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
       <p>Participating in the <strong>Bharatiya Antariksh Hackathon 2025</strong> was an incredible experience for our team. It gave us the opportunity to apply AI/ML techniques to real-world space and environmental challenges while learning from the innovation-driven ecosystem fostered by ISRO. Receiving the <strong>Certificate of Acknowledgement</strong> was a proud moment for all of us.</p>
       
       <h2>Conclusion</h2>
-      <p>RaagBot is a step toward democratizing access to space data by simplifying user interaction with complex datasets. Our team is motivated to continue improving this project and explore how it can contribute to research, education, and policy-making in India’s space innovation journey.</p>
+      <p>RaagBot is a step toward democratizing access to space data by simplifying user interaction with complex datasets. Our team is motivated to continue improving this project and explore how it can contribute to research, education, and policy-making in India's space innovation journey.</p>
     `,
-    featuredImage: 'images\baratiya anthariksha hackathon.png',
-    publishDate: '2025-09-18',
-    category: 'ai-ml',
-    author: 'Team Sigmoid (Deekshith N, Vinay S, Syed Farhaan)',
-    readTime: 10,
-    featured: true
+    image: '/images/baratiya anthariksha hackathon.png',
+    date: '2025-09-18',
+    category: 'AI/ML',
+    author: 'Team Sigmoid (Deekshith N, Vinay S, Syed Farhaan)'
   },
   {
     id: '2',
