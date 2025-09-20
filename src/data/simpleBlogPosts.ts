@@ -39,7 +39,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
       <h2>Conclusion</h2>
       <p>RaagBot is a step toward democratizing access to space data by simplifying user interaction with complex datasets. Our team is motivated to continue improving this project and explore how it can contribute to research, education, and policy-making in India’s space innovation journey.</p>
     `,
-    featuredImage: 'E:\PROJECTS\Deekshith-Portfolio\public\images\baratiya anthariksha hackathon.png',
+    featuredImage: 'images\baratiya anthariksha hackathon.png',
     publishDate: '2025-09-18',
     category: 'ai-ml',
     author: 'Team Sigmoid (Deekshith N, Vinay S, Syed Farhaan)',
