@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
+import { Calendar, User, ArrowRight, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
 import { simpleBlogPosts } from '../../data/simpleBlogPosts';
 
 const BlogSection: React.FC = () => {
@@ -9,38 +9,68 @@ const BlogSection: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1
   });
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Sort posts by date (newest first) - show all posts
   const allPosts = simpleBlogPosts
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+  // Check scroll state
+  const checkScrollState = () => {
+    if (!scrollContainerRef.current) return;
+    
+    const container = scrollContainerRef.current;
+    const { scrollLeft, scrollWidth, clientWidth } = container;
+    
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+  };
+
+  // Manual scroll functions
+  const scrollLeft = () => {
+    if (!scrollContainerRef.current) return;
+    setIsAutoScrolling(false);
+    scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+  };
+
+  const scrollRight = () => {
+    if (!scrollContainerRef.current) return;
+    setIsAutoScrolling(false);
+    scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+  };
+
   // Auto-scroll effect
   useEffect(() => {
-    if (!inView || !scrollContainerRef.current) return;
+    if (!inView || !scrollContainerRef.current || isAutoScrolling === false) return;
 
     const container = scrollContainerRef.current;
     let scrollAmount = 0;
-    const scrollSpeed = 0.4; // pixels per frame - slightly slower for better reading
+    const scrollSpeed = 0.8; // Faster scrolling
     const maxScroll = container.scrollWidth - container.clientWidth;
 
     const autoScroll = () => {
-      if (scrollAmount < maxScroll) {
+      if (scrollAmount < maxScroll && isAutoScrolling !== false) {
         scrollAmount += scrollSpeed;
         container.scrollLeft = scrollAmount;
         requestAnimationFrame(autoScroll);
-      } else {
+      } else if (isAutoScrolling !== false) {
         // Reset to beginning for continuous loop
         setTimeout(() => {
-          scrollAmount = 0;
-          container.scrollLeft = 0;
-          requestAnimationFrame(autoScroll);
-        }, 2500); // Slightly longer pause for better user experience
+          if (isAutoScrolling !== false) {
+            scrollAmount = 0;
+            container.scrollLeft = 0;
+            requestAnimationFrame(autoScroll);
+          }
+        }, 2000); // Shorter pause for faster experience
       }
     };
 
     const timeoutId = setTimeout(() => {
-      if (inView) {
+      if (inView && isAutoScrolling !== false) {
+        setIsAutoScrolling(true);
         requestAnimationFrame(autoScroll);
       }
     }, 1000);
@@ -48,7 +78,24 @@ const BlogSection: React.FC = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [inView]);
+  }, [inView, isAutoScrolling]);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      checkScrollState();
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    checkScrollState(); // Initial check
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const container = {
     hidden: { opacity: 0 },
@@ -94,6 +141,35 @@ const BlogSection: React.FC = () => {
           animate={inView ? "show" : "hidden"}
           className="relative"
         >
+          {/* Scroll Buttons */}
+          <motion.button
+            onClick={scrollLeft}
+            disabled={!canScrollLeft}
+            className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 ${
+              canScrollLeft 
+                ? 'text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:scale-110' 
+                : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
+            }`}
+            whileHover={canScrollLeft ? { scale: 1.1 } : {}}
+            whileTap={canScrollLeft ? { scale: 0.95 } : {}}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </motion.button>
+
+          <motion.button
+            onClick={scrollRight}
+            disabled={!canScrollRight}
+            className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 ${
+              canScrollRight 
+                ? 'text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:scale-110' 
+                : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
+            }`}
+            whileHover={canScrollRight ? { scale: 1.1 } : {}}
+            whileTap={canScrollRight ? { scale: 0.95 } : {}}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </motion.button>
+
           <div
             ref={scrollContainerRef}
             className="flex overflow-x-auto gap-6 pb-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"

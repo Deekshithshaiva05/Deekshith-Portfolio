@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Download, ExternalLink, Award, Calendar, Building } from 'lucide-react';
+import { X, Download, ExternalLink, Award, Calendar, Building, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useInView } from 'framer-motion';
 import { certifications as originalCertifications } from '../data/certifications';
 
@@ -29,6 +29,9 @@ const certifications: Certification[] = originalCertifications.map(cert => ({
 
 const Certifications: React.FC = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<Certification | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -66,40 +69,84 @@ const Certifications: React.FC = () => {
     }
   };
 
+  // Check scroll state
+  const checkScrollState = () => {
+    if (!scrollContainerRef.current) return;
+    
+    const container = scrollContainerRef.current;
+    const { scrollLeft, scrollWidth, clientWidth } = container;
+    
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+  };
+
+  // Manual scroll functions
+  const scrollLeft = () => {
+    if (!scrollContainerRef.current) return;
+    setIsAutoScrolling(false);
+    scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+  };
+
+  const scrollRight = () => {
+    if (!scrollContainerRef.current) return;
+    setIsAutoScrolling(false);
+    scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+  };
+
   // Auto-scroll effect for certifications
   useEffect(() => {
-    if (!inView || !scrollContainerRef.current) return;
+    if (!inView || !scrollContainerRef.current || isAutoScrolling === false) return;
 
     const container = scrollContainerRef.current;
     let scrollAmount = 0;
-    const scrollSpeed = 0.3; // Slightly slower than blog for better viewing
+    const scrollSpeed = 0.8; // Faster scrolling
     const maxScroll = container.scrollWidth - container.clientWidth;
 
     const autoScroll = () => {
-      if (scrollAmount < maxScroll) {
+      if (scrollAmount < maxScroll && isAutoScrolling !== false) {
         scrollAmount += scrollSpeed;
         container.scrollLeft = scrollAmount;
         requestAnimationFrame(autoScroll);
-      } else {
+      } else if (isAutoScrolling !== false) {
         // Reset to beginning for continuous loop
         setTimeout(() => {
-          scrollAmount = 0;
-          container.scrollLeft = 0;
-          requestAnimationFrame(autoScroll);
-        }, 3000); // Longer pause for certifications
+          if (isAutoScrolling !== false) {
+            scrollAmount = 0;
+            container.scrollLeft = 0;
+            requestAnimationFrame(autoScroll);
+          }
+        }, 2000); // Shorter pause for faster experience
       }
     };
 
     const timeoutId = setTimeout(() => {
-      if (inView) {
+      if (inView && isAutoScrolling !== false) {
+        setIsAutoScrolling(true);
         requestAnimationFrame(autoScroll);
       }
-    }, 1500); // Longer delay for certifications
+    }, 1000); // Shorter delay
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [inView]);
+  }, [inView, isAutoScrolling]);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      checkScrollState();
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    checkScrollState(); // Initial check
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <section id="certifications" className="py-20 bg-gray-50 dark:bg-gray-800">
@@ -132,6 +179,35 @@ const Certifications: React.FC = () => {
           animate={inView ? "show" : "hidden"}
           className="relative"
         >
+          {/* Scroll Buttons */}
+          <motion.button
+            onClick={scrollLeft}
+            disabled={!canScrollLeft}
+            className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 ${
+              canScrollLeft 
+                ? 'text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:scale-110' 
+                : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
+            }`}
+            whileHover={canScrollLeft ? { scale: 1.1 } : {}}
+            whileTap={canScrollLeft ? { scale: 0.95 } : {}}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </motion.button>
+
+          <motion.button
+            onClick={scrollRight}
+            disabled={!canScrollRight}
+            className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 ${
+              canScrollRight 
+                ? 'text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:scale-110' 
+                : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
+            }`}
+            whileHover={canScrollRight ? { scale: 1.1 } : {}}
+            whileTap={canScrollRight ? { scale: 0.95 } : {}}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </motion.button>
+
           <div
             ref={scrollContainerRef}
             className="flex overflow-x-auto gap-6 pb-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
