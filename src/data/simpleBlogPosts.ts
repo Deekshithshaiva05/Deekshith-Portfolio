@@ -44,7 +44,56 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
     author: 'Team Sigmoid (Deekshith N, Vinay S, Syed Farhaan)'
   },
   {
-    id: '2',
+    "id": "2",
+    "title": "Participation in Tech Tonic 2024 & Development of Medicine Prediction & Health Care Assistant",
+    "excerpt": "Participated in Tech Tonic 2024, conducted by the Department of Computer Science & Engineering at Dayananda Sagar Academy of Technology & Management, and also developed an AI-powered Health Care Web Application for disease prediction and medical assistance.",
+    "content": `
+      <h2>Introduction</h2>
+      <p>I am glad to share that I, <strong>Deekshith N</strong>, participated in <strong>Tech Tonic 2024</strong>, a flagship technical event organized by the <strong>Department of Computer Science & Engineering</strong> at <strong>Dayananda Sagar Academy of Technology & Management (DSATM)</strong>.</p>
+  
+      <h2>Event Details</h2>
+      <p>The event was held on <strong>12th, 13th, and 14th July 2024</strong>, providing a platform for students to showcase their technical skills, creativity, and innovation.</p>
+  
+      <h2>My Experience</h2>
+      <p>Participating in <strong>Tech Tonic 2024</strong> gave me exposure to various technical challenges and team-based activities. It was an enriching experience that enhanced my learning and collaborative skills.</p>
+  
+      <h2>Acknowledgement</h2>
+      <p>The event was successfully conducted under the guidance of <strong>Dr. Kavitha</strong> (HOD, Department of CSE, DSATM) and <strong>Dr. Ravishankar M</strong> (Principal, DSATM).</p>
+  
+      <h2>Project: Medicine Prediction & Health Care Assistant</h2>
+      <h3>📌 Overview</h3>
+      <p>This project is an <strong>AI-powered Health Care Web Application</strong> that predicts diseases and recommends suitable <strong>medications, precautions, workouts, and diets</strong> based on patient symptoms. It also integrates <strong>speech recognition, emergency support, and chatbot assistance</strong>, making it a complete digital health support system.</p>
+  
+      <h3>🚀 Features</h3>
+      <ul>
+        <li>🧠 <strong>AI-based Prediction</strong> – Detect disease & recommend medications, precautions, workouts, and diets</li>
+        <li>🎤 <strong>Speech Recognition</strong> – Input symptoms via voice</li>
+        <li>💬 <strong>Chatbot Support</strong> – Interactive medical help & FAQs</li>
+        <li>🚑 <strong>Emergency Page</strong>
+          <ul>
+            <li>Nearby hospitals & medical shops</li>
+            <li>Doctor appointment booking</li>
+            <li>Online medicine purchase</li>
+            <li>Emergency contact system</li>
+          </ul>
+        </li>
+      </ul>
+  
+      <p>🔗 More details and complete implementation can be found on GitHub: 
+      <a href='https://github.com/Deekshithshaiva05/Medicine-prediction.git' target='_blank'>
+      Medicine Prediction & Health Care Assistant</a>.</p>
+  
+      <h2>Conclusion</h2>
+      <p>Being a part of Tech Tonic 2024 was an inspiring journey, motivating me to continue exploring innovative solutions. The development of the <strong>Medicine Prediction & Health Care Assistant</strong> project was another step in applying AI to real-world problems, combining healthcare with intelligent digital solutions.</p>
+    `,
+    "image": "/images/tech-tonic-2024-certificate.png",
+    "date": "2024-07-14",
+    "category": "AI/ML",
+    "author": "Deekshith N"
+  },
+  
+  {
+    id: '3',
     title: 'Building Web Apps with React',
     excerpt: 'A beginner-friendly guide to creating modern web applications using React.',
     content: `
@@ -69,7 +118,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
     category: 'Web Development'
   },
   {
-    id: '3',
+    id: '4',
     title: 'Python for Data Science',
     excerpt: 'Explore how Python can be used for data analysis and visualization.',
     content: `
@@ -94,7 +143,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
     category: 'Data Science'
   },
   {
-    id: '4',
+    id: '5',
     title: 'Career Tips for Tech Students',
     excerpt: 'Essential advice for students looking to build a successful career in technology.',
     content: `
