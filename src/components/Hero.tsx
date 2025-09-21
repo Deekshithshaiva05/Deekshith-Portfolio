@@ -1,8 +1,24 @@
 import React from 'react';
+import { Canvas } from '@react-three/fiber';
+import { MeshWobbleMaterial, OrbitControls } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { ChevronDown, FileDown } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  // 3D Torus component
+  const Torus = () => (
+    <mesh rotation={[Math.PI / 2, 0, 0]}>
+      <torusGeometry args={[2.2, 0.5, 32, 100]} />
+      <MeshWobbleMaterial
+        color="#38bdf8"
+        speed={1.5}
+        factor={0.5}
+        wireframe={false}
+        transparent
+        opacity={0.7}
+      />
+    </mesh>
+  );
   const roles = [
     "AI/ML Engineer",
     "Python Developer",
@@ -29,40 +45,18 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="relative h-screen flex items-center overflow-hidden">
-      {/* Animated Background */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-primary-900"
-      >
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(14,165,233,0.1),transparent_50%)]"></div>
-          {Array.from({ length: 20 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute bg-primary-500/10 rounded-full"
-              style={{
-                width: Math.random() * 300 + 50,
-                height: Math.random() * 300 + 50,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, Math.random() * 100 - 50],
-                opacity: [0.5, 0.2],
-              }}
-              transition={{
-                duration: Math.random() * 5 + 5,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-          ))}
-        </div>
-      </motion.div>
+      {/* 3D Canvas Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Canvas camera={{ position: [0, 0, 7], fov: 60 }}>
+          <ambientLight intensity={0.7} />
+          <directionalLight position={[5, 5, 5]} intensity={0.7} />
+          <Torus />
+          {/* Optionally enable controls for debugging: <OrbitControls enableZoom={false} /> */}
+        </Canvas>
+      </div>
+      {/* Remove old animated background, replaced by 3D Canvas */}
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <motion.div 
             className="md:w-1/2 text-center md:text-left"
