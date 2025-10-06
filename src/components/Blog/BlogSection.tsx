@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, User, ArrowRight, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
-import { simpleBlogPosts } from '../../data/simpleBlogPosts';
+import { Calendar, User, ArrowRight, BookOpen, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { simpleBlogPosts, SimpleBlogPost } from '../../data/simpleBlogPosts';
 
 const BlogSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -12,6 +12,7 @@ const BlogSection: React.FC = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<SimpleBlogPost | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Sort posts by date (newest first) - show all posts
@@ -220,10 +221,7 @@ const BlogSection: React.FC = () => {
                 </div>
 
                 <motion.button
-                  onClick={() => {
-                    // Scroll to blog section to highlight this post
-                    document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                  onClick={() => setSelectedPost(post)}
                   className="inline-flex items-center text-primary-600 dark:text-primary-400 font-semibold hover:text-primary-700 dark:hover:text-primary-300 transition-colors group"
                   whileHover={{ x: 5 }}
                 >
@@ -241,6 +239,78 @@ const BlogSection: React.FC = () => {
         </motion.div>
 
       </div>
+
+      {/* Blog Post Modal */}
+      <AnimatePresence>
+        {selectedPost && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setSelectedPost(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedPost(null)}
+                className="absolute top-4 right-4 z-10 p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-700 dark:text-white" />
+              </button>
+
+              {/* Scrollable Content */}
+              <div className="overflow-y-auto max-h-[90vh] p-8">
+                {/* Featured Image */}
+                <img
+                  src={selectedPost.image}
+                  alt={selectedPost.title}
+                  className="w-full h-64 object-cover rounded-xl mb-6"
+                />
+
+                {/* Post Header */}
+                <div className="mb-6">
+                  <span className="inline-block px-3 py-1 bg-primary-600 text-white text-xs font-semibold rounded-full mb-4">
+                    {selectedPost.category.toUpperCase()}
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    {selectedPost.title}
+                  </h2>
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center">
+                      <User className="w-4 h-4 mr-1" />
+                      <span>{selectedPost.author}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Calendar className="w-4 h-4 mr-1" />
+                      <span>{new Date(selectedPost.date).toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Post Content */}
+                <div
+                  className="prose prose-lg dark:prose-invert max-w-none
+                    prose-headings:text-gray-900 dark:prose-headings:text-white
+                    prose-p:text-gray-600 dark:prose-p:text-gray-300
+                    prose-a:text-primary-600 dark:prose-a:text-primary-400
+                    prose-strong:text-gray-900 dark:prose-strong:text-white
+                    prose-ul:text-gray-600 dark:prose-ul:text-gray-300
+                    prose-li:text-gray-600 dark:prose-li:text-gray-300"
+                  dangerouslySetInnerHTML={{ __html: selectedPost.content }}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

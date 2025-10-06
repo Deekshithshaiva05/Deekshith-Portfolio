@@ -1,24 +1,8 @@
 import React from 'react';
-import { Canvas } from '@react-three/fiber';
-import { MeshWobbleMaterial, OrbitControls } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { ChevronDown, FileDown } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  // 3D Torus component
-  const Torus = () => (
-    <mesh rotation={[Math.PI / 2, 0, 0]}>
-      <torusGeometry args={[2.2, 0.5, 32, 100]} />
-      <MeshWobbleMaterial
-        color="#38bdf8"
-        speed={1.5}
-        factor={0.5}
-        wireframe={false}
-        transparent
-        opacity={0.7}
-      />
-    </mesh>
-  );
   const roles = [
     "AI/ML Engineer",
     "Python Developer",
@@ -45,16 +29,49 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="relative h-screen flex items-center overflow-hidden">
-      {/* 3D Canvas Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Canvas camera={{ position: [0, 0, 7], fov: 60 }}>
-          <ambientLight intensity={0.7} />
-          <directionalLight position={[5, 5, 5]} intensity={0.7} />
-          <Torus />
-          {/* Optionally enable controls for debugging: <OrbitControls enableZoom={false} /> */}
-        </Canvas>
+      {/* Animated Gradient Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
+        <motion.div
+          className="absolute top-0 -left-4 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute top-0 right-4 w-72 h-72 bg-sky-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 100, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute -bottom-8 left-20 w-72 h-72 bg-emerald-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+          animate={{
+            x: [0, -50, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </div>
-      {/* Remove old animated background, replaced by 3D Canvas */}
 
   <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
