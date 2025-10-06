@@ -96,7 +96,7 @@ const Projects: React.FC = () => {
               variants={item}
               className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-shadow duration-300"
             >
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative h-40 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -108,44 +108,44 @@ const Projects: React.FC = () => {
                   </div>
                 )}
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-1">{project.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.slice(0, 3).map((tech, index) => (
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {project.technologies.slice(0, 2).map((tech, index) => (
                     <span
                       key={index}
-                      className="text-xs px-2 py-1 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300"
+                      className="text-xs px-2 py-0.5 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300"
                     >
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 3 && (
-                    <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-                      +{project.technologies.length - 3}
+                  {project.technologies.length > 2 && (
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                      +{project.technologies.length - 2}
                     </span>
                   )}
                 </div>
                 <div className="flex items-center justify-between">
                   <button
                     onClick={() => handleProjectClick(project)}
-                    className="text-primary-600 dark:text-primary-400 font-medium inline-flex items-center group hover:underline"
+                    className="text-sm text-primary-600 dark:text-primary-400 font-medium inline-flex items-center group hover:underline"
                   >
-                    View Details 
-                    <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                    View Details
+                    <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
                   </button>
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-1">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
+                        className="p-1.5 text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
                         aria-label="GitHub Repository"
                       >
-                        <Github size={20} />
+                        <Github size={16} />
                       </a>
                     )}
                     {project.liveUrl && (
@@ -153,10 +153,10 @@ const Projects: React.FC = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
+                        className="p-1.5 text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
                         aria-label="Live Demo"
                       >
-                        <ExternalLink size={20} />
+                        <ExternalLink size={16} />
                       </a>
                     )}
                   </div>

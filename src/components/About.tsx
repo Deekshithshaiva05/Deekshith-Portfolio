@@ -49,23 +49,23 @@ const About: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <motion.div 
+          <motion.div
             ref={bioRef}
             initial={{ opacity: 0, x: -30 }}
             animate={bioInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-1"
           >
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-soft h-full">
-              <div className="space-y-6 text-gray-600 dark:text-gray-300">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-soft h-full">
+              <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300">
                 <p>
-                  I am a passionate and innovative Computer Science engineering student with a keen interest in solving real-world problems through intelligent and efficient solutions. Currently in my pre-final year at ATME College of Engineering, Mysuru, I am specializing in Artificial Intelligence and Machine Learning.
+                  I am a passionate Computer Science engineering student specializing in Artificial Intelligence and Machine Learning at ATME College of Engineering, Mysuru.
                 </p>
                 <p>
-                  My academic journey has provided me with a strong foundation in software development and AI, which I continuously strive to apply in creative and impactful ways. With a strong inclination towards research, innovation, and hands-on learning, I have contributed to projects addressing emerging technological challenges—ranging from intuitive applications to predictive models and advanced concepts in automation and security.
+                  My academic journey has provided me with a strong foundation in software development and AI. I continuously strive to apply these skills in creative and impactful ways through research, innovation, and hands-on learning.
                 </p>
                 <p>
-                  I actively participate in hackathons, technical events, and practical projects to enhance my skills and stay updated with the latest advancements. I thrive in dynamic environments where curiosity meets purpose and believe in continuous learning, collaboration, and purposeful growth. My goal is to contribute to cutting-edge technological advancements while constantly pushing the boundaries of what I can achieve.
+                  I actively participate in hackathons, technical events, and practical projects to enhance my skills. My goal is to contribute to cutting-edge technological advancements while constantly pushing the boundaries of what I can achieve.
                 </p>
               </div>
             </div>
@@ -78,28 +78,27 @@ const About: React.FC = () => {
             animate={timelineInView ? "visible" : "hidden"}
             className="lg:col-span-2"
           >
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-soft mb-8">
-              <div className="flex items-center mb-6">
-                <GraduationCap className="w-6 h-6 text-primary-500 mr-3" />
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Education</h3>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-soft mb-6">
+              <div className="flex items-center mb-4">
+                <GraduationCap className="w-5 h-5 text-primary-500 mr-2" />
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Education</h3>
               </div>
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {educationData.map((item, index) => (
-                  <motion.div key={index} variants={itemVariants} className="relative pl-8 border-l-2 border-primary-200 dark:border-primary-900">
-                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary-500"></div>
-                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white">{item.degree} in {item.field}</h4>
-                    <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-300 mb-2">
-                      <span className="font-medium mr-2">{item.institution}</span>
-                      <span className="flex items-center text-sm"><MapPin size={14} className="mr-1" />{item.location}</span>
+                  <motion.div key={index} variants={itemVariants} className="relative pl-6 border-l-2 border-primary-200 dark:border-primary-900">
+                    <div className="absolute -left-[7px] top-0 w-3 h-3 rounded-full bg-primary-500"></div>
+                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">{item.degree} in {item.field}</h4>
+                    <div className="text-sm text-gray-600 dark:text-gray-300 mb-1">
+                      <span className="font-medium">{item.institution}</span>
                     </div>
-                    <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3">
-                      <Calendar size={14} className="mr-1" />
+                    <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs mb-2">
+                      <Calendar size={12} className="mr-1" />
                       <span>{item.startYear} - {item.current ? 'Present' : item.endYear}</span>
-                      {item.gpa && <span className="ml-3">GPA: {item.gpa}</span>}
+                      {item.gpa && <span className="ml-2">GPA: {item.gpa}</span>}
                     </div>
-                    {item.achievements && (
-                      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 text-sm space-y-1">
-                        {item.achievements.map((achievement, i) => (
+                    {item.achievements && item.achievements.length > 0 && (
+                      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 text-xs space-y-0.5">
+                        {item.achievements.slice(0, 2).map((achievement, i) => (
                           <li key={i}>{achievement}</li>
                         ))}
                       </ul>
@@ -109,36 +108,40 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-soft">
-              <div className="flex items-center mb-6">
-                <Briefcase className="w-6 h-6 text-primary-500 mr-3" />
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Experience</h3>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-soft">
+              <div className="flex items-center mb-4">
+                <Briefcase className="w-5 h-5 text-primary-500 mr-2" />
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Experience</h3>
               </div>
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {experienceData.map((item, index) => (
-                  <motion.div key={index} variants={itemVariants} className="relative pl-8 border-l-2 border-primary-200 dark:border-primary-900">
-                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary-500"></div>
-                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white">{item.title}</h4>
-                    <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-300 mb-2">
-                      <span className="font-medium mr-2">{item.company}</span>
-                      <span className="flex items-center text-sm"><MapPin size={14} className="mr-1" />{item.location}</span>
+                  <motion.div key={index} variants={itemVariants} className="relative pl-6 border-l-2 border-primary-200 dark:border-primary-900">
+                    <div className="absolute -left-[7px] top-0 w-3 h-3 rounded-full bg-primary-500"></div>
+                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">{item.title}</h4>
+                    <div className="text-sm text-gray-600 dark:text-gray-300 mb-1">
+                      <span className="font-medium">{item.company}</span>
                     </div>
-                    <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3">
-                      <Calendar size={14} className="mr-1" />
+                    <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs mb-2">
+                      <Calendar size={12} className="mr-1" />
                       <span>{item.startDate} - {item.current ? 'Present' : item.endDate}</span>
                     </div>
-                    <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 text-sm space-y-1">
-                      {item.description.map((desc, i) => (
+                    <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 text-xs space-y-0.5">
+                      {item.description.slice(0, 2).map((desc, i) => (
                         <li key={i}>{desc}</li>
                       ))}
                     </ul>
                     {item.technologies && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {item.technologies.map((tech, i) => (
-                          <span key={i} className="text-xs px-2 py-1 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300">
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        {item.technologies.slice(0, 4).map((tech, i) => (
+                          <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300">
                             {tech}
                           </span>
                         ))}
+                        {item.technologies.length > 4 && (
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                            +{item.technologies.length - 4}
+                          </span>
+                        )}
                       </div>
                     )}
                   </motion.div>
