@@ -91,82 +91,37 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
     "category": "AI/ML",
     "author": "Deekshith N"
   },
+  {
+    "id": "3",
+    "title": "Conquering Consistency: 100 Days Streak Badge on LeetCode",
+    "excerpt": "Earning the 100 Days Streak Badge on LeetCode is more than just a milestone — it’s a testament to persistence, logic, and the relentless pursuit of improvement in coding and problem-solving.",
+    "content": `
+      <h2>Introduction</h2>
+      <p>The journey to mastery begins with consistency. Earning the <strong>100 Days Streak Badge</strong> on <strong>LeetCode</strong> marks a huge personal milestone — 100 consecutive days of coding, problem-solving, and sharpening algorithmic thinking. It’s not about perfection; it’s about progress, one problem at a time.</p>
   
-  {
-    id: '3',
-    title: 'Building Web Apps with React',
-    excerpt: 'A beginner-friendly guide to creating modern web applications using React.',
-    content: `
-      <h2>React Web Development</h2>
-      <p>React is a popular JavaScript library for building user interfaces, especially web applications.</p>
-      
-      <h3>Why React?</h3>
+      <h2>The 100 Days Challenge</h2>
+      <p>LeetCode challenges coders to think critically and build efficient solutions. Maintaining a streak for 100 days requires dedication and discipline — solving at least one problem every single day, no matter how busy the schedule gets. Each problem strengthens logical reasoning, boosts coding fluency, and builds a strong foundation in data structures and algorithms.</p>
+  
+      <h2>My Learning Journey</h2>
+      <p>Over these 100 days, I explored problems ranging from simple arrays to complex graph algorithms and dynamic programming. Every solved problem brought new insights, from optimizing time complexity to refining edge-case handling. This consistency not only enhanced my problem-solving mindset but also made me more confident in tackling real-world challenges.</p>
+  
+      <h2>Why It Matters</h2>
       <ul>
-        <li>Component-based architecture</li>
-        <li>Large community support</li>
-        <li>Excellent performance</li>
+        <li><strong>Consistency Builds Skill:</strong> Daily practice strengthens logic and speed.</li>
+        <li><strong>Discipline Fuels Growth:</strong> A coding habit creates lasting progress beyond the streak.</li>
+        <li><strong>Confidence Through Practice:</strong> Regular exposure to challenges transforms fear into familiarity.</li>
       </ul>
-      
-      <h3>Basic Concepts</h3>
-      <p>Learn about components, props, state, and hooks. These are the building blocks of React applications.</p>
-      
-      <p>Start with simple projects and gradually build more complex applications as you learn.</p>
+  
+      <h2>Conclusion</h2>
+      <p>The <strong>LeetCode 100 Days Streak Badge</strong> isn’t just a recognition — it’s proof of persistence, focus, and a growth mindset. Coding every day taught me that success isn’t built overnight; it’s earned line by line, problem by problem. The journey doesn’t stop here — it continues toward new challenges, higher streaks, and greater goals.</p>
     `,
-    image: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=800',
-    date: '2024-01-12',
-    author: 'Deekshith N',
-    category: 'Web Development'
+    "image": "\images\100 days leetcode.gif",
+    "date": "2025-10-07",
+    "category": "Career",
+    "author": "Deekshith N"
   },
-  {
-    id: '4',
-    title: 'Python for Data Science',
-    excerpt: 'Explore how Python can be used for data analysis and visualization.',
-    content: `
-      <h2>Data Science with Python</h2>
-      <p>Python is the most popular language for data science due to its simplicity and powerful libraries.</p>
-      
-      <h3>Essential Libraries</h3>
-      <ul>
-        <li>Pandas - Data manipulation</li>
-        <li>NumPy - Numerical computing</li>
-        <li>Matplotlib - Data visualization</li>
-      </ul>
-      
-      <h3>Getting Started</h3>
-      <p>Begin with basic data analysis tasks like reading CSV files, cleaning data, and creating simple visualizations.</p>
-      
-      <p>Practice with real datasets to gain hands-on experience in data science.</p>
-    `,
-    image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
-    date: '2024-01-10',
-    author: 'Deekshith N',
-    category: 'Data Science'
-  },
-  {
-    id: '5',
-    title: 'Career Tips for Tech Students',
-    excerpt: 'Essential advice for students looking to build a successful career in technology.',
-    content: `
-      <h2>Building Your Tech Career</h2>
-      <p>Starting a career in technology can be exciting but also challenging. Here are some tips to help you succeed.</p>
-      
-      <h3>Key Skills to Develop</h3>
-      <ul>
-        <li>Programming fundamentals</li>
-        <li>Problem-solving abilities</li>
-        <li>Communication skills</li>
-      </ul>
-      
-      <h3>Building Your Portfolio</h3>
-      <p>Create projects that showcase your skills. Include a variety of projects that demonstrate different aspects of your abilities.</p>
-      
-      <p>Network with other professionals, attend tech events, and never stop learning new technologies.</p>
-    `,
-    image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
-    date: '2024-01-08',
-    author: 'Deekshith N',
-    category: 'Career'
-  }
+  
+ 
 ];
 
 export const categories = ['All', 'AI/ML', 'Web Development', 'Data Science', 'Career'];

@@ -113,6 +113,15 @@ export const certifications: Certification[] = [
     issueDate: "JUNE 10, 2025",
     image: "/images/AI AGENT - IBM.png",
     type: "image"
+  },
+  {
+    "title": "Python for Data Science",
+    "organization": "Infosys Springboard",
+    "description": "This certificate is awarded to Deekshith N for successfully completing the course 'Python for Data Science' offered by Infosys Springboard. The program covered Python fundamentals, data analysis, visualization, and applications in data science.",
+    "issueDate": "July 26, 2024",
+    "image": "/images/infosys_python_datascience.png",
+    "type": "image"
   }
+  
 
 ];
