@@ -94,7 +94,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
   {
     id: '3',
     title: 'Conquering Consistency: 100 Days Streak Badge on LeetCode',
-    excerpt: 'Earning the 100 Days Streak Badge on LeetCode is more than just a milestone — it's a testament to persistence, logic, and the relentless pursuit of improvement in coding and problem-solving.',
+    excerpt: 'Earning the 100 Days Streak Badge on LeetCode is more than just a milestone — it a testament to persistence, logic, and the relentless pursuit of improvement in coding and problem-solving.',
     content: `
       <h2>Introduction</h2>
       <p>The journey to mastery begins with consistency. Earning the <strong>100 Days Streak Badge</strong> on <strong>LeetCode</strong> marks a huge personal milestone — 100 consecutive days of coding, problem-solving, and sharpening algorithmic thinking. It's not about perfection; it's about progress, one problem at a time.</p>
