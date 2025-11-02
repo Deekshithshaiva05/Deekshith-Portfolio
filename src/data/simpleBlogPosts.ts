@@ -120,6 +120,56 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
     "category": "Career",
     "author": "Deekshith N"
   },
+  {
+  "id": "3",
+  "title": "Winning the Excellent Effort Award at Hack Fusion 1.0 – National Level Hackathon",
+  "excerpt": "Team InnovByte won the Excellent Effort Award at Hack Fusion 1.0, a National Level Hackathon organized by Maharaja Institute of Technology, Mysore. Our project — Prompt Review & Enhancement Engine — is a powerful AI web app for prompt evaluation, safety filtering, and structured schema generation for LLMs.",
+  "content": `
+    <h2>Introduction</h2>
+    <p>I am thrilled to share that our team, <strong>Team InnovByte</strong>, secured the <strong>Excellent Effort Award 🏆</strong> at <strong>Hack Fusion 1.0</strong> — a National Level Hackathon organized by the <strong>Maharaja Institute of Technology, Mysore</strong>, held on <strong>27th & 28th September 2025</strong>.</p>
+
+    <h2>Event Details</h2>
+    <p><strong>Hack Fusion 1.0</strong> brought together innovative minds from across the country to solve real-world problems through technology. The event provided an exciting platform to collaborate, code, and create impactful solutions in just 36 hours of intense hacking.</p>
+
+    <h2>Our Project: Prompt Review & Enhancement Engine</h2>
+    <h3>📌 Overview</h3>
+    <p>The <strong>Prompt Review & Enhancement Engine</strong> is an AI-powered web application designed to improve and validate prompts for Large Language Models (LLMs). It ensures clarity, correctness, and compliance while providing structured data outputs for intelligent interactions.</p>
+
+    <h3>🚀 Key Features</h3>
+    <ul>
+      <li>✅ <strong>Prompt Review</strong> – Analyzes text or voice prompts for quality and clarity</li>
+      <li>🧩 <strong>Grammar & Clarity Enhancement</strong> – Automatically fixes grammar and rephrases unclear text</li>
+      <li>🔒 <strong>Safety Filtering</strong> – Detects and blocks sensitive or illegal terms</li>
+      <li>⚙️ <strong>Prompt Categorization</strong> – Classifies prompts into <strong>BLOCK</strong>, <strong>NEEDS_FIX</strong>, or <strong>ALLOW</strong></li>
+      <li>📂 <strong>Schema Generation</strong> – Produces <strong>ISTVON</strong> and <strong>COSTAR</strong> JSON schemas for structured LLM communication</li>
+      <li>🔄 <strong>Multi-backend Support</strong> – Integrates with various AI backends like <strong>Rule-based, OpenAI, Gemini, Ollama, and DeepSeek</strong></li>
+    </ul>
+
+    <h2>Team InnovByte</h2>
+    <p>Our success was a result of true teamwork and dedication. Every member contributed significantly to the project’s development and presentation:</p>
+    <ul>
+      <li>👨‍💻 <strong>Vinay S</strong></li>
+      <li>👨‍💻 <strong>Dhakshath UK</strong></li>
+      <li>👨‍💻 <strong>Prajwal M</strong></li>
+    </ul>
+
+    <h2>Acknowledgement</h2>
+    <p>We extend our heartfelt thanks to <strong>Srinath Rangaswamy Sir</strong> (Co-founder) and <strong>Sriniketh Sir</strong> of <strong>DigiBull.AI</strong> for evaluating our project and offering valuable insights and feedback. Their mentorship motivated us to refine our approach and enhance the system’s overall design and functionality.</p>
+
+    <h2>GitHub Repository</h2>
+    <p>🔗 Explore the full project here: 
+      <a href='https://lnkd.in/esv3rQGa' target='_blank'>
+      Prompt Review & Enhancement Engine – GitHub Repository</a>.
+    </p>
+
+    <h2>Conclusion</h2>
+    <p>Winning the <strong>Excellent Effort Award</strong> at Hack Fusion 1.0 was an incredible recognition for our hard work and innovation. It reinforced our belief in building safe, efficient, and intelligent AI tools. This milestone marks just the beginning — we’re excited to take <strong>InnovByte AI</strong> even further and continue exploring the limitless possibilities of AI-driven development. 🚀</p>
+  `,
+  "image": "/images/HACK_FUSION.png",
+  "date": "2025-09-28",
+  "category": "AI/ML",
+  "author": "Deekshith N"
+},
   
  
 ];
