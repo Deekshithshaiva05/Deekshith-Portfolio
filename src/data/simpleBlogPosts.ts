@@ -170,6 +170,57 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
   "category": "AI/ML",
   "author": "Deekshith N"
 },
+{
+  "id": "4",
+  "title": "Participation in Symbiot-2025 & Development of Indian Sign Language (ISL) Recognition System",
+  "excerpt": "Participated in Symbiot-2025, a national-level hackathon held at Vidyavardhaka College of Engineering, Mysuru, and developed an AI-powered Indian Sign Language (ISL) Recognition and Animation System to bridge communication gaps for the deaf and hard-of-hearing community.",
+  "content": `
+    <h2>Introduction</h2>
+    <p>I am delighted to share my experience participating in <strong>Symbiot-2025</strong>, a <strong>National-Level Hackathon</strong> organized by <strong>Vidyavardhaka College of Engineering (VVCE), Mysuru</strong>, held on <strong>May 8–9, 2025</strong>. It was an intense and inspiring 24-hour journey from idea to impactful prototype!</p>
+
+    <h2>Team Details</h2>
+    <p>Our team, <strong>AI PIONEER'S</strong>, consisted of passionate innovators — <strong>Syed Farhaan</strong>, <strong>Prashanth Singh</strong>, <strong>Shamanth M</strong>, and myself, <strong>Deekshith N</strong>. Together, we collaborated to create a meaningful AI solution addressing real-world communication challenges.</p>
+
+    <h2>Project: Indian Sign Language (ISL) Recognition & Animation System</h2>
+    <h3>📌 Overview</h3>
+    <p>Our project aimed to bridge the communication gap for the <strong>deaf and hard-of-hearing community</strong> through the integration of <strong>AI, computer vision, and 3D animation</strong>. The system recognizes Indian Sign Language (ISL) gestures and visualizes them through a <strong>3D animated avatar</strong> that performs the corresponding signs.</p>
+
+    <h3>🚀 Key Features</h3>
+    <ul>
+      <li>✔️ <strong>Gesture Detection</strong> – Recognizes and interprets Indian Sign Language hand movements using AI and computer vision</li>
+      <li>🎞️ <strong>3D Avatar Animation</strong> – Animates a digital human model to perform signs like “Hello” and other words</li>
+      <li>🧠 <strong>AI-Powered Interpretation</strong> – Employs deep learning models for accurate and real-time ISL gesture recognition</li>
+      <li>💬 <strong>Accessible Communication</strong> – Bridges the gap between hearing and non-hearing individuals through an interactive, visual medium</li>
+    </ul>
+
+    <h3>🛠️ Tech Stack</h3>
+    <ul>
+      <li>Python for backend processing and AI modeling</li>
+      <li>OpenCV for gesture detection and tracking</li>
+      <li>Blender for 3D avatar design and animation</li>
+      <li>TensorFlow / PyTorch for model training and inference</li>
+    </ul>
+
+    <h2>Experience</h2>
+    <p>From ideation to implementation — everything happened within just <strong>24 hours</strong>. It was an incredible experience filled with brainstorming, coding, debugging, and creative problem-solving. The hackathon challenged us to think quickly, collaborate efficiently, and deliver a working prototype under time pressure.</p>
+
+    <h2>GitHub Repository</h2>
+    <p>🔗 Explore our work on GitHub: 
+      <a href='https://lnkd.in/g-iDDdEr' target='_blank'>
+      Indian Sign Language Recognition & Animation System</a>.
+    </p>
+
+    <h2>Acknowledgement</h2>
+    <p>We extend our sincere gratitude to the organizers, mentors, and coordinators of <strong>Symbiot-2025</strong> for hosting such an engaging and well-structured event. Their guidance and encouragement played a crucial role in shaping our experience.</p>
+
+    <h2>Conclusion</h2>
+    <p><strong>Symbiot-2025</strong> was more than a hackathon — it was a transformative journey of teamwork, innovation, and impact. Our <strong>ISL Recognition & Animation System</strong> marks just the beginning of our commitment to making communication more inclusive through AI-driven solutions.</p>
+  `,
+  "image": "/images/SYMBIOT.png",
+  "date": "2025-05-09",
+  "category": "AI/ML",
+  "author": "Deekshith N"
+},
   
  
 ];
