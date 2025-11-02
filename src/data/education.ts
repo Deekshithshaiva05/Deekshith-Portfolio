@@ -10,7 +10,7 @@ export const educationData: Education[] = [
     current: true,
     gpa: '9.0/10.0',
     achievements: [
-      'Currently in Pre-Final Year',
+      'Currently in Final Year',
       'Specializing in Artificial Intelligence and Machine Learning',
     ]
   },
