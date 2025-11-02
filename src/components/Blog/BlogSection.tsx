@@ -268,7 +268,7 @@ const BlogSection: React.FC = () => {
                 <img
                   src={selectedPost.image}
                   alt={selectedPost.title}
-                  className="w-full h-64 object-cover rounded-xl mb-6"
+                  className="w-full max-h-96 object-contain rounded-xl mb-6"
                 />
 
                 {/* Post Header */}
