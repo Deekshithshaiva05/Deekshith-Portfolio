@@ -158,7 +158,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
 
     <h2>GitHub Repository</h2>
     <p>🔗 Explore the full project here: 
-      <a href='' target='_blank'>
+      <a href='https://github.com/Deekshithshaiva05/Prompt-Review-and-Enhancement-Engine.git' target='_blank'>
       Prompt Review & Enhancement Engine – GitHub Repository</a>.
     </p>
 
