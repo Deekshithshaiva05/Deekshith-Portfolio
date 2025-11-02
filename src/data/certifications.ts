@@ -41,6 +41,16 @@ export const certifications: Certification[] = [
     url: "https://cert.devtown.in/verify/ZVcWmd",
     type: "url"
   },
+
+  {
+  title: "Hugging Face Agents Course – Certificate of Excellence",
+  organization: "Hugging Face",
+  description: "From this course, I learned how to design, build, and deploy intelligent AI agents using the Hugging Face ecosystem. I gained hands-on experience in integrating large language models (LLMs) with real-world tools and APIs, creating agents capable of reasoning, automating workflows, and performing complex tasks. The course helped me understand multimodal agents, prompt engineering, model orchestration, and how to fine-tune agents for specific use cases. This experience deepened my understanding of applied AI and strengthened my ability to develop end-to-end intelligent systems.",
+  issueDate: "May 22, 2025",
+  image: "/images/Hugging_Face_Agents_Certificate.jpg",
+  type: "image"
+  },
+
   {
     title: "DevTown x GDSC – Instagram Clone",
     organization: "DevTown & Google Developer Student Clubs (GDSC), Giet University",
