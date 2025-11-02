@@ -268,7 +268,43 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
     date: '2025-02-27',
     category: 'Career',
     author: 'Deekshith N'
-  }
+  },
+  {
+  "id": "6",
+  "title": "Contributing to Open Source Connect India 2025 – A Journey of Collaboration and Learning",
+  "excerpt": "Participated as a Contributor in Open Source Connect India 2025, organized by NexFellow. The experience provided hands-on exposure to open-source collaboration, real-world problem-solving, and community-driven innovation.",
+  "content": `
+    <h2>Introduction</h2>
+    <p>I’m delighted to share my experience as a <strong>Contributor</strong> at <strong>Open Source Connect India 2025</strong>, organized by <strong>NexFellow</strong>. The program, held from <strong>15th to 30th August 2025</strong>, brought together passionate developers, innovators, and contributors from across the country to collaborate on impactful open-source projects.</p>
+
+    <h2>About the Event</h2>
+    <p><strong>Open Source Connect India</strong> is an initiative aimed at empowering developers to learn, build, and contribute to real-world projects that make a difference. The event provided a unique blend of mentorship, teamwork, and hands-on contribution opportunities across diverse domains — from web development and AI to cloud and DevOps.</p>
+
+    <h2>My Experience as a Contributor</h2>
+    <p>Being part of this program was an eye-opening and inspiring experience. I collaborated with fellow contributors on open-source repositories, participated in code reviews, and contributed meaningful improvements to ongoing projects. The collaborative environment helped me enhance both my technical and soft skills.</p>
+
+    <h3>💻 Key Learnings & Contributions</h3>
+    <ul>
+      <li>🧠 <strong>Enhanced Technical Skills</strong> – Gained practical experience in version control, collaborative coding, and project documentation through Git and GitHub.</li>
+      <li>🤝 <strong>Collaborative Development</strong> – Worked with developers from different backgrounds, learning how to communicate effectively in distributed teams.</li>
+      <li>🌍 <strong>Open-Source Culture</strong> – Understood the importance of transparency, community contribution, and continuous improvement in open-source ecosystems.</li>
+      <li>🚀 <strong>Real-World Problem Solving</strong> – Contributed to codebases addressing real-world challenges, improving my debugging and critical thinking skills.</li>
+    </ul>
+
+    <h2>Event Impact</h2>
+    <p>This experience reinforced my passion for open-source development and community collaboration. I realized that contributing to open-source projects is not just about code — it’s about creating accessible, inclusive technology that benefits everyone. The mentorship and feedback from industry experts helped me refine my approach to building scalable and maintainable software.</p>
+
+    <h2>Conclusion</h2>
+    <p><strong>Open Source Connect India 2025</strong> was more than an event — it was a community-driven learning experience that broadened my perspective as a developer. I’m grateful to <strong>NexFellow</strong> for organizing such an impactful initiative and to all the mentors and peers who made this journey memorable. This experience has strengthened my commitment to contributing to open-source and continuing my growth as a developer and collaborator.</p>
+
+    <p>🌐 Learn more about the initiative: <a href='https://osconnect.org' target='_blank'>osconnect.org</a></p>
+  `,
+  "image": "/images/OPEN_SOURCE_CONNECT.png",
+  "date": "2025-08-30",
+  "category": "Open Source",
+  "author": "Deekshith N"
+  },
+
 ];
 
 export const categories = ['All', 'AI/ML', 'Web Development', 'Data Science', 'Career'];
