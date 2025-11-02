@@ -121,7 +121,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
     "author": "Deekshith N"
   },
   {
-  "id": "3",
+  "id": "4",
   "title": "Winning the Excellent Effort Award at Hack Fusion 1.0 – National Level Hackathon",
   "excerpt": "Team InnovByte won the Excellent Effort Award at Hack Fusion 1.0, a National Level Hackathon organized by Maharaja Institute of Technology, Mysore. Our project — Prompt Review & Enhancement Engine — is a powerful AI web app for prompt evaluation, safety filtering, and structured schema generation for LLMs.",
   "content": `
