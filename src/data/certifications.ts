@@ -49,6 +49,16 @@ export const certifications: Certification[] = [
     url: "https://www.cert.devtown.in/verify/ZWrdQA",
     type: "url"
   },
+  
+  {
+  title: "Artificial Intelligence Beginners Guide",
+  organization: "Simplilearn",
+  description: "Deekshith N successfully completed the 'Artificial Intelligence Beginners Guide' certification offered by Simplilearn. This comprehensive program introduced the fundamental principles of Artificial Intelligence, including Machine Learning, Deep Learning, and Neural Networks. The course emphasized understanding core AI algorithms, data-driven decision-making, and the role of AI in automation and intelligent systems. Participants gained practical insights into real-world applications of AI across industries, equipping them with essential skills to begin their journey in the field of Artificial Intelligence and Data Science.",
+  issueDate: "13th June 2025",
+  url: "https://simpli-web.app.link/e/BsPY2ukdYXb",
+  type: "url"
+  },
+
 
   {
     title: 'Data Analysis with Pandas and Python',
