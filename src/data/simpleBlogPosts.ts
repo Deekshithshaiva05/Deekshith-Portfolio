@@ -86,7 +86,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
       <h2>Conclusion</h2>
       <p>Being a part of Tech Tonic 2024 was an inspiring journey, motivating me to continue exploring innovative solutions. The development of the <strong>Medicine Prediction & Health Care Assistant</strong> project was another step in applying AI to real-world problems, combining healthcare with intelligent digital solutions.</p>
     `,
-    "image": "/images/tech-tonic-2024-certificate.png",
+    "image": "/images/TECH_TONIC.png",
     "date": "2024-07-14",
     "category": "AI/ML",
     "author": "Deekshith N"
