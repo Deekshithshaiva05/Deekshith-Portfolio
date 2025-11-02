@@ -158,14 +158,14 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
 
     <h2>GitHub Repository</h2>
     <p>🔗 Explore the full project here: 
-      <a href='https://lnkd.in/esv3rQGa' target='_blank'>
+      <a href='' target='_blank'>
       Prompt Review & Enhancement Engine – GitHub Repository</a>.
     </p>
 
     <h2>Conclusion</h2>
     <p>Winning the <strong>Excellent Effort Award</strong> at Hack Fusion 1.0 was an incredible recognition for our hard work and innovation. It reinforced our belief in building safe, efficient, and intelligent AI tools. This milestone marks just the beginning — we’re excited to take <strong>InnovByte AI</strong> even further and continue exploring the limitless possibilities of AI-driven development. 🚀</p>
   `,
-  "image": "/images/HACK_FUSION.png",
+  "image": "/images/S_P-MITM.jpg",
   "date": "2025-09-28",
   "category": "AI/ML",
   "author": "Deekshith N"
