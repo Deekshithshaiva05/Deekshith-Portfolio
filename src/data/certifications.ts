@@ -59,6 +59,14 @@ export const certifications: Certification[] = [
   type: "url"
   },
 
+  {
+  title: "Build Your First Chatbot (MDL-510)",
+  organization: "IBM SkillsBuild",
+  description: "Deekshith N successfully completed the IBM SkillsBuild course 'Build Your First Chatbot (MDL-510)'. This hands-on learning experience introduced the fundamentals of conversational AI and chatbot development using IBM Watson Assistant. The course covered key aspects such as natural language understanding (NLU), intent and entity creation, dialogue flow design, and chatbot deployment. Through practical exercises and guided tutorials, participants learned to create intelligent virtual assistants capable of understanding user queries, automating responses, and enhancing customer engagement across multiple platforms. This certification demonstrates foundational proficiency in AI-driven chatbot technologies and conversational interface design.",
+  issueDate: "25th October 2025",
+  url: "https://skills.yourlearning.ibm.com/certificate/share/1c30c99cf2ewogICJvYmplY3RJZCIgOiAiTURMLTUxMCIsCiAgImxlYXJuZXJDTlVNIiA6ICIzMTU4NDkxUkVHIiwKICAib2JqZWN0VHlwZSIgOiAiQUNUSVZJVFkiCn0cbd8b8503a-10",
+  type: "url"
+  },
 
   {
     title: 'Data Analysis with Pandas and Python',
