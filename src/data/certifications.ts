@@ -159,7 +159,66 @@ export const certifications: Certification[] = [
     "issueDate": "July 26, 2024",
     "image": "/images/infosys_python_datascience.png",
     "type": "image"
+  },
+  {
+  title: "The MCP Course: Unit 1 – Fundamentals of MCP",
+  organization: "Hugging Face",
+  description: "From this course, I learned the core concepts and foundational principles of the Model Context Protocol (MCP). I gained an understanding of how MCP enables structured communication between AI models, agents, and external systems. The course helped me explore modular AI development, integration methods, and how MCP supports interoperability between different AI tools, paving the way for scalable and collaborative intelligent systems.",
+  issueDate: "July 26, 2025",
+  image: "/images/MCP_Course_Fundamentals_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Agentic AI Day – Google Cloud",
+  organization: "Google Cloud & Hack2Skill",
+  description: "Participated in the Google Cloud Agentic AI Day, gaining insights into the emerging field of agentic AI and intelligent systems. From this event, I learned about the architecture and design of AI agents capable of autonomous reasoning, decision-making, and real-world problem-solving. I also discovered how Google Cloud tools and APIs enable developers to harness the potential of Agentic AI to build next-generation applications that drive innovation and positive societal impact.",
+  issueDate: "June 2025",
+  image: "/images/Agentic_AI_Day_Google_Cloud_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Instagram Clone Bootcamp – HTML & CSS",
+  organization: "DevTown & GDSC Giet University",
+  description: "Completed a 7-day hands-on bootcamp on building an Instagram Clone using HTML and CSS, organized by DevTown in collaboration with Google Developer Student Clubs (GDSC), Giet University. From this program, I learned the fundamentals of frontend web development, responsive layout design, and modern styling techniques. The course helped me understand project-based learning through real-world UI replication and best practices in clean and maintainable web design.",
+  issueDate: "June 21, 2024",
+  image: "/images/DevTown_Instagram_Clone_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Getting Started with Deep Learning",
+  organization: "NVIDIA",
+  description: "Earned a Certificate of Competency for successfully completing NVIDIA’s 'Getting Started with Deep Learning' course. Through this program, I learned the fundamental concepts of deep learning, including neural networks, supervised and unsupervised learning, and model training using GPUs. The course provided practical exposure to building and optimizing deep learning models, understanding activation functions, and applying frameworks like TensorFlow and PyTorch for real-world AI applications.",
+  issueDate: "August 21, 2025",
+  image: "/images/NVIDIA_Deep_Learning_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Large Language Model Basics (MDL-433)",
+  organization: "IBM SkillsBuild",
+  description: "Completed the 'Large Language Model Basics' course offered by IBM SkillsBuild, gaining foundational knowledge about the architecture, training, and deployment of large language models (LLMs). From this course, I learned how LLMs process language, generate responses, and are fine-tuned for specific tasks. It enhanced my understanding of prompt engineering, responsible AI usage, and the practical applications of LLMs in modern AI systems.",
+  issueDate: "July 10, 2025",
+  image: "/images/IBM_LLM_Basics_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Data Science with Python",
+  organization: "LetsUpgrade, NSDC & ITM Edutech Training Pvt. Ltd.",
+  description: "Successfully completed a 3-day intensive program on 'Data Science with Python' organized by LetsUpgrade in collaboration with NSDC and ITM Edutech. From this course, I learned Python programming for data analysis, data visualization, and statistical modeling. It covered essential libraries like Pandas, NumPy, and Matplotlib, while also emphasizing the importance of data preprocessing, machine learning concepts, and building predictive models using real-world datasets.",
+  issueDate: "February 21, 2025",
+  image: "/images/Data_Science_With_Python_Certificate.jpg",
+  type: "image"
   }
+
+
+
+
+
+
   
 
 ];
