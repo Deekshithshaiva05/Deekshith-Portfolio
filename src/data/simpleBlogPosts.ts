@@ -221,6 +221,54 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
   "category": "AI/ML",
   "author": "Deekshith N"
 },
+{
+  "id": "5",
+  "title": "My Learning Journey through the Accenture Summer Internship 2025 Selection Process",
+  "excerpt": "Participated in the Accenture Summer Internship 2025 selection process, completing all stages — from iAspire registration to the final virtual interview. The journey strengthened my technical, cognitive, and communication skills while offering valuable professional insights.",
+  "content": `
+    <h2>Introduction</h2>
+    <p>I had the opportunity to participate in the <strong>Accenture Summer Internship 2025</strong> selection process — a multi-stage journey that tested not only technical skills but also cognitive ability, problem-solving, and professional readiness. Though the final results are still awaited, the overall experience was truly enriching and transformative.</p>
+
+    <h2>Journey Overview</h2>
+    <p>The selection process spanned multiple stages, each designed to assess different aspects of a candidate’s potential. Here’s how my journey unfolded:</p>
+
+    <h3>📌 Step 1: Registration via iAspire</h3>
+    <p>The process began with registration on <strong>Accenture’s iAspire platform</strong>, which officially marked the start of my internship journey. It provided access to essential learning modules and detailed instructions for the upcoming stages.</p>
+
+    <h3>🎯 Step 2: Go for Gold Challenge</h3>
+    <p>I participated in the <strong>Go for Gold Challenge</strong>, completing both <strong>L0 and L1 learning modules</strong> well before the submission deadline of <strong>20th January 2025</strong>. This challenge was designed to help students build foundational knowledge and earn experience points (XP) to qualify for the next round.</p>
+
+    <h3>🧠 Step 3: Behavioural & Cognitive Assessment</h3>
+    <p>On <strong>17th February 2025</strong>, I took the <strong>Behavioural and Cognitive Assessments</strong>, which evaluated problem-solving ability, logical reasoning, and professional personality traits. It was a unique opportunity to understand how companies like Accenture assess holistic candidate profiles.</p>
+
+    <h3>💻 Step 4: Technical Assessment</h3>
+    <p>The <strong>Technical Assessment</strong>, held on <strong>19th February 2025</strong>, focused on core computing concepts, database management, object-oriented programming, and software engineering fundamentals. This stage helped me strengthen my technical knowledge and apply theoretical learning in practical contexts.</p>
+
+    <h3>👨‍💻 Step 5: Coding Assessment</h3>
+    <p>In this round, I solved algorithmic problems under time constraints — testing my coding efficiency, logic-building, and debugging skills. The assessment provided valuable insight into the type of coding challenges expected in real-world software projects.</p>
+
+    <h3>🎥 Step 6: Final Virtual Interview</h3>
+    <p>The final stage was the <strong>Virtual Interview</strong> conducted on <strong>27th February 2025</strong>. It involved technical discussions, scenario-based questions, and a conversation about project experience, teamwork, and problem-solving approaches. The interview also emphasized communication clarity and analytical thinking.</p>
+
+    <h2>Skills & Learning Outcomes</h2>
+    <ul>
+      <li>🧩 Strengthened technical fundamentals across core domains</li>
+      <li>💬 Improved communication and interview-handling confidence</li>
+      <li>🧠 Enhanced logical reasoning and cognitive adaptability</li>
+      <li>🤝 Learned to stay consistent and motivated across a multi-stage selection process</li>
+    </ul>
+
+    <h2>Reflection</h2>
+    <p>This experience was more than a selection process — it was a journey of growth. Every stage brought a new challenge and a chance to improve. It reinforced the importance of persistence, preparation, and a learning mindset in building a strong professional foundation.</p>
+
+    <h2>Conclusion</h2>
+    <p>Participating in the <strong>Accenture Summer Internship 2025</strong> process was a valuable milestone in my career development. Regardless of the final outcome, I am grateful for the exposure, the structured learning, and the insights I gained along the way. These lessons will continue to guide me as I take the next steps in my journey as a developer and lifelong learner.</p>
+  `,
+  "image": "/images/ACCENTURE_INTERNSHIP.png",
+  "date": "2025-02-27",
+  "category": "Career",
+  "author": "Deekshith N"
+},
   
  
 ];
