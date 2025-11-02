@@ -264,7 +264,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
     <h2>Conclusion</h2>
     <p>Participating in the <strong>Accenture Summer Internship 2025</strong> process was a valuable milestone in my career development. Regardless of the final outcome, I am grateful for the exposure, the structured learning, and the insights I gained along the way. These lessons will continue to guide me as I take the next steps in my journey as a developer and lifelong learner.</p>
   `,
-  "image": "/images/ACCENTURE_INTERNSHIP.png",
+  "image": "/images/Accenture.png",
   "date": "2025-02-27",
   "category": "Career",
   "author": "Deekshith N"
