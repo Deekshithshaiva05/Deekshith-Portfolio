@@ -76,6 +76,16 @@ export const certifications: Certification[] = [
     image: '/images/Data_Analysis_Certificate_Page_1.jpg',
     type: 'image'
   },
+
+  {
+  title: "Open Source Connect India 2025 – Contributor",
+  organization: "NexFellow & Julep",
+  description: "Recognized for active participation and valuable contributions as a Contributor during Open Source Connect India 2025, held from 15th–30th August 2025. Deekshith N contributed to collaborative open-source development initiatives that fostered innovation, knowledge sharing, and community growth. The event, organized by NexFellow and Julep, brought together developers and enthusiasts to advance open-source technologies, promote collaboration, and strengthen the open-source ecosystem in India.",
+  issueDate: "30th August 2025",
+  image: "/images/Open_Source_Connect_India_2025_Certificate.jpg",
+  type: "image"
+  },
+
   {
     title: "Explore Machine Learning with TensorFlow",
     organization: "Infosys Springboard",
