@@ -115,7 +115,7 @@ export const simpleBlogPosts: SimpleBlogPost[] = [
       <h2>Conclusion</h2>
       <p>The <strong>LeetCode 100 Days Streak Badge</strong> isn’t just a recognition — it’s proof of persistence, focus, and a growth mindset. Coding every day taught me that success isn’t built overnight; it’s earned line by line, problem by problem. The journey doesn’t stop here — it continues toward new challenges, higher streaks, and greater goals.</p>
     `,
-    "image": "\images\100 days leetcode.gif",
+    "image": "/images/100 days leetcode.gif",
     "date": "2025-10-07",
     "category": "Career",
     "author": "Deekshith N"
