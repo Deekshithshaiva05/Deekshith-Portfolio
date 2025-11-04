@@ -126,6 +126,51 @@ export const projects: Project[] = [
   "featured": false,
   "details": "The Email Spam Detection Tool is a machine learning-powered Flask web application designed to automatically classify email content as Spam or Not Spam. Built using Python and scikit-learn, the model employs a TF-IDF vectorizer to convert raw email text into numerical feature representations, allowing effective pattern recognition and classification. The training process utilizes a Naïve Bayes or Logistic Regression algorithm—chosen for their high precision in text-based classification—achieving an overall accuracy of 97.6% on test data. The backend, implemented in Flask, serves predictions via an interactive web interface where users can paste or type any email message to instantly receive spam detection results along with prediction confidence levels. \n\nThe project’s modular design ensures seamless deployment and scalability. Model and vectorizer files are serialized using Pickle, enabling quick loading and inference without retraining. The frontend is built with HTML, CSS, and JavaScript, featuring a responsive design enhanced with Bootstrap/Tailwind for a clean, user-friendly experience. The system can be deployed easily on cloud platforms such as Render, Railway, or Heroku using Gunicorn as the WSGI server. \n\nIts simplicity, interpretability, and efficiency make it an excellent example of applying Natural Language Processing (NLP) and Machine Learning for cybersecurity and email filtering automation. The application structure includes separate directories for templates and static assets, promoting maintainability and readability. Through this project, end-users gain an instant and reliable spam classification tool, while developers can extend it further with advanced models, dataset expansion, or API integration."
   },
+  {
+  "id": "isl-recognition-3d-animation",
+  "title": "Indian Sign Language Recognition and 3D Animation System",
+  "description": "An AI-powered solution designed to recognize Indian Sign Language (ISL) gestures and translate them into animated 3D visualizations, bridging the communication gap for the deaf and hard-of-hearing community. The project integrates computer vision, machine learning, and 3D animation to promote inclusivity and accessibility through technology.",
+  "image": "images/isl_3d_animation.png",
+  "technologies": [
+    "Python",
+    "Machine Learning",
+    "Computer Vision",
+    "Blender",
+    "AI Models",
+    "3D Animation",
+    "OpenCV",
+    "TensorFlow",
+    "MediaPipe",
+    "Gesture Recognition",
+    "Human-Computer Interaction"
+  ],
+  "githubUrl": "https://lnkd.in/g-iDDdEr",
+  "featured": true,
+  "details": "✨ From Idea to Impact — in just 24 hours! The Indian Sign Language (ISL) Recognition and Animation System was developed during Symbiot-2025, a national-level hackathon held on May 8–9 at Vidyavardhaka College of Engineering, Mysuru. Our team, AI PIONEER'S — consisting of Deekshith N, Syed Farhaan, Prashanth Singh, and Shamanth M — took on the challenge of creating a meaningful AI solution aimed at improving communication accessibility for the deaf and hard-of-hearing community. The system detects ISL gestures using computer vision and interprets them in real time, translating the gestures into corresponding 3D animations performed by a virtual human avatar. This enables seamless two-way communication between sign language users and others. The technical implementation combines Python, AI-based gesture recognition models, and Blender for realistic 3D animation rendering. The prototype demonstrates words such as 'Hello' through accurate hand-tracking and animation synchronization. The 24-hour hackathon experience included brainstorming, designing, coding, and presenting a working prototype that showcased the potential of AI-driven accessibility tools. This project marks a step toward inclusive communication technologies powered by AI and creativity. Built for Symbiot-2025 at VVCE Mysuru, the project highlights teamwork, innovation, and social impact — proving that meaningful tech for good can emerge even within tight deadlines.",
+  "eventInfo": {
+    "eventName": "Symbiot-2025",
+    "eventType": "National-Level Hackathon",
+    "eventDates": "May 8–9, 2025",
+    "location": "Vidyavardhaka College of Engineering, Mysuru",
+    "teamName": "AI PIONEER'S",
+    "teamMembers": ["Deekshith N", "Syed Farhaan", "Prashanth Singh", "Shamanth M"]
+  },
+  "hashtags": [
+    "#Hackathon",
+    "#Symbiot2025",
+    "#IndianSignLanguage",
+    "#AI",
+    "#Inclusion",
+    "#3DAnimation",
+    "#Teamwork",
+    "#MachineLearning",
+    "#Blender",
+    "#Mysuru",
+    "#Accessibility",
+    "#TechForGood"
+  ]
+  },
+
 
   
 ];
