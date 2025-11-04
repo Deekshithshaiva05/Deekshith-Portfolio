@@ -145,7 +145,7 @@ export const projects: Project[] = [
     "Human-Computer Interaction"
   ],
   "githubUrl": "https://lnkd.in/g-iDDdEr",
-  "featured": true,
+  "featured": false,
   "details": "✨ From Idea to Impact — in just 24 hours! The Indian Sign Language (ISL) Recognition and Animation System was developed during Symbiot-2025, a national-level hackathon held on May 8–9 at Vidyavardhaka College of Engineering, Mysuru. Our team, AI PIONEER'S — consisting of Deekshith N, Syed Farhaan, Prashanth Singh, and Shamanth M — took on the challenge of creating a meaningful AI solution aimed at improving communication accessibility for the deaf and hard-of-hearing community. The system detects ISL gestures using computer vision and interprets them in real time, translating the gestures into corresponding 3D animations performed by a virtual human avatar. This enables seamless two-way communication between sign language users and others. The technical implementation combines Python, AI-based gesture recognition models, and Blender for realistic 3D animation rendering. The prototype demonstrates words such as 'Hello' through accurate hand-tracking and animation synchronization. The 24-hour hackathon experience included brainstorming, designing, coding, and presenting a working prototype that showcased the potential of AI-driven accessibility tools. This project marks a step toward inclusive communication technologies powered by AI and creativity. Built for Symbiot-2025 at VVCE Mysuru, the project highlights teamwork, innovation, and social impact — proving that meaningful tech for good can emerge even within tight deadlines.",
   "eventInfo": {
     "eventName": "Symbiot-2025",
