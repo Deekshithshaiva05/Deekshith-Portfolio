@@ -68,5 +68,33 @@ export const projects: Project[] = [
   featured: false,
   details:"This project involves developing a machine learning model that suggests the most appropriate medicines based on a users symptoms, medical conditions, and personal health data. The system is trained on a large dataset of historical medical records, including information about symptoms, diagnoses, treatment protocols, and prescribed medications. By analyzing this data, the model identifies patterns and correlations, allowing it to recommend the best course of action for the user. The system allows users to input their symptoms and medical conditions through an intuitive web interface built with Flask, which then processes this input and generates tailored medicine recommendations. The model not only suggests the most appropriate medications but also provides dosage information, potential side effects, and possible drug interactions, ensuring a safer and more informed decision-making process. Key features of the system include personalized medicine recommendations based on symptoms and medical history, real-time updates as new medical knowledge becomes available, and alerts for potential drug interactions. The user-friendly interface allows for easy symptom entry, while the system remains scalable to support a broader range of conditions and treatments. Being data-driven, it relies on accurate machine learning algorithms to maintain reliability. The recommendation system leverages scikit-learn for training various models, and uses Pandas and NumPy for efficient data handling. To ensure high accuracy, preprocessing steps like normalization and imputation are applied. The application also includes a feedback loop where healthcare professionals can evaluate suggestions, which helps refine future predictions. By integrating real-time medical data and maintaining adaptability, this solution supports faster diagnoses and reduces human error. The backend is secured, maintains patient confidentiality, and is designed for scalability in real-world clinical environments, making it a reliable asset for digital healthcare advancement.",
   },
+  {
+  "id": "email-spam-detection-tool",
+  "title": "Email Spam Detection Tool",
+  "description": "A lightweight yet powerful machine learning-based web application built with Flask that classifies email messages as Spam or Not Spam. The system leverages TF-IDF vectorization and a trained scikit-learn model to ensure high-accuracy real-time predictions. Designed with a modern, responsive frontend, it offers an intuitive interface for users to test email messages effortlessly.",
+  "image": "images/email_spam.png",
+  "technologies": [
+    "Python",
+    "Flask",
+    "Machine Learning",
+    "scikit-learn",
+    "TF-IDF Vectorization",
+    "Pickle",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap",
+    "Tailwind CSS",
+    "Natural Language Processing (NLP)",
+    "Text Preprocessing",
+    "Model Deployment",
+    "Web Development",
+    "Gunicorn"
+  ],
+  "githubUrl": "https://github.com/Deekshithshaiva05/Email-Spam-Classification.git",
+  "featured": false,
+  "details": "The Email Spam Detection Tool is a machine learning-powered Flask web application designed to automatically classify email content as Spam or Not Spam. Built using Python and scikit-learn, the model employs a TF-IDF vectorizer to convert raw email text into numerical feature representations, allowing effective pattern recognition and classification. The training process utilizes a Naïve Bayes or Logistic Regression algorithm—chosen for their high precision in text-based classification—achieving an overall accuracy of 97.6% on test data. The backend, implemented in Flask, serves predictions via an interactive web interface where users can paste or type any email message to instantly receive spam detection results along with prediction confidence levels. \n\nThe project’s modular design ensures seamless deployment and scalability. Model and vectorizer files are serialized using Pickle, enabling quick loading and inference without retraining. The frontend is built with HTML, CSS, and JavaScript, featuring a responsive design enhanced with Bootstrap/Tailwind for a clean, user-friendly experience. The system can be deployed easily on cloud platforms such as Render, Railway, or Heroku using Gunicorn as the WSGI server. \n\nIts simplicity, interpretability, and efficiency make it an excellent example of applying Natural Language Processing (NLP) and Machine Learning for cybersecurity and email filtering automation. The application structure includes separate directories for templates and static assets, promoting maintainability and readability. Through this project, end-users gain an instant and reliable spam classification tool, while developers can extend it further with advanced models, dataset expansion, or API integration."
+  },
+
   
 ];
