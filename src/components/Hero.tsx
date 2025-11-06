@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
   };
 
   const handleResumeDownload = () => {
-    const resumeUrl = '/Resume/Deekshith-Resume.pdf';
+    const resumeUrl = '/Resume/DEEKSHITH_N_2026_Resume.pdf';
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.download = 'Deekshith Resume.pdf';
