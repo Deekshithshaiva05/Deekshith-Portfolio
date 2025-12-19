@@ -23,12 +23,19 @@ export const skills: Skill[] = [
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg',
     color: '#007396'
   },
-  { 
-    name: 'HTML/CSS', 
-    level: 8, 
+  {
+    name: 'HTML/CSS',
+    level: 8,
     category: 'programming',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
     color: '#e34f26'
+  },
+  {
+    name: 'C',
+    level: 6,
+    category: 'programming',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg',
+    color: '#A8B9CC'
   },
   {
     name: 'SQL',
@@ -245,6 +252,20 @@ export const skills: Skill[] = [
     "category": "tools",
     "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
     "color": "#2496ED"
+  },
+  {
+    "name": "Power BI",
+    "level": 7,
+    "category": "tools",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/powerbi/powerbi-original.svg",
+    "color": "#F2C811"
+  },
+  {
+    "name": "Tableau",
+    "level": 7,
+    "category": "tools",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tableau/tableau-original.svg",
+    "color": "#E97627"
   },
 
 ];
