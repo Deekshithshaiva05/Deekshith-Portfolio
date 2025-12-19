@@ -239,5 +239,12 @@ export const skills: Skill[] = [
     "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/netlify/netlify-original.svg",
     "color": "#00C7B7"
   },
-  
+  {
+    "name": "Docker",
+    "level": 7,
+    "category": "tools",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+    "color": "#2496ED"
+  },
+
 ];
