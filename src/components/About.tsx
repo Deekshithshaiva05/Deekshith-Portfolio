@@ -96,7 +96,7 @@ const About: React.FC = () => {
       I am a Computer Science engineering student specializing in Artificial Intelligence and Machine Learning at ATME College of Engineering, Mysuru.
     </p>
     <p>
-      I have a strong interest in Python development, machine learning, and building real-world applications using technologies like Flask, Django, HTML, CSS, and JavaScript.
+      I have a strong interest in Python development, machine learning, and building real-world applications using technologies like Python, AI, Machine Learning, Generative AI, Deep Learning, Data science, Flask, HTML, CSS, and more...
     </p>
     <p>
       I enjoy working on practical projects and applying theoretical concepts to solve real-world problems through code and experimentation.
