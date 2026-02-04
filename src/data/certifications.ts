@@ -88,6 +88,15 @@ export const certifications: Certification[] = [
   },
 
   {
+  title: "Get Started with SQL Analytics and BI on Databricks",
+  organization: "Databricks (via Simplilearn SkillUp)",
+  description: "Deekshith N successfully completed the online course 'Get Started with SQL Analytics and BI on Databricks'. This course introduced the fundamentals of SQL-based analytics and business intelligence using the Databricks platform. It covered key concepts such as querying data using SQL, analyzing large datasets, building analytical workflows, and leveraging Databricks for scalable data processing and BI use cases. The course demonstrates initiative and commitment toward strengthening data analytics skills and advancing a career in data and analytics.",
+  issueDate: "25th December 2025",
+  url:"https://simpli-web.app.link/e/XAs3y66Et0b"
+  "type": "url"
+  },
+
+  {
   title: "Open Source Connect India 2025 – Contributor",
   organization: "NexFellow & Julep",
   description: "Recognized for active participation and valuable contributions as a Contributor during Open Source Connect India 2025, held from 15th–30th August 2025. Deekshith N contributed to collaborative open-source development initiatives that fostered innovation, knowledge sharing, and community growth. The event, organized by NexFellow and Julep, brought together developers and enthusiasts to advance open-source technologies, promote collaboration, and strengthen the open-source ecosystem in India.",
