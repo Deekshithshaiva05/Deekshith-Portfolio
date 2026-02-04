@@ -1,0 +1,242 @@
+interface Certification {
+  title: string;
+  organization: string;
+  description?: string;
+  issueDate: string;
+  url?: string;
+  image?: string;
+  type: 'url' | 'image';
+}
+
+export const certifications: Certification[] = [
+  {
+    title: 'Programming for Everybody (Getting Started with Python)',
+    organization: 'by University of Michigan and offered through Coursera',
+    description: 'An introductory Python course by the University of Michigan focusing on core programming concepts like variables, loops, conditionals, and functions.',
+    issueDate: 'MAY 2024',
+    url: 'https://www.coursera.org/account/accomplishments/certificate/VVK3UCBSUD8H',
+    type: 'url'
+  },
+  {
+    title: '5-Day Basics of AI Workshop',
+    organization: 'Tech Vritti in partnership with Microsoft',
+    description: 'This intensive workshop provided participants with a foundational understanding of Artificial Intelligence, covering key concepts, real-world applications, and hands-on practical exercises.',
+    issueDate: 'Nov 2024',
+    image: '/images/5-Day Basics_of_Al_Workshop.jpg',
+    type: 'image'
+  },
+  {
+    title: 'AI Essentials: Introduction to Artificial Intelligence',
+    organization: 'Udemy (MTF Institute of Management, Technology and Finance)',
+    description: ' Completion of a foundational course introducing key concepts in Artificial Intelligence.',
+    issueDate: 'November 20, 2024',
+    url: 'https://ude.my/UC-c1226a71-ca23-479f-9fa9-d0eaf1d75bc0',
+    type: 'url'
+  },
+  {
+    title: "Python and Artificial Intelligence",
+    organization: "Google Developer Student Clubs & DevTown",
+    description: "Successfully completed a 7-day bootcamp with DevTown on Python and Artificial Intelligence.",
+    issueDate: "",
+    url: "https://cert.devtown.in/verify/ZVcWmd",
+    type: "url"
+  },
+
+  {
+  title: "Hugging Face Agents Course – Certificate of Excellence",
+  organization: "Hugging Face",
+  description: "From this course, I learned how to design, build, and deploy intelligent AI agents using the Hugging Face ecosystem. I gained hands-on experience in integrating large language models (LLMs) with real-world tools and APIs, creating agents capable of reasoning, automating workflows, and performing complex tasks. The course helped me understand multimodal agents, prompt engineering, model orchestration, and how to fine-tune agents for specific use cases. This experience deepened my understanding of applied AI and strengthened my ability to develop end-to-end intelligent systems.",
+  issueDate: "May 22, 2025",
+  image: "/images/Hugging_Face_Agents_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+    title: "DevTown x GDSC – Instagram Clone",
+    organization: "DevTown & Google Developer Student Clubs (GDSC), Giet University",
+    description: "Deekshith N successfully completed a 7-day bootcamp on building an Instagram Clone using HTML and CSS. The project-based learning approach focused on frontend development principles, responsive design, and real-world layout replication using web technologies.",
+    issueDate: "",
+    url: "https://www.cert.devtown.in/verify/ZWrdQA",
+    type: "url"
+  },
+  
+  {
+  title: "Artificial Intelligence Beginners Guide",
+  organization: "Simplilearn",
+  description: "Deekshith N successfully completed the 'Artificial Intelligence Beginners Guide' certification offered by Simplilearn. This comprehensive program introduced the fundamental principles of Artificial Intelligence, including Machine Learning, Deep Learning, and Neural Networks. The course emphasized understanding core AI algorithms, data-driven decision-making, and the role of AI in automation and intelligent systems. Participants gained practical insights into real-world applications of AI across industries, equipping them with essential skills to begin their journey in the field of Artificial Intelligence and Data Science.",
+  issueDate: "13th June 2025",
+  url: "https://simpli-web.app.link/e/BsPY2ukdYXb",
+  type: "url"
+  },
+
+  {
+  title: "Build Your First Chatbot (MDL-510)",
+  organization: "IBM SkillsBuild",
+  description: "Deekshith N successfully completed the IBM SkillsBuild course 'Build Your First Chatbot (MDL-510)'. This hands-on learning experience introduced the fundamentals of conversational AI and chatbot development using IBM Watson Assistant. The course covered key aspects such as natural language understanding (NLU), intent and entity creation, dialogue flow design, and chatbot deployment. Through practical exercises and guided tutorials, participants learned to create intelligent virtual assistants capable of understanding user queries, automating responses, and enhancing customer engagement across multiple platforms. This certification demonstrates foundational proficiency in AI-driven chatbot technologies and conversational interface design.",
+  issueDate: "25th October 2025",
+  url: "https://skills.yourlearning.ibm.com/certificate/share/1c30c99cf2ewogICJvYmplY3RJZCIgOiAiTURMLTUxMCIsCiAgImxlYXJuZXJDTlVNIiA6ICIzMTU4NDkxUkVHIiwKICAib2JqZWN0VHlwZSIgOiAiQUNUSVZJVFkiCn0cbd8b8503a-10",
+  type: "url"
+  },
+
+  {
+    title: 'Data Analysis with Pandas and Python',
+    organization: 'Infosys springboard',
+    description: 'Completed a hands-on course focused on data analysis using Python and the Pandas library.Learned data cleaning, manipulation, and visualization techniques on real-world datasets.Developed analytical skills to derive insights and build efficient data workflows.',
+    issueDate: 'December 18, 2024',
+    image: '/images/Data_Analysis_Certificate_Page_1.jpg',
+    type: 'image'
+  },
+  {
+  title: "Applied Machine Learning Phase-1",
+  organization: "IVIS LABS",
+  description: "Deekshith N successfully completed the Domain Specific Training on 'Applied Machine Learning Phase-1'. This training program focused on building foundational and practical knowledge in machine learning, covering core concepts, applied techniques, and real-world problem-solving approaches. Conducted in collaboration with ATME College of Engineering, Mysuru, the program helped strengthen analytical thinking and hands-on skills essential for applied AI and machine learning development.",
+  issueDate: "June 2024 – October 2024",
+  image: '/images/Applied Machine Learning Phase-1',
+  "type": "certificate"
+  },
+
+
+  {
+  title: "Get Started with SQL Analytics and BI on Databricks",
+  organization: "Databricks (via Simplilearn SkillUp)",
+  description: "Deekshith N successfully completed the online course 'Get Started with SQL Analytics and BI on Databricks'. This course introduced the fundamentals of SQL-based analytics and business intelligence using the Databricks platform. It covered key concepts such as querying data using SQL, analyzing large datasets, building analytical workflows, and leveraging Databricks for scalable data processing and BI use cases. The course demonstrates initiative and commitment toward strengthening data analytics skills and advancing a career in data and analytics.",
+  issueDate: "25th December 2025",
+  url:"https://simpli-web.app.link/e/XAs3y66Et0b",
+  type: "url"
+  },
+
+  {
+  title: "Open Source Connect India 2025 – Contributor",
+  organization: "NexFellow & Julep",
+  description: "Recognized for active participation and valuable contributions as a Contributor during Open Source Connect India 2025, held from 15th–30th August 2025. Deekshith N contributed to collaborative open-source development initiatives that fostered innovation, knowledge sharing, and community growth. The event, organized by NexFellow and Julep, brought together developers and enthusiasts to advance open-source technologies, promote collaboration, and strengthen the open-source ecosystem in India.",
+  issueDate: "30th August 2025",
+  image: "/images/Open_Source_Connect_India_2025_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+    title: "Explore Machine Learning with TensorFlow",
+    organization: "Infosys Springboard",
+    description: "This course provided in-depth knowledge and hands-on experience with machine learning concepts using TensorFlow. It covered key topics such as neural networks, model training, and real-world AI applications.",
+    issueDate: "July 28, 2024",
+    image: "/images/Explore ML with TensorFlow.png",
+    type: "image"
+  },
+  {
+    title: "Internship Certificate",
+    organization: "Codsoft",
+    description: "Deekshith N was recognized as a Contributor in the Social Summer of Code program. This acknowledges his active participation and contributions to open-source projects, fostering collaborative development and learning within a socially impactful coding initiative.",
+    issueDate: "MAY 10, 2025",
+    image: "/images/codsoft.png",
+    type: "image"
+  },
+  {
+    title: "Contributor Recognition",
+    organization: "Social Summer of Code (SSOC)",
+    description: "This certificate is awarded to Deekshith N in recognition of the successful completion of a one-month internship program in Python Programming conducted by Codsoft. During the internship period from 05/07/2024 to 05/08/2024, the intern demonstrated dedication to learning and applying core Python concepts.",
+    issueDate: "August 8, 2024",
+    image: "/images/SSOC.png",
+    type: "image"
+  },
+  {
+    title: "Tech Tonic Participation Certificate",
+    organization: "Dayananda Sagar Academy of Technology & Management (DSATM)",
+    description: "Awarded to Deekshith N for participating in Tech Tonic 2024, an event organized by the Department of Computer Science & Engineering at DSATM. The event was held on July 12, 13, and 14, 2024, and included sessions, workshops, and activities promoting technical innovation and collaboration.",
+    issueDate: "July 14, 2024",
+    image: "/images/TECH_TONIC.png",
+    type: "image"
+  },
+  {
+    title: "Flask Python Course",
+    organization: "Great Learning Academy",
+    description: "This certificate is presented to Deekshith N for successfully completing an online course on Flask Python. The course provided in-depth knowledge on web application development using Flask, covering routing, templates, and deployment practices.",
+    issueDate: "October 2024",
+    image: "/images/FLASK.png",
+    type: "image"
+  },
+  {
+    title: "Certificate of Achievement – Fundamentals of Agents",
+    organization: "Hugging Face",
+    description: "Deekshith N completed Unit 1: Foundations of Agents as part of the Hugging Face Agents Course. The course covered the basics of AI agents, prompting techniques, agent decision-making, and the ecosystem of tools around Hugging Face's agent framework.",
+    issueDate: "May 1, 2025",
+    image: "/images/Foundations of Agents.png",
+    type: "image"
+  },
+  {
+    title: "From Learner to Builder: Become an AI Agent Architect",
+    organization: "IBM SkillsBuild",
+    description: "This certificate recognizes the successful completion of IBM SkillsBuild’s From Learner to Builder: Become an AI Agent Architect program. The course equips participants with essential knowledge and practical skills to design and build intelligent AI agents, preparing them for advanced roles in artificial intelligence solutions development.",
+    issueDate: "JUNE 10, 2025",
+    image: "/images/AI AGENT - IBM.png",
+    type: "image"
+  },
+  {
+    "title": "Python for Data Science",
+    "organization": "Infosys Springboard",
+    "description": "This certificate is awarded to Deekshith N for successfully completing the course 'Python for Data Science' offered by Infosys Springboard. The program covered Python fundamentals, data analysis, visualization, and applications in data science.",
+    "issueDate": "July 26, 2024",
+    "image": "/images/infosys_python_datascience.png",
+    "type": "image"
+  },
+  {
+  title: "The MCP Course: Unit 1 – Fundamentals of MCP",
+  organization: "Hugging Face",
+  description: "From this course, I learned the core concepts and foundational principles of the Model Context Protocol (MCP). I gained an understanding of how MCP enables structured communication between AI models, agents, and external systems. The course helped me explore modular AI development, integration methods, and how MCP supports interoperability between different AI tools, paving the way for scalable and collaborative intelligent systems.",
+  issueDate: "July 26, 2025",
+  image: "/images/MCP_Course_Fundamentals_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Agentic AI Day – Google Cloud",
+  organization: "Google Cloud & Hack2Skill",
+  description: "Participated in the Google Cloud Agentic AI Day, gaining insights into the emerging field of agentic AI and intelligent systems. From this event, I learned about the architecture and design of AI agents capable of autonomous reasoning, decision-making, and real-world problem-solving. I also discovered how Google Cloud tools and APIs enable developers to harness the potential of Agentic AI to build next-generation applications that drive innovation and positive societal impact.",
+  issueDate: "June 2025",
+  image: "/images/Agentic_AI_Day_Google_Cloud_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Instagram Clone Bootcamp – HTML & CSS",
+  organization: "DevTown & GDSC Giet University",
+  description: "Completed a 7-day hands-on bootcamp on building an Instagram Clone using HTML and CSS, organized by DevTown in collaboration with Google Developer Student Clubs (GDSC), Giet University. From this program, I learned the fundamentals of frontend web development, responsive layout design, and modern styling techniques. The course helped me understand project-based learning through real-world UI replication and best practices in clean and maintainable web design.",
+  issueDate: "June 21, 2024",
+  image: "/images/DevTown_Instagram_Clone_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Getting Started with Deep Learning",
+  organization: "NVIDIA",
+  description: "Earned a Certificate of Competency for successfully completing NVIDIA’s 'Getting Started with Deep Learning' course. Through this program, I learned the fundamental concepts of deep learning, including neural networks, supervised and unsupervised learning, and model training using GPUs. The course provided practical exposure to building and optimizing deep learning models, understanding activation functions, and applying frameworks like TensorFlow and PyTorch for real-world AI applications.",
+  issueDate: "August 21, 2025",
+  image: "/images/NVIDIA_Deep_Learning_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Large Language Model Basics (MDL-433)",
+  organization: "IBM SkillsBuild",
+  description: "Completed the 'Large Language Model Basics' course offered by IBM SkillsBuild, gaining foundational knowledge about the architecture, training, and deployment of large language models (LLMs). From this course, I learned how LLMs process language, generate responses, and are fine-tuned for specific tasks. It enhanced my understanding of prompt engineering, responsible AI usage, and the practical applications of LLMs in modern AI systems.",
+  issueDate: "July 10, 2025",
+  image: "/images/IBM_LLM_Basics_Certificate.jpg",
+  type: "image"
+  },
+
+  {
+  title: "Data Science with Python",
+  organization: "LetsUpgrade, NSDC & ITM Edutech Training Pvt. Ltd.",
+  description: "Successfully completed a 3-day intensive program on 'Data Science with Python' organized by LetsUpgrade in collaboration with NSDC and ITM Edutech. From this course, I learned Python programming for data analysis, data visualization, and statistical modeling. It covered essential libraries like Pandas, NumPy, and Matplotlib, while also emphasizing the importance of data preprocessing, machine learning concepts, and building predictive models using real-world datasets.",
+  issueDate: "February 21, 2025",
+  image: "/images/Data_Science_With_Python_Certificate.jpg",
+  type: "image"
+  }
+
+
+
+
+
+
+  
+
+];
