@@ -90,19 +90,26 @@ const About: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-1"
           >
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-soft h-full">
-              <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300">
-                <p>
-                  I am a passionate Computer Science engineering student specializing in Artificial Intelligence and Machine Learning at ATME College of Engineering, Mysuru.
-                </p>
-                <p>
-                  My academic journey has provided me with a strong foundation in software development and AI. I continuously strive to apply these skills in creative and impactful ways through research, innovation, and hands-on learning.
-                </p>
-                <p>
-                  I actively participate in hackathons, technical events, and practical projects to enhance my skills. My goal is to contribute to cutting-edge technological advancements while constantly pushing the boundaries of what I can achieve.
-                </p>
-              </div>
-            </div>
+           <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-soft h-full">
+  <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300">
+    <p>
+      I am a Computer Science engineering student specializing in Artificial Intelligence and Machine Learning at ATME College of Engineering, Mysuru.
+    </p>
+    <p>
+      I have a strong interest in Python development, machine learning, and building real-world applications using technologies like Flask, Django, HTML, CSS, and JavaScript.
+    </p>
+    <p>
+      I enjoy working on practical projects and applying theoretical concepts to solve real-world problems through code and experimentation.
+    </p>
+    <p>
+      I actively participate in hackathons, technical events, and online courses to stay updated with emerging technologies and industry trends.
+    </p>
+    <p>
+      My long-term goal is to build a strong career in AI and software development while continuously learning, improving, and contributing to impactful technology solutions.
+    </p>
+  </div>
+</div>
+
           </motion.div>
 
           <motion.div
