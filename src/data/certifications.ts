@@ -91,7 +91,7 @@ export const certifications: Certification[] = [
   organization: "IVIS LABS",
   description: "Deekshith N successfully completed the Domain Specific Training on 'Applied Machine Learning Phase-1'. This training program focused on building foundational and practical knowledge in machine learning, covering core concepts, applied techniques, and real-world problem-solving approaches. Conducted in collaboration with ATME College of Engineering, Mysuru, the program helped strengthen analytical thinking and hands-on skills essential for applied AI and machine learning development.",
   issueDate: "June 2024 – October 2024",
-  image: '/images/Applied Machine Learning Phase-1',
+  image: '/images/Applied Machine Learning Phase-2.jpg',
   type: "image"
   },
 
@@ -100,7 +100,7 @@ export const certifications: Certification[] = [
   organization: "IVIS LABS",
   "description": "Deekshith N successfully completed the Domain Specific Training on 'Applied Machine Learning Phase-2'. This advanced training program focused on strengthening applied machine learning skills through deeper concepts, hands-on implementation, and real-world use cases. Conducted in collaboration with ATME College of Engineering, Mysuru, the program enhanced practical understanding of machine learning workflows, model development, and applied AI problem-solving.",
   issueDate: "February 2025 – March 2025",
-  image: '/images/Applied Machine Learning Phase-2',
+  image: '/images/Applied Machine Learning Phase-2.jpg',
   type: "image"
   },
 
