@@ -92,7 +92,7 @@ export const certifications: Certification[] = [
   organization: "Databricks (via Simplilearn SkillUp)",
   description: "Deekshith N successfully completed the online course 'Get Started with SQL Analytics and BI on Databricks'. This course introduced the fundamentals of SQL-based analytics and business intelligence using the Databricks platform. It covered key concepts such as querying data using SQL, analyzing large datasets, building analytical workflows, and leveraging Databricks for scalable data processing and BI use cases. The course demonstrates initiative and commitment toward strengthening data analytics skills and advancing a career in data and analytics.",
   issueDate: "25th December 2025",
-  url:"https://simpli-web.app.link/e/XAs3y66Et0b"
+  url:"https://simpli-web.app.link/e/XAs3y66Et0b",
   type: "url"
   },
 
