@@ -86,6 +86,15 @@ export const certifications: Certification[] = [
     image: '/images/Data_Analysis_Certificate_Page_1.jpg',
     type: 'image'
   },
+  {
+  title: "Applied Machine Learning Phase-1",
+  organization: "IVIS LABS",
+  description: "Deekshith N successfully completed the Domain Specific Training on 'Applied Machine Learning Phase-1'. This training program focused on building foundational and practical knowledge in machine learning, covering core concepts, applied techniques, and real-world problem-solving approaches. Conducted in collaboration with ATME College of Engineering, Mysuru, the program helped strengthen analytical thinking and hands-on skills essential for applied AI and machine learning development.",
+  issueDate: "June 2024 – October 2024",
+  image: '/images/Data_Analysis_Certificate_Page_1.jpg',
+  "type": "certificate"
+  },
+
 
   {
   title: "Get Started with SQL Analytics and BI on Databricks",
