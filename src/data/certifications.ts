@@ -60,7 +60,6 @@ export const certifications: Certification[] = [
   type: 'image'
   },
 
-
   {
     title: "DevTown x GDSC – Instagram Clone",
     organization: "DevTown & Google Developer Student Clubs (GDSC), Giet University",
