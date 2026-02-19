@@ -65,7 +65,7 @@ export const certifications: Certification[] = [
   organization: 'Postman',
   description: 'Verified credential awarded for demonstrating proficiency in essential API skills, including consuming APIs and working with applications using Postman. This badge validates practical knowledge of API fundamentals and hands-on experience with Postman tools.',
   issueDate: '17 Feb 2026',
-  image: 'https://badges.parchment.com/public/assertions/gaMbLjE5TPqXIFrOnGBtMQ?identity__email=deekshithshaiva05@gmail.com',
+  image: 'https://badges.parchment.com/public/assertions/gaMbLjE5TPqXIFrOnGBtMQ?identity__email=deekshithshaiva05@gmail.com&action=download',
   type: 'url'
 },
 
