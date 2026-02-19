@@ -61,6 +61,16 @@ export const certifications: Certification[] = [
   },
 
   {
+  title: 'Postman API Fundamentals Student Expert',
+  organization: 'Postman',
+  description: 'Verified credential awarded for demonstrating proficiency in essential API skills, including consuming APIs and working with applications using Postman. This badge validates practical knowledge of API fundamentals and hands-on experience with Postman tools.',
+  issueDate: '17 Feb 2026',
+  image: 'https://badges.parchment.com/public/assertions/gaMbLjE5TPqXIFrOnGBtMQ?identity__email=deekshithshaiva05@gmail.com',
+  type: 'url'
+},
+
+
+  {
     title: "DevTown x GDSC – Instagram Clone",
     organization: "DevTown & Google Developer Student Clubs (GDSC), Giet University",
     description: "Deekshith N successfully completed a 7-day bootcamp on building an Instagram Clone using HTML and CSS. The project-based learning approach focused on frontend development principles, responsive design, and real-world layout replication using web technologies.",
