@@ -67,7 +67,7 @@ export const certifications: Certification[] = [
   issueDate: '17 Feb 2026',
   image: 'https://badges.parchment.com/public/assertions/gaMbLjE5TPqXIFrOnGBtMQ?identity__email=deekshithshaiva05@gmail.com&action=download',
   type: 'url'
-},
+  },
 
 
   {
