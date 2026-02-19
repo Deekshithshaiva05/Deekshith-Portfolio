@@ -56,7 +56,7 @@ export const certifications: Certification[] = [
   organization: 'TCS iON offered by IndiaAI (Tata Consultancy Services)',
   description: 'Certificate of Completion awarded for successfully completing the "YUVA AI For All" course through TCS iON, an initiative offered by IndiaAI, demonstrating foundational knowledge in Artificial Intelligence concepts and applications.',
   issueDate: '14 Feb 2026',
-  image: '/images/YUVA_AI_For_All.jpg',
+  image: '/images/YUVA_AI_For_All.png',
   type: 'image'
   },
 
