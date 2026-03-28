@@ -32,6 +32,7 @@ const Certifications: React.FC = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+  const [showListView, setShowListView] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -170,8 +171,84 @@ const Certifications: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Removed grid/list view toggle */}
+        <div className="flex justify-center mb-8">
+          <motion.button
+            onClick={() => setShowListView(!showListView)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium flex items-center gap-2"
+          >
+            <Award className="w-5 h-5" />
+            {showListView ? 'View Carousel' : 'View All Certificates'}
+          </motion.button>
+        </div>
 
+        {showListView ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="space-y-4">
+              {certifications.map((cert, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className="bg-white dark:bg-gray-900 rounded-xl shadow-soft hover:shadow-soft-lg transition-all duration-300 p-6"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+                    <div className="md:col-span-1 border-r border-gray-200 dark:border-gray-700 pr-6">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                        {cert.title}
+                      </h3>
+                      <div className="text-primary-600 dark:text-primary-400 font-medium text-sm">
+                        {cert.issuer}
+                      </div>
+                      {cert.date && (
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {cert.date}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="md:col-span-1">
+                      {cert.description && (
+                        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                          {cert.description}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="md:col-span-1 flex justify-end">
+                      <motion.button
+                        onClick={() => handleDownload(cert)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium whitespace-nowrap"
+                      >
+                        {cert.type === 'url' ? (
+                          <>
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            View
+                          </>
+                        ) : (
+                          <>
+                            <Download className="w-4 h-4 mr-2" />
+                            View
+                          </>
+                        )}
+                      </motion.button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        ) : (
         <motion.div
           ref={ref}
           variants={container}
@@ -268,6 +345,7 @@ const Certifications: React.FC = () => {
           <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 dark:from-gray-800 to-transparent pointer-events-none"></div>
           <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 dark:from-gray-800 to-transparent pointer-events-none"></div>
         </motion.div>
+        )}
       </div>
 
       <AnimatePresence>
