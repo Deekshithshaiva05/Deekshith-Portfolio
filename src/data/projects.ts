@@ -199,7 +199,7 @@ export const projects: Project[] = [
     "Real-Time Notifications"
   ],
   
-  githubUrl: "https://github.com/your-repo-link",
+  githubUrl: "https://prakaash-pulse.lovable.app/",
   
   featured: true,
   
