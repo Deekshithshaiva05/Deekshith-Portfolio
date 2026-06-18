@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, MapPin, GraduationCap, Briefcase, Award, Code, Zap } from 'lucide-react';
+import { Calendar, MapPin, GraduationCap, Briefcase, Award, Code, Zap, ChevronDown, ChevronUp } from 'lucide-react';
 import { educationData } from '../data/education';
 import { experienceData } from '../data/experience';
 import { certifications } from '../data/certifications';
@@ -23,6 +23,20 @@ const About: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const [expandedExperiences, setExpandedExperiences] = useState<Set<number>>(new Set());
+
+  const toggleExperience = (index: number) => {
+    setExpandedExperiences(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
 
   const timelineVariants = {
     hidden: { opacity: 0 },
@@ -167,10 +181,28 @@ const About: React.FC = () => {
                       <span>{item.startDate} - {item.current ? 'Present' : item.endDate}</span>
                     </div>
                     <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 text-xs space-y-0.5">
-                      {item.description.slice(0, 2).map((desc, i) => (
+                      {item.description.slice(0, expandedExperiences.has(index) ? item.description.length : 2).map((desc, i) => (
                         <li key={i}>{desc}</li>
                       ))}
                     </ul>
+                    {item.description.length > 2 && (
+                      <button
+                        onClick={() => toggleExperience(index)}
+                        className="mt-2 flex items-center text-xs text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors"
+                      >
+                        {expandedExperiences.has(index) ? (
+                          <>
+                            <ChevronUp size={14} className="mr-1" />
+                            Show less
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown size={14} className="mr-1" />
+                            Show {item.description.length - 2} more...
+                          </>
+                        )}
+                      </button>
+                    )}
                     {item.technologies && (
                       <div className="mt-2 flex flex-wrap gap-1">
                         {item.technologies.slice(0, 4).map((tech, i) => (

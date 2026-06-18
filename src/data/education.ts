@@ -3,18 +3,15 @@ import { Education } from '../types';
 export const educationData: Education[] = [
   {
     degree: 'Bachelor of Engineering',
-    field: 'Computer Science (Artificial Intelligence and Machine Learning)',
+    field: 'CSE (Artificial Intelligence and Machine Learning)',
     institution: 'ATME College of Engineering',
     location: 'Mysuru,karnataka',
     startYear: 2022,
-    current: true,
-    gpa: '9.0/10.0',
-    achievements: [
-      'Currently in Final Year',
-    ]
+    endYear: 2026,
+    gpa: '9.07/10.0',
   },
   {
-    degree: 'Pre-University Course(PUC)',
+    degree: 'Pre-University Course (PUC)',
     field: 'PCMB',
     institution: 'NiSARGA INDEPENDENT PU COLLEGE',
     location: 'KOLLEGAL,CHAMARAJANAGAR,KARNATAKA',
