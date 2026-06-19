@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, FileDown, Download } from 'lucide-react';
+import { ChevronDown, FileDown, Download, Eye } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const roles = [
@@ -21,16 +21,16 @@ const Hero: React.FC = () => {
 
   const handleResumeDownload = async () => {
     setIsDownloading(true);
-    
+
     try {
       const resumeUrl = '/Resume/DEEKSHITH_N_2026_Resume.pdf';
-      
+
       // Method 1: Direct download approach
       const link = document.createElement('a');
       link.href = resumeUrl;
       link.download = 'Deekshith_N_Resume.pdf'; // Simplified filename without spaces
       link.target = '_blank'; // Open in new tab as fallback
-      
+
       // Append to body, click, and remove
       document.body.appendChild(link);
       link.click();
@@ -49,12 +49,16 @@ const Hero: React.FC = () => {
 
     } catch (error) {
       console.error('Download error:', error);
-      
+
       // Final fallback - direct window open
       window.open('/Resume/DEEKSHITH_N_2026_Resume.pdf', '_blank', 'noopener,noreferrer');
     } finally {
       setIsDownloading(false);
     }
+  };
+
+  const handleResumeView = () => {
+    window.open('/Resume/DEEKSHITH_N_2026_Resume.pdf', '_blank', 'noopener,noreferrer');
   };
 
   // Alternative robust download function using fetch (commented out for reference)
@@ -209,28 +213,42 @@ const Hero: React.FC = () => {
               I bridge the gap between AI algorithms and user experience.
             </motion.p>
 
-            <motion.button
-              onClick={handleResumeDownload}
-              disabled={isDownloading}
-              className="group flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white rounded-xl transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-primary-500/25"
-              whileHover={isDownloading ? {} : { scale: 1.05 }}
-              whileTap={isDownloading ? {} : { scale: 0.95 }}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              {isDownloading ? (
-                <>
-                  <Download className="w-5 h-5 mr-3 animate-pulse" />
-                  Downloading...
-                </>
-              ) : (
-                <>
-                  <FileDown className="w-5 h-5 mr-3 group-hover:animate-bounce transition-transform" />
-                  Download Resume
-                </>
-              )}
-            </motion.button>
+              <motion.button
+                onClick={handleResumeDownload}
+                disabled={isDownloading}
+                className="group flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white rounded-xl transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-primary-500/25"
+                whileHover={isDownloading ? {} : { scale: 1.05 }}
+                whileTap={isDownloading ? {} : { scale: 0.95 }}
+              >
+                {isDownloading ? (
+                  <>
+                    <Download className="w-5 h-5 mr-3 animate-pulse" />
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <FileDown className="w-5 h-5 mr-3 group-hover:animate-bounce transition-transform" />
+                    Download Resume
+                  </>
+                )}
+              </motion.button>
+
+              <motion.button
+                onClick={handleResumeView}
+                className="group flex items-center px-8 py-4 bg-transparent border-2 border-primary-500 hover:bg-primary-500/10 text-primary-400 hover:text-primary-300 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-primary-500/25"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Eye className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" />
+                View Resume
+              </motion.button>
+            </motion.div>
           </motion.div>
 
           <motion.div 
