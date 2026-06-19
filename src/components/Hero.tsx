@@ -58,7 +58,7 @@ const Hero: React.FC = () => {
   };
 
   const handleResumeView = () => {
-    window.open('/Resume/DEEKSHITH_N_2026_Resume.pdf', '_blank', 'noopener,noreferrer');
+    window.open('https://drive.google.com/file/d/1UPO_sgejsp4TFKxrUMTsAEin8zU0fbCs/view?usp=sharing', '_blank', 'noopener,noreferrer');
   };
 
   // Alternative robust download function using fetch (commented out for reference)
