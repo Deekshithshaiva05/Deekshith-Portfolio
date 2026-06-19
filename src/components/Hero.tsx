@@ -158,15 +158,6 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.div 
-              className="inline-block px-4 py-2 mb-6 rounded-full bg-primary-500/10 backdrop-blur-sm border border-primary-500/20"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <span className="text-primary-300 font-medium">Welcome to my Portfolio</span>
-            </motion.div>
-
             <motion.h1 
               className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
