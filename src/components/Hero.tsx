@@ -259,7 +259,7 @@ const Hero: React.FC = () => {
               {/* Profile image */}
               <div className="relative overflow-hidden rounded-2xl border-2 border-primary-500/30 shadow-2xl">
                 <img 
-                  src="/images/Photo.jpg" 
+                  src="/images/Photo.png" 
                   alt="Deekshith N - AI/ML Engineer & Developer"
                   className="w-80 h-80 md:w-96 md:h-96 object-cover transform group-hover:scale-110 transition-transform duration-500"
                   onError={(e) => {
